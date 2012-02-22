@@ -1,0 +1,15 @@
+pyramid==1.3a7
+Paste==1.7.5.1
+python-dateutil==1.5
+SQLAlchemy==0.7.5
+GeoAlchemy==0.6
+WebError==0.10.3
+# Requires libpq-dev to be installed on the system.
+psycopg2==2.4.4
+geopy==0.94.1
+webhelpers==1.3
+lxml==2.3.3
+vobject==0.8.1c
+pytz==2011n
+sqlalchemy-migrate==0.7.2
+Fabric==1.4.0
