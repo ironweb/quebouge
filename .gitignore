@@ -1,4 +1,4 @@
-app/env
+Yellow/env
 *~
 *.pyc
 *.swp
@@ -13,9 +13,9 @@ development.ini
 abourget.ini
 
 # Test stuff
-app/tests/chromedriver*
-app/tests/screenshots
-app/tests/build/*
-app/.coverage
-app/coverage.xml
-app/nosetests.xml
+Yellow/tests/chromedriver*
+Yellow/tests/screenshots
+Yellow/tests/build/*
+Yellow/.coverage
+Yellow/coverage.xml
+Yellow/nosetests.xml
