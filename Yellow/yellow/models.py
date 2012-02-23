@@ -128,7 +128,7 @@ class Activity(Base):
 
         ret1 = [Activity._row_result_to_dict(row, past=True) for row in res1]
         ret2 = [Activity._row_result_to_dict(row, past=False) for row in res2]
-        return ret1 + ret2
+        return (ret1 + ret2)[:50] # maximum renvoyés
 
     @staticmethod
     def _row_result_to_dict(row, past):
@@ -161,22 +161,22 @@ class Activity(Base):
         row_dt = row.dtstart
         row_date = row_dt.date()
         if past:
-            out['ends_label'] = "Jusqu'à"
+            out['ends_label'] = "JUSQU'À"
             out['ends_time'] = row.dtend.strftime("%H:%M")            
         elif row_date == today:
             if now + datetime.timedelta(0, 14400) > row_dt: # h
-                out['today_label'] = "Dans"
+                out['today_label'] = "DANS"
                 out['today_time'] = Activity._relative_time(row_dt, now)
             else:
-                out['today_label'] = "Aujourd'hui"
+                out['today_label'] = "AUJOURD'HUI"
                 out['today_time'] = row_dt.strftime("%H:%M")
         else:
             demain = today + datetime.timedelta(1)
             if demain == row_date:
-                out['later_label'] = 'Demain'
+                out['later_label'] = 'DEMAIN'
             else:
                 jour = row_dt.strftime("%d").lstrip('0')
-                mois = row_dt.strftime("%b")
+                mois = row_dt.strftime("%b").upper()
                 out['later_label'] = "%s %s" % (jour, mois)
             out['later_heure'] = row_dt.strftime("%H:%M")
         return out
