@@ -114,7 +114,7 @@ class Activity(Base):
                     location_info=row.location_info,
                     position=(point.x, point.y),
                     price=row.price,
-                    distance=row.distance_1,
+                    distance="%0.1f" % row.distance_1,
                     )
 
 GeometryDDL(Activity.__table__)
