@@ -65,7 +65,7 @@
           <a href="#" class="toggle-filters" data-state="close">Partager</a>  
         </section>
 
-        <div id="map-canvas" style="width:100%; height:100%"></div>
+        <div id="map-canvas"></div>
 
       </header>
       
@@ -99,27 +99,30 @@
     <script id="tpl-list-view" type="text/x-mustache-template">
       <ol>
           {{#activities}}
-          <li>
+          <li class="occurence">
             <a href="/show/{{id}}"> 
               <figure>
-                <img src="/static/images/default.png" alt="{{category}}" style="width:50px;" />  
+                <img src="/static/images/default.png" alt="{{category}}" style="width:50px;" /><br />
+                <span class="price">{{price}}</span>
               </figure>
               <div class="content">
                 <h3>{{title}}</h3>
                 <ul class="meta" style="margin-top: 3px;">
-                  <li class="">
-                  {{#later_label}}
-                    <small>{{later_label}}</small>{{later_time}}
-                  {{/later_label}}
-                  {{#today_label}}
-                    <small>{{today_label}}</small>{{today_time}}
-                  {{/today_label}}
-                  {{#ends_label}}
-                    <small>{{ends_label}}</small>{{ends_time}}
-                  {{/ends_label}}
+                  <li class="time">
+                    {{#later_label}}
+                      <small>{{later_label}}</small>
+                      <span>{{later_time}}</span>
+                    {{/later_label}}
+                    {{#today_label}}
+                      <small>{{today_label}}</small>
+                      <span>{{today_time}}</span>
+                    {{/today_label}}
+                    {{#ends_label}}
+                      <small>{{ends_label}}</small>
+                      <span>{{ends_time}}</span>
+                    {{/ends_label}}
                   </li>
-                  <li class="dist"><small></small>{{distance}} km</li>
-                  <li class="price"><small></small>{{price}}</li>
+                  <li class="dist"><small>PROXIMITÉ</small><span>{{distance}}</span> km</li>
                 </ul>
               </div>
               <span class="arrow"></span>
