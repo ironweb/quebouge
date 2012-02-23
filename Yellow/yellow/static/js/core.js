@@ -2,16 +2,23 @@
  * Front Controller
  */
 FrontController = {
+    isStarted:false,
     init:function() {
         FrontController.addActions();
 
         //prepare controller
         SearchController.init();
 
+        //init libs
+        Geo.init();
 
-        FrontController.start();    
+        //start Application from Geo object (after we get the geo position)
     },
     start:function() {
+        if(FrontController.isStarted){
+            return;
+        }
+
         //add future router here
         SearchController.load();      
     },
@@ -40,6 +47,7 @@ SearchController = {
     },
     doSubmit:function() {
         //do an ajax call to load data from the form
+        console.debug(Geo.getPosition())
         //fake data
         var data = {
             activities:[{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"}]
@@ -60,6 +68,33 @@ Template = {
     },
     render:function( name, data ) {
         return Mustache.to_html( Template.get(name), data );     
+    }
+}
+
+Geo = {
+    coords:false,
+    init:function(){
+        Modernizr.load({
+            test: Modernizr.geolocation,
+            nope: '/static/js/libs/geolocalisation.js',
+            complete:function(){
+                Geo.loadPosition();
+            }
+        }); 
+    },
+    loadPosition:function() {
+        navigator.geolocation.getCurrentPosition(function(data){
+            Geo.coords = data.coords;
+            FrontController.ready = true;
+            FrontController.start();                
+        });   
+    },
+    getPosition:function() {
+        if (!Geo.coords) {
+            alert('return default position')
+        }else{
+            return Geo.coords;
+        }
     }
 }
 /*
