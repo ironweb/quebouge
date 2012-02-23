@@ -174,10 +174,12 @@ SearchController = {
         var $outElement = $('#container>.page.current');
         $('#home-page').addClass('current');
         $outElement.addClass('slideright out');
-        //$('#home-page').addClass('current'); 
+        //$('#home-page').addClass('current');
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
-            $('#home-page').removeClass('slideright in')    
+            $('#home-page').removeClass('slideright in')
+
+           // ActivityController.__init();
         },250);
         
     },
@@ -199,12 +201,13 @@ SearchController = {
 }
 
 ActivityController = {
-    zoom:5,
+    zoom: 11,
     init:function() {
       var opts = {
         zoom: ActivityController.zoom,
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
-        center:new google.maps.LatLng(0,0)
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: new google.maps.LatLng(0,0),
+        streetViewControl:false
       };
       ActivityController.map = new google.maps.Map(
         document.getElementById("map-canvas"), opts);
@@ -219,7 +222,6 @@ ActivityController = {
     },
 
     show:function(url) {
-        ActivityController.load(ActivityController._urlToId(url));
 
         var $outElement = $('#container>.page.current');
         $('#activity-page').addClass('current slideleft in');
@@ -227,7 +229,9 @@ ActivityController = {
 
         setTimeout(function(){
             $outElement.removeClass('current slideleft out');
-            $('#activity-page').removeClass('slideleft in')    
+            $('#activity-page').removeClass('slideleft in')
+            ActivityController.init();
+            ActivityController.load(ActivityController._urlToId(url));
         },250);
     },
 
@@ -351,6 +355,5 @@ Router = {
 
 $(document).ready(function() {
     FrontController.init();
-    ActivityController.init();
 })
 })($);
