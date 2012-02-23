@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/static/css/layout.css">
   
   <script src="/static/js/libs/modernizr.custom.79709.js"></script>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDZIPb-rrtMF5CEVw-vq8zj-fL9ZbQoxS0&sensor=false&region=CA&language=fr">
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDZIPb-rrtMF5CEVw-vq8zj-fL9ZbQoxS0&sensor=false&region=CA&language=fr">
 </script>
 
 </head>
@@ -80,11 +80,10 @@
     </section>
   </div>
   <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/0.8/zepto.min.js"></script>
+  <script src="/static/js/libs/zepto.min.js"></script>
   <!--<script>window.jQuery || document.write('<script src="/static/js/libs/jquery-1.7.1.min.js"><\/script>')</script>-->
   <script src="/static/js/libs/mustache-0.4.0.min.js"></script>
   <script src="/static/js/libs/spin.min.js"></script>
-  <script src="/static/js/libs/native.history.js"></script>
   <script src="/static/js/core.js"></script>
 
   <script>
