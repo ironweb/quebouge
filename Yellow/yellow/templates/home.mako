@@ -10,14 +10,14 @@
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/1140.css">
   <link rel="stylesheet" href="/static/css/layout.css">
   
   <script src="/static/js/libs/modernizr.custom.79709.js"></script>
-  <script src="/static/js/libs/modernizr.custom.79709.js"></script>
-	<script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?sensor=true">
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDZIPb-rrtMF5CEVw-vq8zj-fL9ZbQoxS0&sensor=false&region=CA&language=fr">
 </script>
 
 </head>
@@ -27,46 +27,20 @@
     <section id="home-page" class="page row current">
       <header>
         <section>
-          <h1><a href="/">Loisirs à Québec</a></h1>
-          <a href="#" class="toggle-filters" data-state="close">Filtres</a>  
+          <h1>
+            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+            <strong>Ici, maintenant.</strong>
+          </h1>
         </section>
         
         <form action="" class="state-close filter filterbox">
-          <div class="row">
-            <div class="twelvecol">
-              <label for="lst-category">Cat&eacute;gories</label>
-              <select name="category" id="lst-category">
-                % for category in categories:
-                  <option value="${category.id}">${category.name}</option>
-                % endfor
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="row">
-              <div class="sixcol">
-                <label for="lst-price">Tarifications ($)</label>
-                <select name="price" id="lst-price">
-                  <option value="0">Gratuit</option>
-                  <option value="5">5$</option>
-                  <option value="10">10$</option>
-                  <option value="15">15$</option>
-                  <option value="20">20$</option>
-                  <option value="25">25$ et +</option>
-                </select>    
-              </div>
-              <div class="sixcol last">
-                   <label for="lst-distance">Distances (km)</label>
-                   <select name="distance" id="lst-distance">
-                     <option value="0.5">moins de 0.5 km</option>
-                     <option value="1">entre 0.5km et 1km</option>
-                     <option value="2">entre 1km et 1.5km</option>
-                     <option value="">2km et plus</option>
-                   </select>
-              </div>  
-            </div>  
-          </div>
-          
+              
+            <select name="category" id="lst-category">
+              % for category in categories:
+                <option value="${category.id}">${category.name}</option>
+              % endfor
+            </select>
+
         </form>
       </header>
       
@@ -83,19 +57,20 @@
 
     <section id="activity-page" class="page row">
       <header>
-        
         <section>
-          <h1><a href="/" class="back">&lt; Retour</a></h1>
-          <a href="#" class="toggle-filters" data-state="close">Partager</a>  
+          <h1>
+            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+            <strong>Ici, maintenant.</strong>
+          </h1>
         </section>
-
-        <div id="map-canvas"></div>
 
       </header>
       
      
       <div class="view">
         <div class="content"></div>
+
+        <div id="map-canvas"></div>
       </div>
       
 
@@ -156,6 +131,21 @@
       </ol>  
     </script>
     <script id="tpl-map-view" type="text/x-mustache-template">
+      <div class="colLeft">
+        <h3></h3>
+        <h4></h4>
+
+        <ul>
+          <li><a href="#">à pied</a></li>
+          <li><a href="#">transport en commun</a></li>
+          <li><a href="#">en vélo</a></li>
+        </ul>
+      </div>
+      <div class="colRight">
+        <p class="when">
+          <strong></strong>
+        </p>
+      </div>
     </script>
   </div>
 </body>

@@ -6,12 +6,17 @@ var OccurencesCache = {};
 FrontController = {
     isStarted:false,
     init:function() {
+        window.scrollTo(0, 1);
+
         FrontController.addActions();
 
         //prepare controller
         SearchController.init();
 
         //init libs
+        SearchController.addSpinner();
+        SearchController.$spinner.show();
+        
         Geo.init();
 
         //start Application from Geo object (after we get the geo position)
@@ -39,7 +44,6 @@ FrontController = {
         $('#home-page').delegate('ol a','click', function(e){
             e.preventDefault();
             e.stopPropagation();
-
             FrontController.loadPage( 'activity', this.href );
         });
 
@@ -50,22 +54,10 @@ FrontController = {
             FrontController.loadPage( 'home', "/" );
         });
 
-        $('form.filter').delegate('select', 'change', SearchController.load);
+        //$('form.filter').delegate('select', 'change', SearchController.load);
 
-        $('header').find('a.toggle-filters').unbind('click').bind('click', function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            var $element  = $(this).closest("header").find('.filterbox');
-            if($element.css("display") == 'block'){
-                $element.css("display", 'none');
-            }else{
-                $element.css("display", 'block');
-            } 
-            $element.focus();
-        });
-
-        $(window).bind('resize', Layout.adjustHeight);
-        window.addEventListener( "orientationchange", Layout.adjustHeight, false );
+        //$(window).bind('resize', Layout.adjustHeight);
+        //window.addEventListener( "orientationchange", Layout.adjustHeight, false );
     },
     loadPage:function( pagename, url ){
         switch( pagename ){
@@ -81,7 +73,7 @@ FrontController = {
 }
 
 Layout = {
-    adjustHeight:function() {
+    /*adjustHeight:function() {
         var documentHeight = $(document).height(),
             $homepage      = $('#home-page'),
             headerHeight   = $homepage.children('header').height(),
@@ -90,7 +82,7 @@ Layout = {
         $container.css('min-height', documentHeight);
         //headerHeight
         $container.find('.page').find('ol').css('max-height', documentHeight);   
-    }
+    }*/
 }
 
 SearchController = {
@@ -98,7 +90,11 @@ SearchController = {
     init:function(){
         SearchController.$form = $('form');
         SearchController.$form.bind('submit', SearchController.doSubmit);
-        SearchController.addSpinner();
+
+        SearchController.$linkdropdown = $('#show-cat-dropdown');
+        SearchController.$dropdown     = $('#lst-category');
+        SearchController.$linkdropdown.bind('click', SearchController.displayDropdown);
+        SearchController.$dropdown.bind('change', SearchController.onChangeDropdown);
     },
     load:function(){
         SearchController.$form.trigger('submit');
@@ -133,12 +129,13 @@ SearchController = {
         
         var dataToSend = {
             latlon:center.latitude+','+center.longitude,
-            radius:$this.find('select[name=distance]').val(),
-            max_price:$this.find('select[name=price]').val(),
-            cat_id:$this.find('select[name=category]').val(),
-            end_dt:'2012-02-24'
+            radius:0.5,
+            //max_price:$this.find('select[name=price]').val(),
+            cat_id:$this.find('select[name=category]').val()
         }
+
         SearchController.$spinner.show();
+        
         $.ajax({
             type:'GET',
             url:'/activities',
@@ -146,8 +143,6 @@ SearchController = {
             dataType:'json',
             success:SearchController.appendData
         });
-        console.debug($this)
-        $this.css('display', 'none');
 
         return false;
     },
@@ -172,7 +167,7 @@ SearchController = {
         $('#home-page').find('div.content').html( Template.render('list-view', data) );
 
         SearchController.$spinner.hide();
-        Layout.adjustHeight();
+        //Layout.adjustHeight();
     },
     show:function() {
         
@@ -185,6 +180,21 @@ SearchController = {
             $('#home-page').removeClass('slideright in')    
         },250);
         
+    },
+    displayDropdown:function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.debug(SearchController.$dropdown)
+        SearchController.$dropdown.trigger('click')
+        SearchController.$dropdown.trigger('focus')
+        //SearchController.$dropdown.focus();
+    },
+    onChangeDropdown:function(){
+        //populate the link, with the current selection
+        $(this).val();
+
+        //trigger the search
+        SearchController.load();
     }
 }
 
@@ -193,7 +203,7 @@ ActivityController = {
       var opts = {
         zoom: ActivityController.zoom,
         mapTypeId: google.maps.MapTypeId.SATELLITE,
-        center:new google.maps.LatLng(0,0)
+        center:new google.maps.LatLon(0,0)
       };
       ActivityController.map = new google.maps.Map(
         document.getElementById("map-canvas"), opts);
@@ -281,7 +291,7 @@ Geo = {
         }
     }
 }
-/*
+/* 
 Router = {
     routes:[],
     init:function(){
