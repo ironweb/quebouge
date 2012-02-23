@@ -29,9 +29,9 @@ jazz.latino,Danse
 techniques.de.pointes,Danse
 chi.tao,Arts martiaux
 jogging,Conditionnement
-photographie,Arts visuels
+photographie,Arts
 théâtre,Théâtre
-bridge,Oldies
+bridge,Jeux de société
 poterie.au.tour,Arts
 yoseikan,Arts martiaux
 karat,Arts martiaux
@@ -41,12 +41,12 @@ trampoline,Conditionnement
 soccer,Soccer
 volley.ball,Volley-ball
 sculpture,Arts
-basket.?ball,Sports
+basket.?ball,Basketball
 judo,Arts martiaux
 zumba,Arts martiaux
 kung.fu,Arts martiaux
-bingo,Oldies
-âge.d.or,Oldies
+bingo,Jeux de société
+âge.d.or,Passe-temps
 bain.anim,Natation
 vitrail,Arts
 céramique,Arts
@@ -86,7 +86,7 @@ aqua.ext,Natation
 aquadultes,Natation
 aëkido|aëkibudo|kobudo|aëfkido,Arts martiaux
 djembé,Musique
-scrabble,Passe-temps
+scrabble,Jeux de société
 croquet,Passe-temps
 spinning,Conditionnement
 chant,Musique
