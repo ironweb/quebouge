@@ -48,14 +48,16 @@ FrontController = {
             FrontController.loadPage( 'home', "/" );
         });
 
+        $('form.filter').delegate('select', 'change', SearchController.load);
+
         $('header').find('a.toggle-filters').unbind('click').bind('click', function(e){
             e.preventDefault();
             e.stopPropagation();
             var $element  = $(this).closest("header").find('.filterbox');
             if($element.css("display") == 'block'){
-                $element.css("display", 'none!important');
+                $element.css("display", 'none');
             }else{
-                $element.css("display", 'block!important');
+                $element.css("display", 'block');
             } 
             $element.focus();
         });
@@ -98,6 +100,22 @@ SearchController = {
     load:function(){
         SearchController.$form.trigger('submit');
     },
+    addLoader:function(){
+
+        var opts = {
+          lines: 12, // The number of lines to draw
+          length: 7, // The length of each line
+          width: 4, // The line thickness
+          radius: 10, // The radius of the inner circle
+          color: '#000', // #rgb or #rrggbb
+          speed: 1, // Rounds per second
+          trail: 60, // Afterglow percentage
+          shadow: false, // Whether to render a shadow
+          hwaccel: false // Whether to use hardware acceleration
+        };
+
+        $('<div />').spin(opts).appendTo();
+    },
     doSubmit:function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -110,7 +128,8 @@ SearchController = {
             latlon:center.latitude+','+center.longitude,
             radius:$this.find('select[name=distance]').val(),
             max_price:$this.find('select[name=price]').val(),
-            cat_id:$this.find('select[name=category]').val()
+            cat_id:$this.find('select[name=category]').val(),
+            end_dt:'2012-02-24'
         }
 
         $.ajax({
@@ -120,22 +139,26 @@ SearchController = {
             dataType:'json',
             success:SearchController.appendData
         });
+        console.debug($this)
+        $this.css('display', 'none');
 
         return false;
     },
     appendData:function(data) {
-        console.debug(data);
-        return;
 
         //do an ajax call to load data from the form
         //fake data
-        var data = {
-            activities:[{id:476,category:"test",title:"Natation", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Hockey", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Conditionnement physique", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Natation", distance:"0.5km", when:"20h00"}]
-        }
 
-        data.activities = data.activities.concat(data.activities,data.activities,data.activities);
+        var data = {
+            activities:data.elements
+        }
+        if(data.activities.length == 0){
+            alert('rien pour le moment')
+        }
+        //data.activities = data.activities.concat(data.activities,data.activities,data.activities);
 
         $('#home-page').find('div.content').html( Template.render('list-view', data) );
+
 
         Layout.adjustHeight();
     },
@@ -270,6 +293,23 @@ Router = {
     }
 }
 */
+
+$.fn.spin = function(opts) {
+  this.each(function() {
+    var $this = $(this),
+        data = $this.data();
+
+    if (data.spinner) {
+      data.spinner.stop();
+      delete data.spinner;
+    }
+    if (opts !== false) {
+      data.spinner = new Spinner($.extend({color: $this.css('color')}, opts)).spin(this);
+    }
+  });
+  return this;
+};
+
 $(document).ready(function() {
     FrontController.init();
 })

@@ -136,6 +136,7 @@ form.filter select, form.filter input{
 
 form.filter .row{
     margin-top:5px;
+    padding-bottom: 5px;
 }
 form.filter .row:first-child{
     margin-top:0;

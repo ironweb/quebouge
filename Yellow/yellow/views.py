@@ -11,7 +11,7 @@ from .models import (
 @view_config(route_name='home', renderer='/home.mako')
 def my_view(request):
     categories = DBSession.query(Category).all()
-    return {'categories': [Category(name=u'Toutes les catégories')] + categories}
+    return {'categories': [Category(id='', name=u'Toutes les catégories')] + categories}
 
 
 @view_config(route_name='activities', renderer='json')
