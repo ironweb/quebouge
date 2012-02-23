@@ -35,7 +35,7 @@ FrontController = {
 
         });*/
         
-        $('#home-page').delegate('ol a','click', function(e){
+        $('#home-page').delegate('ol a','tap', function(e){
             e.preventDefault();
             e.stopPropagation();
 
@@ -50,18 +50,6 @@ FrontController = {
         });
 
         $('form.filter').delegate('select', 'change', SearchController.load);
-
-        $('header').find('a.toggle-filters').unbind('click').bind('click', function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            var $element  = $(this).closest("header").find('.filterbox');
-            if($element.css("display") == 'block'){
-                $element.css("display", 'none');
-            }else{
-                $element.css("display", 'block');
-            } 
-            $element.focus();
-        });
 
         $(window).bind('resize', Layout.adjustHeight);
         window.addEventListener( "orientationchange", Layout.adjustHeight, false );
@@ -132,12 +120,13 @@ SearchController = {
         
         var dataToSend = {
             latlon:center.latitude+','+center.longitude,
-            radius:$this.find('select[name=distance]').val(),
-            max_price:$this.find('select[name=price]').val(),
-            cat_id:$this.find('select[name=category]').val(),
-            end_dt:'2012-02-24'
+            radius:0.5,
+            //max_price:$this.find('select[name=price]').val(),
+            cat_id:$this.find('select[name=category]').val()
         }
+
         SearchController.$spinner.show();
+        
         $.ajax({
             type:'GET',
             url:'/activities',
@@ -145,8 +134,6 @@ SearchController = {
             dataType:'json',
             success:SearchController.appendData
         });
-        console.debug($this)
-        $this.css('display', 'none');
 
         return false;
     },
@@ -267,7 +254,7 @@ Geo = {
         }
     }
 }
-/*
+/* 
 Router = {
     routes:[],
     init:function(){

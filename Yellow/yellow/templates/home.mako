@@ -27,46 +27,25 @@
     <section id="home-page" class="page row current">
       <header>
         <section>
-          <h1><a href="/">Loisirs à Québec</a></h1>
-          <a href="#" class="toggle-filters" data-state="close">Filtres</a>  
+          <h1>
+            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+            <strong>Ici, maintenant.</strong>
+          </h1>
         </section>
         
         <form action="" class="state-close filter filterbox">
           <div class="row">
             <div class="twelvecol">
-              <label for="lst-category">Cat&eacute;gories</label>
+              <a href="#" id="show-cat-dropdown">Toutes les activités à Québec</a>
+              
               <select name="category" id="lst-category">
                 % for category in categories:
                   <option value="${category.id}">${category.name}</option>
                 % endfor
               </select>
+              
             </div>
           </div>
-          <div class="row">
-            <div class="row">
-              <div class="sixcol">
-                <label for="lst-price">Tarifications ($)</label>
-                <select name="price" id="lst-price">
-                  <option value="0">Gratuit</option>
-                  <option value="5">5$</option>
-                  <option value="10">10$</option>
-                  <option value="15">15$</option>
-                  <option value="20">20$</option>
-                  <option value="25">25$ et +</option>
-                </select>    
-              </div>
-              <div class="sixcol last">
-                   <label for="lst-distance">Distances (km)</label>
-                   <select name="distance" id="lst-distance">
-                     <option value="0.5">moins de 0.5 km</option>
-                     <option value="1">entre 0.5km et 1km</option>
-                     <option value="2">entre 1km et 1.5km</option>
-                     <option value="">2km et plus</option>
-                   </select>
-              </div>  
-            </div>  
-          </div>
-          
         </form>
       </header>
       
