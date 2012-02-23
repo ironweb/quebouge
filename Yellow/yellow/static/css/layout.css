@@ -111,25 +111,34 @@ form.state-close{
     margin:0;
     height:100%;
     max-height:400px;
-    overflow:auto;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 #home-view ol>li{
-
-}
-#home-view li>a{
-    display: block;
-    padding:10px 0;
-    min-height:50px;
-    border-top:1px solid #000000;
     float:left;
-    width:100%;
+    width:100%; 
+    border-top:1px solid #000000;
     background: #353535; /* Old browsers */
     background: -moz-linear-gradient(top, #353535 0%, #262626 81%, #262626 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#353535), color-stop(81%,#262626), color-stop(100%,#262626)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* IE10+ */
-    background: linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* W3C */ 
+    background: linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* W3C */
+}
+#home-view li>a{
+    padding:10px 0;
+    display: block;
+    height:100%;
+    width: 100%; 
+    min-height:52px;
+    float:left;
+    -moz-transition:0.2s linear background;
+    -webkit-transition:0.2s linear background;
+    transition:0.2s linear background;
+}
+#home-view li>a:hover{
+    background:rgba(255,255,255,0.15);
 }
 
 #home-view ol>li:first-child{
@@ -175,6 +184,7 @@ form.state-close{
     font-weight:bold;
     font-style:italic;
     margin-bottom:5px;
+    line-height:1em;
 }
 
 #home-view ul.meta{

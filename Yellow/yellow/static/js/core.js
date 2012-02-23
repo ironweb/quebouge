@@ -39,9 +39,22 @@ FrontController = {
             e.stopPropagation();
            $(this).closest("header").find('form.filter').toggleClass('state-close'); 
         });
+
+        $(window).bind('resize', Layout.adjustHeight);
+        window.addEventListener( "orientationchange", Layout.adjustHeight, false );
     }     
 }
+Layout = {
+    adjustHeight:function() {
+        var documentHeight = $(document).height(),
+            $homepage      = $('#home-page'),
+            headerHeight   = $homepage.children('header').height(),
+            $container     = $('#container');
 
+        $container.css('min-height', documentHeight);
+        $container.find('.page').find('ol').css('max-height', documentHeight-headerHeight);   
+    }
+}
 SearchController = {
     $form:false,
     init:function(){
@@ -62,6 +75,8 @@ SearchController = {
         data.activities = data.activities.concat(data.activities,data.activities,data.activities);
 
         $('#home-view').children('.content').html( Template.render('list-view', data) );
+
+        Layout.adjustHeight();
     }
 }
 
