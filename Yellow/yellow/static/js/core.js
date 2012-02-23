@@ -1,4 +1,5 @@
 (function($){
+var OccurencesCache = {};
 /**
  * Front Controller
  */
@@ -194,22 +195,24 @@ SearchController = {
 ActivityController = {
     init:function() {
       var opts = {
-        zoom: 11,
-        center: latlng,
+        zoom: ActivityController.zoom,
         mapTypeId: google.maps.MapTypeId.SATELLITE
       };
       ActivityController.map = new google.maps.Map(
-        document.getElementById("map-canvas"), myOptions);
-
-
+        document.getElementById("map-canvas"), opts);
     },
-    load:function(id) {
-      // Map geo coords as user.
-      // Geo.coords
 
+    load:function(id) {
+      // TODO Map geo coords as user.
+      // Geo.coords
+      // @todo : DRAW Activity
+      var occurence = OccurencesCache[id];
+      ActivityController._drawPointAndRecenter();
     },
 
     show:function(url) {
+        ActivityController.load(ActivityController._urlToId(url));
+
         var $outElement = $('#container>.page.current');
         $('#activity-page').addClass('current slideleft in');
         //$outElement.addClass('slideleft out');
@@ -218,20 +221,26 @@ ActivityController = {
             $outElement.removeClass('current slideleft out');
             $('#activity-page').removeClass('slideleft in')    
         },250);
-
-        ActivityController.load(ActivityController._urlToId(url));
     },
 
     _urlToId: function(url){
       return url.split('/').pop();
     },
 
-    _drawPoint: function(point){
+    _drawPointAndRecenter: function(point){
+      latlng = ActivityController._latLngFromPoint(point);
       new google.maps.Marker({
-        position: new google.maps.LatLng(point.position[0], point.position[1]),
+        position: latlng,
         map: ActivityController.map,
         title: total.title
       });
+      ActivityController.map.setCenter(
+        latlng, ActivityController.zoom);
+
+    },
+
+    _latLngFromPoint: function(point){
+      return new google.maps.LatLng(point.position[0], point.position[1]);
     }
 
 }

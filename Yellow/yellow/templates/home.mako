@@ -65,6 +65,8 @@
           <a href="#" class="toggle-filters" data-state="close">Partager</a>  
         </section>
 
+        <div id="map-canvas" style="width:100%; height:100%"></div>
+
       </header>
       
      
@@ -127,7 +129,6 @@
       </ol>  
     </script>
     <script id="tpl-map-view" type="text/x-mustache-template">
-      <div id="map-canvas" style="width:100%; height:100%"></div>
     </script>
   </div>
 </body>
