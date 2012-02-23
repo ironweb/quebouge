@@ -126,7 +126,7 @@
           <li class="occurence">
             <a href="/show/{{occurence_id}}">
               <figure>
-                <img src="/static/images/default.png" alt="{{category}}" style="width:50px;" /><br />
+                <img src="/static/images/category_icons/{{categ_icon}}" alt="{{category}}" style="width:50px;" /><br />
                 <span class="price">{{price}}</span>
               </figure>
               <div class="content">

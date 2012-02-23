@@ -67,7 +67,7 @@ class DatabasePopulator(object):
             desc_image = line.split(',')
             if len(desc_image) != 2:
                 continue
-            categ_image[desc_image[0]] = desg_image[1]
+            categ_image[desc_image[0]] = desc_image[1]
 
         categories = {}
         with transaction.manager:

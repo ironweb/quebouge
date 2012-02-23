@@ -2,16 +2,16 @@ Hockey,hockey.png
 Natation,natation.png
 Patinage,patinage.png
 Cours,cours.png
-Mieux-être,mieux-être.png
+Mieux-être,mieuxetre.png
 Badminton,badminton.png
 Gymnastique,gymnastique.png
 Tennis,tennis.png
 Danse,danse.png
-Conditionnement, conditionnement.png
+Conditionnement,conditionnement.png
 Musique,musique.png
 Arts martiaux,artsmartiaux.png
 Arts,arts.png
-Baseball, baseball.png
+Baseball,baseball.png
 Basketball,basketball.png
 Goalball,goalball.png
 Cirque,cirque.png

@@ -78,13 +78,16 @@ class Activity(Base):
         latlon = lat_lon_to_point(params['latlon'])
         distance = functions.distance(Activity.position,
                                       latlon)
+        joins = Occurence.__table__.join(Activity.__table__).join(Category.__table__)
         q = sql.select([Occurence.id, Occurence.dtstart,
                         Occurence.dtend,
                         Activity.title, Activity.location,
                         Activity.location_info, Activity.position,
-                        Activity.price, distance],
-                       from_obj=Occurence.__table__.join(Activity.__table__))
-        q = q.where(Occurence.activity_id == Activity.id)
+                        Activity.price, distance,
+                        Category.icon_name, Category.name],
+                       from_obj=joins)
+        q = q.where(Occurence.activity_id == Activity.id) \
+             .where(Activity.category_id == Category.id)
 
         # By bounding-box
         if 'bb' in params:
@@ -150,6 +153,8 @@ class Activity(Base):
                    position=(point.x, point.y),
                    price=("%.2f $" % row.price) if row.price else 'GRATUIT',
                    distance="%0.1f" % row.distance_1,
+                   categ_name=row.name,
+                   categ_icon=row.icon_name,
                    )
         out.update(Activity._format_date(row, past))
         return out
