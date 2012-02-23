@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/static/css/layout.css">
   
   <script src="/static/js/libs/modernizr.custom.79709.js"></script>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true">
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDZIPb-rrtMF5CEVw-vq8zj-fL9ZbQoxS0&sensor=false&region=CA&language=fr">
 </script>
 
 </head>
@@ -57,19 +57,20 @@
 
     <section id="activity-page" class="page row">
       <header>
-        
         <section>
-          <h1><a href="/" class="back">&lt; Retour</a></h1>
-          <a href="#" class="toggle-filters" data-state="close">Partager</a>  
+          <h1>
+            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+            <strong>Ici, maintenant.</strong>
+          </h1>
         </section>
-
-        <div id="map-canvas"></div>
 
       </header>
       
      
       <div class="view">
         <div class="content"></div>
+
+        <div id="map-canvas"></div>
       </div>
       
 
@@ -130,6 +131,21 @@
       </ol>  
     </script>
     <script id="tpl-map-view" type="text/x-mustache-template">
+      <div class="colLeft">
+        <h3></h3>
+        <h4></h4>
+
+        <ul>
+          <li><a href="#">à pied</a></li>
+          <li><a href="#">transport en commun</a></li>
+          <li><a href="#">en vélo</a></li>
+        </ul>
+      </div>
+      <div class="colRight">
+        <p class="when">
+          <strong></strong>
+        </p>
+      </div>
     </script>
   </div>
 </body>

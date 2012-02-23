@@ -59,6 +59,10 @@ header section{
     overflow: hidden;
 }
 
+#activity-page header section{
+    border-bottom:none;
+}
+
 header h1{
     overflow: hidden;
     margin: 0 auto;
@@ -232,6 +236,16 @@ form.filter select, form.filter input{
     font-style:italic;
     margin-bottom:5px;
     line-height:1em;
+}
+
+#activity-page .box{
+    background: #353535; /* Old browsers */
+    background: -moz-linear-gradient(top, #353535 0%, #262626 81%, #262626 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#353535), color-stop(81%,#262626), color-stop(100%,#262626)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* IE10+ */
+    background: linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* W3C */
 }
 
 .occurence ul.meta {

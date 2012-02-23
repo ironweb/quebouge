@@ -203,7 +203,7 @@ ActivityController = {
       var opts = {
         zoom: ActivityController.zoom,
         mapTypeId: google.maps.MapTypeId.SATELLITE,
-        center:new google.maps.LatLng(0,0)
+        center:new google.maps.LatLon(0,0)
       };
       ActivityController.map = new google.maps.Map(
         document.getElementById("map-canvas"), opts);
