@@ -98,7 +98,7 @@
       <ol>
           {{#activities}}
           <li class="occurence">
-            <a href="/show/{{id}}"> 
+            <a href="/show/{{occurence_id}}">
               <figure>
                 <img src="/static/images/default.png" alt="{{category}}" style="width:50px;" /><br />
                 <span class="price">{{price}}</span>
