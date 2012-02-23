@@ -8,6 +8,7 @@ Send a GET request to `/activities` to get datas for activities and
 their asssociated occurences
 
 Available options :
+
 * `latlon` : point you want to calculate the distance from. Format as `nn.nnnn,nn.nnnn`
 * `bb` : bounding box to filter on. add points this way : `lat1,lon1,lat2,lon2`.
 Follow the `latlon` convention for each points.
@@ -20,3 +21,9 @@ If only a date is submitted, 00:00:00 is appended to it.
 If only a date is submitted, 00:00:00 is appended to it.
 
 sort api : to be determined
+
+
+## Setup
+
+    psql postgres
+    CREATE DATABASE yellow_dev OWNER `your_user`;
