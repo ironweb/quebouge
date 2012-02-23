@@ -18,3 +18,4 @@ Yellow/tests/build/*
 Yellow/.coverage
 Yellow/coverage.xml
 Yellow/nosetests.xml
+Yellow/build
