@@ -113,7 +113,7 @@ class Activity(Base):
                     location=row.location,
                     location_info=row.location_info,
                     position=(point.x, point.y),
-                    price=row.price,
+                    price=row.price if row.price else 'GRATUIT',
                     distance="%0.1f" % row.distance_1,
                     )
 
