@@ -43,6 +43,7 @@ class Category(Base):
     name = Column(Unicode(255), unique=True)
     parent_id = Column(Integer, ForeignKey('categories.id'))
     parent = relationship("Category")
+    icon_name = Column(Unicode(255))
 
 class Activity(Base):
     __tablename__= "activities"

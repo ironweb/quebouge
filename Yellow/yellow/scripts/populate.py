@@ -62,6 +62,13 @@ class DatabasePopulator(object):
         Base.metadata.create_all(self.engine)
 
     def populate_categories(self):
+        categ_image = {}
+        for line in open('../datasets/CATEGORY_IMAGES.txt'):
+            desc_image = line.split(',')
+            if len(desc_image) != 2:
+                continue
+            categ_image[desc_image[0]] = desg_image[1]
+
         categories = {}
         with transaction.manager:
             from tricateg import import_xml_data
@@ -71,6 +78,11 @@ class DatabasePopulator(object):
                 if categ not in categories:
                     cat_obj = Category(name=categ)
                     categories[categ] = cat_obj
+                    # Assign icon
+                    if categ not in categ_image:
+                        cat_obj.icon_name = categ_image['Divers']
+                    else:
+                        cat_obj.icon_name = categ_image[categ]
                     DBSession.add(cat_obj)
                 else:
                     cat_obj = categories[categ]
