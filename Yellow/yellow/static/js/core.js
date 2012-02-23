@@ -23,7 +23,7 @@ FrontController = {
         SearchController.load();      
     },
     addActions:function() {
-        $('body').delegate('a', 'click', function(e){
+        /*$('body').delegate('a', 'click', function(e){
             
             if(Router.History.enabled){
                 e.preventDefault();
@@ -32,6 +32,20 @@ FrontController = {
                 //History.pushState({state:1}, this.title, this.href);    
             }
 
+        });*/
+
+        $('#home-page').delegate('a','click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+
+            FrontController.loadPage( 'activity', this.href );
+        });
+
+        $('#activity-page').delegate('a.back','click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+
+            FrontController.loadPage( 'home', "/" );
         });
 
         $('header').find('a.toggle-filters').bind('click', function(e){
@@ -42,8 +56,20 @@ FrontController = {
 
         $(window).bind('resize', Layout.adjustHeight);
         window.addEventListener( "orientationchange", Layout.adjustHeight, false );
+    },
+    loadPage:function( pagename, url ){
+        switch( pagename ){
+            case 'home':
+                SearchController.show();
+                break;    
+            case 'activity':
+            default:
+                ActivityController.show();
+                break;
+        }
     }     
 }
+
 Layout = {
     adjustHeight:function() {
         var documentHeight = $(document).height(),
@@ -52,9 +78,11 @@ Layout = {
             $container     = $('#container');
 
         $container.css('min-height', documentHeight);
-        $container.find('.page').find('ol').css('max-height', documentHeight-headerHeight);   
+        //headerHeight
+        $container.find('.page').find('ol').css('max-height', documentHeight);   
     }
 }
+
 SearchController = {
     $form:false,
     init:function(){
@@ -66,7 +94,6 @@ SearchController = {
     },
     doSubmit:function() {
         //do an ajax call to load data from the form
-        console.debug(Geo.getPosition())
         //fake data
         var data = {
             activities:[{id:476,category:"test",title:"Natation", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Hockey", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Conditionnement physique", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Natation", distance:"0.5km", when:"20h00"}]
@@ -74,9 +101,42 @@ SearchController = {
 
         data.activities = data.activities.concat(data.activities,data.activities,data.activities);
 
-        $('#home-view').children('.content').html( Template.render('list-view', data) );
+        $('#home-page').find('div.content').html( Template.render('list-view', data) );
 
         Layout.adjustHeight();
+    },
+    show:function() {
+        
+        var $outElement = $('#container>.page.current');
+        $('#home-page').addClass('current slideright in');
+        $outElement.addClass('slideright out');
+
+        setTimeout(function(){
+            $outElement.removeClass('current slideright out');
+            $('#home-page').removeClass('slideright in')    
+        },250);
+        
+    }
+}
+
+ActivityController = {
+    init:function() {
+            
+    },
+    load:function() {
+            
+    },
+    show:function() {
+        
+        var $outElement = $('#container>.page.current');
+        $('#activity-page').addClass('current slideleft in');
+        $outElement.addClass('slideleft out');
+
+        setTimeout(function(){
+            $outElement.removeClass('current slideleft out');
+            $('#activity-page').removeClass('slideleft in')    
+        },250);
+        
     }
 }
 
