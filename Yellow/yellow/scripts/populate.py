@@ -50,6 +50,9 @@ def main(argv=sys.argv):
                 new_act = Activity(title=db_node.description)
                 new_act.category = cat_obj
                 new_act.location = db_node.adresse
+                new_act.location_info = db_node.location_info
+                new_act.price = db_node.tarif
+                new_act.price = db_node.tarif
                 DBSession.add(new_act)
                 for occ in db_node.occurences:
                     new_occ = Occurence()

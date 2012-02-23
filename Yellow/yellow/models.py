@@ -1,6 +1,7 @@
 from sqlalchemy import (
     Column,
     Integer,
+    Float,
     Text,
     Unicode,
     UnicodeText,
@@ -46,8 +47,9 @@ class Activity(Base):
     category_id = Column(Integer, ForeignKey("categories.id"))
     category = relationship(Category)
     location = Column(Unicode(255))
+    location_info = Column(Unicode(255))
     position = GeometryColumn(Point(2))
-
+    price = Column(Float)
 
     # joinedload
     @staticmethod
@@ -100,14 +102,16 @@ class Occurence(Base):
 
     @property
     def linear_row(self):
-        return dict(dtstart=self.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
+        return dict(activity_id=self.activity_id,
+                    dtstart=self.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
                     duration=self.duration,
                     title=self.activity.title,
                     location=self.activity.location,
+                    location_info=self.activity.location_info,
                     # @todo : fix this : fire requests like crazy.
                     #position=self.activity.position.coords(DBSession),
                     position='12.11,12.11',
-                    activity_id=self.activity_id)
+                    price=self.activity_id)
     
 def bb_to_polyon(bb_str):
     x1, y1, x2, y2  = bb_str.split(',')

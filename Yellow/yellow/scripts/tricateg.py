@@ -59,11 +59,17 @@ class DatabaseNode(object):
     def adresse(self):
         return self.node['ADRESSE']
 
+    @property
+    def location_info(self):
+        if self.node['LIEU_1'] == self.node['LIEU_2']:
+            return self.node['LIEU_1']
+        return "%s (%s)" % (self.node['LIEU_1'], self.node['LIEU_2'])
+
 class Occurence(object):
     def __init__(self, start_datetime, activity):
         self.start_datetime = start_datetime
         self.activity = activity
-        
+
 
 class MotChecker(object):
     def __init__(self, pattern, categ=None):
