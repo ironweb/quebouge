@@ -19,3 +19,6 @@ Yellow/.coverage
 Yellow/coverage.xml
 Yellow/nosetests.xml
 Yellow/build
+
+# sublime text 2
+*.sublime*
