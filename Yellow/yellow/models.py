@@ -184,7 +184,7 @@ class Activity(Base):
                 jour = row_dt.strftime("%d").lstrip('0')
                 mois = row_dt.strftime("%b").upper()
                 out['later_label'] = "%s %s" % (jour, mois)
-            out['later_heure'] = row_dt.strftime("%H:%M")
+            out['later_time'] = row_dt.strftime("%H:%M")
         return out
         
     @staticmethod
