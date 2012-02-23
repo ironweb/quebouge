@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="/static/css/layout.css">
   
   <script src="/static/js/libs/modernizr.custom.79709.js"></script>
+  <script src="/static/js/libs/modernizr.custom.79709.js"></script>
+	<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?sensor=true">
+</script>
 
 </head>
 <body>
@@ -137,7 +141,7 @@
       </ol>  
     </script>
     <script id="tpl-map-view" type="text/x-mustache-template">
-      
+      <div id="map-canvas" style="width:100%; height:100%"></div>
     </script>
   </div>
 </body>
