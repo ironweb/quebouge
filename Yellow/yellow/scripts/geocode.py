@@ -45,9 +45,13 @@ def main(argv=sys.argv):
             address = loc.location
             if 'Boul Pie-XI,' in address:
                 address = address.replace('Pie-XI,', 'Pie-XI Nord')
+            elif u"4473, Rue Saint-Félix, Québec (QC) G1Y 3A6" in address:
+                address = u"4473, Rue Saint-Félix, Québec (QC) G1Y 3A8"
             print address
             geo = cache_geocode(address.encode('utf-8'))
             print geo[1]
+            for act in db.query(Activity).filter_by(location=loc.location):
+                act.position = "POINT(%f %f)" % geo[1]
         print "LEN", len(locations)
 
 def cache_geocode(address):

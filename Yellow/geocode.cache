@@ -1,626 +1,626 @@
 (dp0
-S'3600, Av Chauveau, Qu\xc3\xa9bec (QC) G2C 1A1 '
+S'8805, Av Jean-Paquin, Qu\xc3\xa9bec (QC) G1G 4W7 '
 p1
-(V3600 Avenue Chauveau, Quebec City, QC G2C 1L5, Canada
+(V8805 Avenue Jean Paquin, Quebec City, QC G1G 4W7, Canada
 p2
-(F46.8355398
-F-71.3432176
+(F46.8632658
+F-71.2805748
 tp3
 tp4
-sS'2324, Av Renouard, Qu\xc3\xa9bec (QC) G1E 4C3 '
-p5
-(V2324 Avenue Renouard, Quebec City, QC G1E 1R4, Canada
-p6
-(F46.8532562
-F-71.2105581
-tp7
-tp8
-sS'2200, Rue De La Faune, Qu\xc3\xa9bec (QC) G3E 1K6 '
-p9
-(V2200 Rue de la Faune, Quebec City, QC G3E 1G2, Canada
-p10
-(F46.8722725
-F-71.3347074
-tp11
-tp12
-sS'7600, 3e Av Est, Qu\xc3\xa9bec (QC) G1H 7L4 '
-p13
-(V7600 3e Av Est, Quebec City, QC G1H 1H5, Canada
-p14
-(F46.8609823
-F-71.2615867
-tp15
-tp16
-sS'1475, Rue Virginia-Woolf, Qu\xc3\xa9bec (QC) G2K 0B1 '
-p17
-(VRue Virginia-Woolf, Quebec City, QC G2K, Canada
-p18
-(F46.8471997
-F-71.3086084
-tp19
-tp20
-sS'600, 1re Rue, Qu\xc3\xa9bec (QC) G1J 2X6 '
-p21
-(V600 1re Rue, Quebec City, QC G1J 2X6, Canada
-p22
-(F46.8219709
-F-71.2212794
-tp23
-tp24
-sS'750, De la Sorbonne C.P. 700, Qu\xc3\xa9bec (QC) G1R 4S9 '
-p25
-(VQuebec City, QC G1R 4S9, Canada
-p26
-(F46.8131142
-F-71.2050648
-tp27
-tp28
-sS'1229, Av Du Chanoine-Morel, Qu\xc3\xa9bec (QC) G1S 4B1 '
-p29
-(V1229 Avenue du Chanoine Morel, Quebec City, QC G1S 4B1, Canada
-p30
-(F46.7856831
-F-71.2496495
-tp31
-tp32
-sS'365, Rue Du Bienheureux-Jean-XXIII, Qu\xc3\xa9bec (QC) G2N 1V4 '
-p33
-(V365 Rue Jean Xxiii, Quebec City, QC G2N 1V4, Canada
-p34
-(F46.8988483
-F-71.306397
-tp35
-tp36
-sS'305, Rue Champlain, Qu\xc3\xa9bec (QC) G1K 4J1 '
-p37
-(V305 Rue Champlain, Quebec City, QC G1K 4J2, Canada
-p38
-(F46.8053044
-F-71.2055136
-tp39
-tp40
-sS'155, Rue Bessette, Qu\xc3\xa9bec (QC) G1C 7A7 '
-p41
-(V155 Rue Bessette, Quebec City, QC G1C 7A7, Canada
-p42
-(F46.8910027
-F-71.1933868
-tp43
-tp44
-sS'525, Boul Wilfrid-Hamel Est, Qu\xc3\xa9bec (QC) G1M 2S8 '
-p45
-(V525 Boulevard Wilfrid-Hamel, Quebec City, QC G1M, Canada
-p46
-(F46.8200041
-F-71.2485586
-tp47
-tp48
-sS'230, Rue Du Pont, Qu\xc3\xa9bec (QC) G1K 6L5 '
-p49
-(V230 Rue du Pont, Quebec City, QC G1K 6L6, Canada
-p50
-(F46.8181372
-F-71.2228206
-tp51
-tp52
-sS'3705, Av Chauveau, Qu\xc3\xa9bec (QC) G2C 1A3 '
-p53
-(V3705 Avenue Chauveau, Quebec City, QC G2C 1A3, Canada
-p54
-(F46.8325792
-F-71.3466394
-tp55
-tp56
-sS'960, Av Dessane, Qu\xc3\xa9bec (QC) G1S 3J9 '
-p57
-(V960 Avenue Dessane, Quebec City, QC G1S 1V3, Canada
-p58
-(F46.7962105
-F-71.2419547
-tp59
-tp60
-sS'645, Av Du C\xc3\xa9nacle, Qu\xc3\xa9bec (QC) G1E 1B3 '
-p61
-(V645 Avenue du Cénacle, Quebec City, QC G1E 1B3, Canada
-p62
-(F46.8717025
-F-71.1911219
-tp63
-tp64
-sS'1011, Av Larue, Qu\xc3\xa9bec (QC) G1C 1J5 '
-p65
-(V1011 Avenue Larue, Quebec City, QC G1C 1J5, Canada
-p66
-(F46.8880006
-F-71.1723224
-tp67
-tp68
 sS'290, Rue De Carillon, Qu\xc3\xa9bec (QC) G1K 5B2 '
-p69
+p5
 (V290 Rue de Carillon, Quebec City, QC G1K 5B2, Canada
-p70
+p6
 (F46.811607
 F-71.2373144
-tp71
-tp72
-sS'320, Rue De Verdun, Qu\xc3\xa9bec (QC) G1N 4S4 '
-p73
-(V320 Rue de Verdun, Quebec City, QC G1N 2A3, Canada
-p74
-(F46.8054279
-F-71.2472483
-tp75
-tp76
-sS'3025, Av Tass\xc3\xa9, Qu\xc3\xa9bec (QC) G1P 1T1 '
-p77
-(V3025 Avenue Tassé, Quebec City, QC G1P 1T2, Canada
-p78
-(F46.811747
-F-71.3229587
-tp79
-tp80
-sS'2280, Av Monseigneur-Gosselin, Qu\xc3\xa9bec (QC) G1J 4Y2 '
-p81
-(V2280 Avenue Monseigneur Gosselin, Quebec City, QC G1J 1P3, Canada
-p82
-(F46.84493
-F-71.2248065
-tp83
-tp84
-sS'139, Rue Bertrand, Qu\xc3\xa9bec (QC) G1B 1H8 '
-p85
-(V139 Rue Bertrand, Quebec City, QC G1B 1G8, Canada
-p86
-(F46.903385
-F-71.1899793
-tp87
-tp88
-sS'2608, Rue Biencourt, Qu\xc3\xa9bec (QC) G1V 1H3 '
-p89
-(V2608 Rue Biencourt, Quebec City, QC G1V 1H7, Canada
-p90
-(F46.7840782
-F-71.2958439
-tp91
-tp92
-sS'156, Rue Bertrand, Qu\xc3\xa9bec (QC) G1B 1H7 '
-p93
-(V156 Rue Bertrand, Quebec City, QC G1B 1G8, Canada
-p94
-(F46.9053344
-F-71.1901854
-tp95
-tp96
-sS'1680, Boul La Morille, Qu\xc3\xa9bec (QC) G2K 1R3 '
-p97
-(V1680 Boulevard la Morille, Quebec City, QC G2K 2J9, Canada
-p98
-(F46.8419585
-F-71.3065437
-tp99
-tp100
-sS'305, Rue Racine, Qu\xc3\xa9bec (QC) G2B 1E7 '
-p101
-(V305 Rue Racine, Quebec City, QC G2B 2Z9, Canada
-p102
-(F46.8512375
-F-71.3600733
-tp103
-tp104
-sS'6920, Rue Des Brumes, Qu\xc3\xa9bec (QC) G2C 2A6 '
-p105
-(V6920 Rue des Brumes, Quebec City, QC G2C 1R4, Canada
-p106
-(F46.830358
-F-71.3214628
-tp107
-tp108
-sS'5385, Av Banville, Qu\xc3\xa9bec (QC) G1P 1H7 '
-p109
-(V5385 Avenue Banville, Quebec City, QC G1P 1H7, Canada
-p110
-(F46.8210151
-F-71.3290865
-tp111
-tp112
-sS'1070, Boul Pie-XI Nord Qu\xc3\xa9bec (QC) G3K 2S6 '
-p113
-(V1070 Boulevard Pie Xi Nord, Quebec City, QC G3K 2S4, Canada
-p114
-(F46.8556973
-F-71.4156308
-tp115
-tp116
-sS'2655, Rue Robitaille, Qu\xc3\xa9bec (QC) G1P 2M7 '
-p117
-(V2655 Rue Robitaille, Quebec City, QC G1P 2M7, Canada
-p118
-(F46.8187132
-F-71.3094877
-tp119
-tp120
-sS'1885, Ch De La Canardi\xc3\xa8re, Qu\xc3\xa9bec (QC) G1J 2E5 '
-p121
-(V1885 Chemin de la Canardière, Quebec City, QC G1J 2E4, Canada
-p122
-(F46.8385881
-F-71.2217123
-tp123
-tp124
-sS'325, Av Des Oblats, Qu\xc3\xa9bec (QC) G1K 1R9 '
-p125
-(V325 Avenue des Oblats, Quebec City, QC G1K, Canada
-p126
-(F46.8107354
-F-71.2365478
-tp127
-tp128
-sS'2000, Boul Montmorency, Qu\xc3\xa9bec (QC) G1J 5E7 '
-p129
-(V2000 Boulevard Montmorency, Quebec City, QC G1J, Canada
-p130
-(F46.8363904
-F-71.2157643
-tp131
-tp132
-sS'655, Boul Des Chutes, Qu\xc3\xa9bec (QC) G1E 2B6 '
-p133
-(V655 Boulevard des Chutes, Quebec City, QC G1E 5A9, Canada
-p134
-(F46.857785
-F-71.188896
-tp135
-tp136
-sS'2600, Rue Biencourt, Qu\xc3\xa9bec (QC) G1V 1H3 '
-p137
-(V2600 Rue Biencourt, Quebec City, QC G1V 1H5, Canada
-p138
-(F46.7843149
-F-71.2954858
-tp139
-tp140
-sS'2301, 1re Av, Qu\xc3\xa9bec (QC) G1L 3M9 '
-p141
-(V1re Rue, Quebec City, QC, Canada
-p142
-(F46.82197
-F-71.2213258
-tp143
-tp144
-sS'1000, Rue De Bar-Le-Duc, Qu\xc3\xa9bec (QC) G1W 2N9 '
-p145
-(V1000 Rue de Bar le Duc, Quebec City, QC G1W 2P1, Canada
-p146
-(F46.7663781
-F-71.3061488
-tp147
-tp148
-sS'3224, Rue Armand-Hamelin, Qu\xc3\xa9bec (QC) G1W 2W7 '
-p149
-(V3224 Rue Hamelin, Quebec City, QC G1W 2W9, Canada
-p150
-(F46.7554314
-F-71.3098069
-tp151
-tp152
-sS'3400, Boul Neuvialle, Qu\xc3\xa9bec (QC) G1P 3A8 '
-p153
-(V3400 Boulevard Neuvialle, Quebec City, QC G1P 3A8, Canada
-p154
-(F46.8146078
-F-71.3153478
-tp155
-tp156
-sS'4720, Av Des Loisirs, Qu\xc3\xa9bec (QC) G1H 3G5 '
-p157
-(V4720 Avenue des Loisirs, Quebec City, QC G1H 2M2, Canada
-p158
-(F46.8461223
-F-71.2508468
-tp159
-tp160
-sS'2, Rue Du Fargy, Qu\xc3\xa9bec (QC) G1E 5A9 '
-p161
-(V2 Rue du Fargy, Quebec City, QC G1E 6R9, Canada
-p162
-(F46.858603
-F-71.189942
-tp163
-tp164
-sS'3400, Claisse, Qu\xc3\xa9bec (QC)   '
-p165
-(V3400 Rue Claisse, Quebec City, QC G1P 3A8, Canada
-p166
-(F46.8145347
-F-71.3153472
-tp167
-tp168
-sS"1560, Rte De L'\xc3\x89glise, Qu\xc3\xa9bec (QC) G1W 3P5 "
-p169
-(V1560 Route de l'Église, Quebec City, QC G1W 3P8, Canada
-p170
-(F46.7604157
-F-71.2795669
-tp171
-tp172
-sS'771, Rue Jacques-Berthiaume, Qu\xc3\xa9bec (QC) G1V 3T3 '
-p173
-(V771 Rue Jacques Berthiaume, Quebec City, QC G1V 1W2, Canada
-p174
-(F46.7795233
-F-71.3060373
-tp175
-tp176
-sS'1650, Boul La Morille, Qu\xc3\xa9bec (QC) G2K 2L2 '
-p177
-(V1650 Boulevard la Morille, Quebec City, QC G2K 2J9, Canada
-p178
-(F46.8422594
-F-71.3058719
-tp179
-tp180
-sS'680, Rue Raoul-Jobin, Qu\xc3\xa9bec (QC) G1N 4N1 '
-p181
-(V680 Rue Raoul-Jobin, Quebec City, QC G1N 4N4, Canada
-p182
-(F46.8077723
-F-71.2438438
-tp183
-tp184
-sS'3725, Rue Chevalier, Qu\xc3\xa9bec (QC) G1P 1M8 '
-p185
-(V3725 Rue Chevalier, Quebec City, QC G1P 4M5, Canada
-p186
-(F46.8125955
-F-71.3202506
-tp187
-tp188
-sS'2130, Rue De La Somme, Qu\xc3\xa9bec (QC) G1V 2C5 '
-p189
-(V2130 Rue de la Somme, Quebec City, QC G1V 4J5, Canada
-p190
-(F46.7872425
-F-71.2661352
-tp191
-tp192
-sS'2920, Rue Claisse, Qu\xc3\xa9bec (QC) G1P 4G7 '
-p193
-(V2920 Rue Claisse, Quebec City, QC G1P 3A8, Canada
-p194
-(F46.81537
-F-71.314498
-tp195
-tp196
-sS'453, Rue Seigneuriale, Qu\xc3\xa9bec (QC) G1C 3R2 '
-p197
-(V453 Rue Seigneuriale, Quebec City, QC G1C 3P9, Canada
-p198
-(F46.8898821
-F-71.2107925
-tp199
-tp200
-sS'4285, Rue Ren\xc3\xa9-Chaloult, Qu\xc3\xa9bec (QC) G2B 4R7 '
-p201
-(V4285 Rue René Chaloult, Quebec City, QC G2B 3S9, Canada
-p202
-(F46.8331872
-F-71.3595717
-tp203
-tp204
-sS'650, Av Du Bourg-Royal, Qu\xc3\xa9bec (QC) G2L 1M8 '
-p205
-(V650 Avenue du Bourg Royal, Quebec City, QC G2L 1W5, Canada
-p206
-(F46.8767343
-F-71.2437337
-tp207
-tp208
-sS'2120, Rue Du Cur\xc3\xa9-Lacroix, Qu\xc3\xa9bec (QC) G2B 1S1 '
-p209
-(V2120 Rue du Curé Lacroix, Quebec City, QC G2B 2N3, Canada
-p210
-(F46.8566698
-F-71.3332227
-tp211
-tp212
-sS'689, 12e Rue, Qu\xc3\xa9bec (QC) G1J 2M9 '
-p213
-(V689 12e Rue, Quebec City, QC G1J 3B4, Canada
-p214
-(F46.8291231
-F-71.2279414
-tp215
-tp216
-sS'945, Av Belv\xc3\xa9d\xc3\xa8re, Qu\xc3\xa9bec (QC) G1S 3G2 '
-p217
-(V945 Avenue Belvédère, Quebec City, QC G1S, Canada
-p218
-(F46.7976777
-F-71.2397907
-tp219
-tp220
-sS'16, Rue Royal-Roussillon, Qu\xc3\xa9bec (QC) G1L 2J7 '
-p221
-(V16 Rue Royal Roussillon, Quebec City, QC G1L, Canada
-p222
-(F46.8267976
-F-71.2356366
-tp223
-tp224
-sS'1430, Ch Sainte-Foy, Qu\xc3\xa9bec (QC) G1S 2N8 '
-p225
-(V1430 Chemin Sainte Foy, Quebec City, QC G1S 2N7, Canada
-p226
-(F46.7937695
-F-71.2564834
-tp227
-tp228
-sS'835, Av Brown, Qu\xc3\xa9bec (QC) G1S 4S1 '
-p229
-(V835 Avenue Brown, Quebec City, QC G1S 1Z5, Canada
-p230
-(F46.8016684
-F-71.2358285
-tp231
-tp232
-sS'1158, Rue Du Lyonnais, Qu\xc3\xa9bec (QC) G1G 2G2 '
-p233
-(V1158 Rue du Lyonnais, Quebec City, QC G1G 2E9, Canada
-p234
-(F46.8711496
-F-71.2809426
-tp235
-tp236
-sS'5256, Av Des Sauges, Qu\xc3\xa9bec (QC) G1G 3V7 '
-p237
-(V5256 Avenue des Sauges, Quebec City, QC G1G 3V7, Canada
-p238
-(F46.8834116
-F-71.2858138
-tp239
-tp240
-sS'155, Rue Bigaouette, Qu\xc3\xa9bec (QC) G1K 4L5 '
-p241
-(V155 Rue Bigaouette, Quebec City, QC G1K, Canada
-p242
-(F46.8119726
-F-71.2415929
-tp243
-tp244
-sS'2200, Rue Coursol, Qu\xc3\xa9bec (QC) G2B 4Y4 '
-p245
-(V2200 Rue Coursol, Quebec City, QC G2B 4Y4, Canada
-p246
-(F46.8466663
-F-71.3264448
-tp247
-tp248
-sS'2740, 2e Av, Qu\xc3\xa9bec (QC) G1L 4Y8 '
-p249
-(V2740 2e Av, Quebec City, QC G1L 4Y8, Canada
-p250
-(F46.8374652
-F-71.2410734
-tp251
-tp252
-sS'153, Av Des Sablonni\xc3\xa8res, Qu\xc3\xa9bec (QC) G1B 1B8 '
-p253
-(V153 Avenue des Sablonnières, Quebec City, QC G1B 1B8, Canada
-p254
-(F46.9068468
-F-71.1979141
-tp255
-tp256
-sS'2265, Av Larue, Qu\xc3\xa9bec (QC) G1C 1J9 '
-p257
-(V2265 Avenue Larue, Quebec City, QC G1C 1J9, Canada
-p258
-(F46.8886037
-F-71.1624582
-tp259
-tp260
-sS'265, Boul Ren\xc3\xa9-L\xc3\xa9vesque Ouest, Qu\xc3\xa9bec (QC) G1R 2A7 '
-p261
-(V265 Boulevard René Lévesque Ouest, Quebec City, QC G1R, Canada
-p262
-(F46.8027374
-F-71.2290599
-tp263
-tp264
-sS'2900, Boul Du Loiret, Qu\xc3\xa9bec (QC) G1C 3X3 '
-p265
-(V2900 Boulevard du Loiret, Quebec City, QC G1E 3N7, Canada
-p266
-(F46.8507129
-F-71.2326742
-tp267
-tp268
-sS'885, Myrand, Qu\xc3\xa9bec (QC)   '
-p269
-(V885 Avenue Myrand, Quebec City, QC G1V 2V8, Canada
-p270
-(F46.7871146
-F-71.2674492
-tp271
-tp272
-sS'2970, Av Gaspard, Qu\xc3\xa9bec (QC) G1C 3V7 '
-p273
-(V2970 Avenue Gaspard, Quebec City, QC G1C 1V6, Canada
-p274
-(F46.8531966
-F-71.2313179
-tp275
-tp276
+tp7
+tp8
+sS'1630, Rue Des Balsamines, Qu\xc3\xa9bec (QC) G1M 2K9 '
+p9
+(V1630 Rue des Balsamines, Quebec City, QC G1M 3Z3, Canada
+p10
+(F46.8135332
+F-71.2818364
+tp11
+tp12
 sS'2740, Av Saint-David, Qu\xc3\xa9bec (QC) G1E 4K7 '
-p277
+p13
 (V2740 Avenue Saint David, Quebec City, QC G1E 4K7, Canada
-p278
+p14
 (F46.8596129
 F-71.2104869
-tp279
-tp280
+tp15
+tp16
+sS'2608, Rue Biencourt, Qu\xc3\xa9bec (QC) G1V 1H3 '
+p17
+(V2608 Rue Biencourt, Quebec City, QC G1V 1H7, Canada
+p18
+(F46.7840782
+F-71.2958439
+tp19
+tp20
+sS'158, Boul Des \xc3\x89tudiants, Qu\xc3\xa9bec (QC) G2A 1N8 '
+p21
+(V158 Boulevard des Étudiants, Quebec City, QC G2A 2M4, Canada
+p22
+(F46.8546814
+F-71.3628927
+tp23
+tp24
+sS'655, Boul Des Chutes, Qu\xc3\xa9bec (QC) G1E 2B6 '
+p25
+(V655 Boulevard des Chutes, Quebec City, QC G1E 5A9, Canada
+p26
+(F46.857785
+F-71.188896
+tp27
+tp28
+sS'2301, 1re Av, Qu\xc3\xa9bec (QC) G1L 3M9 '
+p29
+(V1re Rue, Quebec City, QC, Canada
+p30
+(F46.82197
+F-71.2213258
+tp31
+tp32
+sS'1070, Boul Pie-XI Nord Qu\xc3\xa9bec (QC) G3K 2S6 '
+p33
+(V1070 Boulevard Pie Xi Nord, Quebec City, QC G3K 2S4, Canada
+p34
+(F46.8556973
+F-71.4156308
+tp35
+tp36
+sS'2, Rue Du Fargy, Qu\xc3\xa9bec (QC) G1E 5A9 '
+p37
+(V2 Rue du Fargy, Quebec City, QC G1E 6R9, Canada
+p38
+(F46.858603
+F-71.189942
+tp39
+tp40
+sS'1600, 8e Av, Qu\xc3\xa9bec (QC) G1J 3N5 '
+p41
+(V1600 8e Av, Quebec City, QC G1J 2K5, Canada
+p42
+(F46.8318782
+F-71.2297116
+tp43
+tp44
+sS'771, Rue Jacques-Berthiaume, Qu\xc3\xa9bec (QC) G1V 3T3 '
+p45
+(V771 Rue Jacques Berthiaume, Quebec City, QC G1V 1W2, Canada
+p46
+(F46.7795233
+F-71.3060373
+tp47
+tp48
+sS'4120, Rue De Musset, Qu\xc3\xa9bec (QC) G1P 1P1 '
+p49
+(V4120 Rue de Musset, Quebec City, QC G1P 1P1, Canada
+p50
+(F46.8105343
+F-71.3213911
+tp51
+tp52
+sS'2920, Rue Claisse, Qu\xc3\xa9bec (QC) G1P 4G7 '
+p53
+(V2920 Rue Claisse, Quebec City, QC G1P 3A8, Canada
+p54
+(F46.81537
+F-71.314498
+tp55
+tp56
+sS'650, Av Du Bourg-Royal, Qu\xc3\xa9bec (QC) G2L 1M8 '
+p57
+(V650 Avenue du Bourg Royal, Quebec City, QC G2L 1W5, Canada
+p58
+(F46.8767343
+F-71.2437337
+tp59
+tp60
+sS'4473, Rue Saint-F\xc3\xa9lix, Qu\xc3\xa9bec (QC) G1Y 3A8'
+p61
+(V4473 Rue Saint Félix, Quebec City, QC G1Y 3A8, Canada
+p62
+(F46.7415528
+F-71.354764
+tp63
+tp64
+sS'16, Rue Royal-Roussillon, Qu\xc3\xa9bec (QC) G1L 2J7 '
+p65
+(V16 Rue Royal Roussillon, Quebec City, QC G1L, Canada
+p66
+(F46.8267976
+F-71.2356366
+tp67
+tp68
+sS'230, Rue Du Pont, Qu\xc3\xa9bec (QC) G1K 6L5 '
+p69
+(V230 Rue du Pont, Quebec City, QC G1K 6L6, Canada
+p70
+(F46.8181372
+F-71.2228206
+tp71
+tp72
+sS'3025, Av Tass\xc3\xa9, Qu\xc3\xa9bec (QC) G1P 1T1 '
+p73
+(V3025 Avenue Tassé, Quebec City, QC G1P 1T2, Canada
+p74
+(F46.811747
+F-71.3229587
+tp75
+tp76
+sS'2970, Av Gaspard, Qu\xc3\xa9bec (QC) G1C 3V7 '
+p77
+(V2970 Avenue Gaspard, Quebec City, QC G1C 1V6, Canada
+p78
+(F46.8531966
+F-71.2313179
+tp79
+tp80
 sS'2155, Boul Bastien, Qu\xc3\xa9bec (QC) G2B 1B8 '
-p281
+p81
 (V2155 Boulevard Bastien, Quebec City, QC G2B 1B7, Canada
-p282
+p82
 (F46.8582504
 F-71.3355604
-tp283
-tp284
-sS'895, Av Myrand, Qu\xc3\xa9bec (QC) G1V 2V8 '
-p285
-(V895 Avenue Myrand, Quebec City, QC G1V 2V8, Canada
-p286
-(F46.7868028
-F-71.2670177
-tp287
-tp288
-sS'1020, Rue Vincent-Massey, Qu\xc3\xa9bec (QC) G1N 1M8 '
-p289
-(V1020 Rue Vincent Massey, Quebec City, QC G1N 4J4, Canada
-p290
-(F46.8031499
-F-71.2493272
-tp291
-tp292
+tp83
+tp84
+sS'960, Av Dessane, Qu\xc3\xa9bec (QC) G1S 3J9 '
+p85
+(V960 Avenue Dessane, Quebec City, QC G1S 1V3, Canada
+p86
+(F46.7962105
+F-71.2419547
+tp87
+tp88
 sS'1990, 25e Rue, Qu\xc3\xa9bec (QC) G1J 1L7 '
-p293
+p89
 (V1990 25e Rue, Quebec City, QC G1J 1L7, Canada
-p294
+p90
 (F46.8449554
 F-71.2283088
-tp295
-tp296
-sS'3000, Rue Des Primev\xc3\xa8res, Qu\xc3\xa9bec (QC) G1M 3Y4 '
-p297
-(V3000 Rue des Primevères, Quebec City, QC G1M 3V4, Canada
-p298
-(F46.8156045
-F-71.2816781
-tp299
-tp300
-sS'8500, Boul Henri-Bourassa, Qu\xc3\xa9bec (QC) G1G 5X1 '
-p301
-(V8500 Boulevard Henri Bourassa, Quebec City, QC G1G 5X1, Canada
-p302
-(F46.8652068
-F-71.2703205
-tp303
-tp304
+tp91
+tp92
+sS'2130, Rue De La Somme, Qu\xc3\xa9bec (QC) G1V 2C5 '
+p93
+(V2130 Rue de la Somme, Quebec City, QC G1V 4J5, Canada
+p94
+(F46.7872425
+F-71.2661352
+tp95
+tp96
 sS'320, Rue Chabot, Qu\xc3\xa9bec (QC) G1M 3J5 '
-p305
+p97
 (V320 Rue Chabot, Quebec City, QC G1M 1L4, Canada
-p306
+p98
 (F46.812875
 F-71.2632919
-tp307
-tp308
+tp99
+tp100
+sS'1500, Rue De La Rive-Bois\xc3\xa9e, Qu\xc3\xa9bec (QC) G2C 2B3 '
+p101
+(V1500 Rue De La Rive Boisée, Quebec City, QC G2C 2B3, Canada
+p102
+(F46.8296274
+F-71.3161657
+tp103
+tp104
+sS'3400, Boul Neuvialle, Qu\xc3\xa9bec (QC) G1P 3A8 '
+p105
+(V3400 Boulevard Neuvialle, Quebec City, QC G1P 3A8, Canada
+p106
+(F46.8146078
+F-71.3153478
+tp107
+tp108
+sS'750, De la Sorbonne C.P. 700, Qu\xc3\xa9bec (QC) G1R 4S9 '
+p109
+(VQuebec City, QC G1R 4S9, Canada
+p110
+(F46.8131142
+F-71.2050648
+tp111
+tp112
+sS'1229, Av Du Chanoine-Morel, Qu\xc3\xa9bec (QC) G1S 4B1 '
+p113
+(V1229 Avenue du Chanoine Morel, Quebec City, QC G1S 4B1, Canada
+p114
+(F46.7856831
+F-71.2496495
+tp115
+tp116
+sS'305, Rue Champlain, Qu\xc3\xa9bec (QC) G1K 4J1 '
+p117
+(V305 Rue Champlain, Quebec City, QC G1K 4J2, Canada
+p118
+(F46.8053044
+F-71.2055136
+tp119
+tp120
+sS'525, Boul Wilfrid-Hamel Est, Qu\xc3\xa9bec (QC) G1M 2S8 '
+p121
+(V525 Boulevard Wilfrid-Hamel, Quebec City, QC G1M, Canada
+p122
+(F46.8200041
+F-71.2485586
+tp123
+tp124
+sS'3705, Av Chauveau, Qu\xc3\xa9bec (QC) G2C 1A3 '
+p125
+(V3705 Avenue Chauveau, Quebec City, QC G2C 1A3, Canada
+p126
+(F46.8325792
+F-71.3466394
+tp127
+tp128
+sS'1501, Rue Du P\xc3\xa9rigord, Qu\xc3\xa9bec (QC) G1G 5T8 '
+p129
+(V1501 Rue Périgord, Quebec City, QC G1G 5X3, Canada
+p130
+(F46.8679664
+F-71.2894763
+tp131
+tp132
+sS'5125, 2e Av Ouest, Qu\xc3\xa9bec (QC) G1H 6L2 '
+p133
+(V5125 2e Av Ouest, Quebec City, QC G1H 6L2, Canada
+p134
+(F46.8469735
+F-71.2556368
+tp135
+tp136
 sS"1360, Boul De L'Entente, Qu\xc3\xa9bec (QC) G1S 2T9 "
-p309
+p137
 (V1360 Boulevard de l'Entente, Quebec City, QC G1S 2T8, Canada
-p310
+p138
 (F46.796215
 F-71.2564667
+tp139
+tp140
+sS'1680, Boul La Morille, Qu\xc3\xa9bec (QC) G2K 1R3 '
+p141
+(V1680 Boulevard la Morille, Quebec City, QC G2K 2J9, Canada
+p142
+(F46.8419585
+F-71.3065437
+tp143
+tp144
+sS'6920, Rue Des Brumes, Qu\xc3\xa9bec (QC) G2C 2A6 '
+p145
+(V6920 Rue des Brumes, Quebec City, QC G2C 1R4, Canada
+p146
+(F46.830358
+F-71.3214628
+tp147
+tp148
+sS'5385, Av Banville, Qu\xc3\xa9bec (QC) G1P 1H7 '
+p149
+(V5385 Avenue Banville, Quebec City, QC G1P 1H7, Canada
+p150
+(F46.8210151
+F-71.3290865
+tp151
+tp152
+sS'1750, Rue Du P\xc3\xa9rigord, Qu\xc3\xa9bec (QC) G1G 5X3 '
+p153
+(V1750 Rue Périgord, Quebec City, QC G1G 5X3, Canada
+p154
+(F46.8679776
+F-71.2895189
+tp155
+tp156
+sS'1000, Rue De Bar-Le-Duc, Qu\xc3\xa9bec (QC) G1W 2N9 '
+p157
+(V1000 Rue de Bar le Duc, Quebec City, QC G1W 2P1, Canada
+p158
+(F46.7663781
+F-71.3061488
+tp159
+tp160
+sS'156, Rue Bertrand, Qu\xc3\xa9bec (QC) G1B 1H7 '
+p161
+(V156 Rue Bertrand, Quebec City, QC G1B 1G8, Canada
+p162
+(F46.9053344
+F-71.1901854
+tp163
+tp164
+sS'680, Rue Raoul-Jobin, Qu\xc3\xa9bec (QC) G1N 4N1 '
+p165
+(V680 Rue Raoul-Jobin, Quebec City, QC G1N 4N4, Canada
+p166
+(F46.8077723
+F-71.2438438
+tp167
+tp168
+sS'830, Rue De Saurel, Qu\xc3\xa9bec (QC) G1X 3P6 '
+p169
+(V830 Rue de Saurel, Quebec City, QC G1X 2G9, Canada
+p170
+(F46.7676688
+F-71.3248787
+tp171
+tp172
+sS'453, Rue Seigneuriale, Qu\xc3\xa9bec (QC) G1C 3R2 '
+p173
+(V453 Rue Seigneuriale, Quebec City, QC G1C 3P9, Canada
+p174
+(F46.8898821
+F-71.2107925
+tp175
+tp176
+sS"10, Rue De L'Acad\xc3\xa9mie, Qu\xc3\xa9bec (QC) G1E 4W1 "
+p177
+(V10 Rue de l'Académie, Quebec City, QC G1E 6R9, Canada
+p178
+(F46.8585372
+F-71.1920046
+tp179
+tp180
+sS'2120, Rue Du Cur\xc3\xa9-Lacroix, Qu\xc3\xa9bec (QC) G2B 1S1 '
+p181
+(V2120 Rue du Curé Lacroix, Quebec City, QC G2B 2N3, Canada
+p182
+(F46.8566698
+F-71.3332227
+tp183
+tp184
+sS'689, 12e Rue, Qu\xc3\xa9bec (QC) G1J 2M9 '
+p185
+(V689 12e Rue, Quebec City, QC G1J 3B4, Canada
+p186
+(F46.8291231
+F-71.2279414
+tp187
+tp188
+sS'1158, Rue Du Lyonnais, Qu\xc3\xa9bec (QC) G1G 2G2 '
+p189
+(V1158 Rue du Lyonnais, Quebec City, QC G1G 2E9, Canada
+p190
+(F46.8711496
+F-71.2809426
+tp191
+tp192
+sS'265, Boul Ren\xc3\xa9-L\xc3\xa9vesque Ouest, Qu\xc3\xa9bec (QC) G1R 2A7 '
+p193
+(V265 Boulevard René Lévesque Ouest, Quebec City, QC G1R, Canada
+p194
+(F46.8027374
+F-71.2290599
+tp195
+tp196
+sS'2265, Av Larue, Qu\xc3\xa9bec (QC) G1C 1J9 '
+p197
+(V2265 Avenue Larue, Quebec City, QC G1C 1J9, Canada
+p198
+(F46.8886037
+F-71.1624582
+tp199
+tp200
+sS'2900, Boul Du Loiret, Qu\xc3\xa9bec (QC) G1C 3X3 '
+p201
+(V2900 Boulevard du Loiret, Quebec City, QC G1E 3N7, Canada
+p202
+(F46.8507129
+F-71.2326742
+tp203
+tp204
+sS'3000, Rue Des Primev\xc3\xa8res, Qu\xc3\xa9bec (QC) G1M 3Y4 '
+p205
+(V3000 Rue des Primevères, Quebec City, QC G1M 3V4, Canada
+p206
+(F46.8156045
+F-71.2816781
+tp207
+tp208
+sS'3600, Av Chauveau, Qu\xc3\xa9bec (QC) G2C 1A1 '
+p209
+(V3600 Avenue Chauveau, Quebec City, QC G2C 1L5, Canada
+p210
+(F46.8355398
+F-71.3432176
+tp211
+tp212
+sS"3490, Rte De L'A\xc3\xa9roport, Qu\xc3\xa9bec (QC) G3K 1X5 "
+p213
+(V3490 Route de l'Aéroport, Quebec City, QC G3K 1T7, Canada
+p214
+(F46.8437686
+F-71.4350444
+tp215
+tp216
+sS"3200, Av D'Amours, Qu\xc3\xa9bec (QC) G1X 1L9 "
+p217
+(V3200 Avenue d'Amours, Quebec City, QC G1X 1M2, Canada
+p218
+(F46.7749261
+F-71.3188501
+tp219
+tp220
+sS"1485, Rue De L'Innovation, Qu\xc3\xa9bec (QC) G3K 2P9 "
+p221
+(V1485 Rue de l'Innovation, Quebec City, QC G3K 2P9, Canada
+p222
+(F46.8579837
+F-71.4203809
+tp223
+tp224
+sS'2200, Rue De La Faune, Qu\xc3\xa9bec (QC) G3E 1K6 '
+p225
+(V2200 Rue de la Faune, Quebec City, QC G3E 1G2, Canada
+p226
+(F46.8722725
+F-71.3347074
+tp227
+tp228
+sS'1475, Rue Virginia-Woolf, Qu\xc3\xa9bec (QC) G2K 0B1 '
+p229
+(VRue Virginia-Woolf, Quebec City, QC G2K, Canada
+p230
+(F46.8471997
+F-71.3086084
+tp231
+tp232
+sS'909, Boul Pie-XII, Qu\xc3\xa9bec (QC) G1X 3T4 '
+p233
+(V909 Boulevard Pie-XII, Quebec City, QC G1X 2L2, Canada
+p234
+(F46.7606934
+F-71.320845
+tp235
+tp236
+sS'2740, 2e Av, Qu\xc3\xa9bec (QC) G1L 4Y8 '
+p237
+(V2740 2e Av, Quebec City, QC G1L 4Y8, Canada
+p238
+(F46.8374652
+F-71.2410734
+tp239
+tp240
+sS'1020, Rue Vincent-Massey, Qu\xc3\xa9bec (QC) G1N 1M8 '
+p241
+(V1020 Rue Vincent Massey, Quebec City, QC G1N 4J4, Canada
+p242
+(F46.8031499
+F-71.2493272
+tp243
+tp244
+sS'645, Av Du C\xc3\xa9nacle, Qu\xc3\xa9bec (QC) G1E 1B3 '
+p245
+(V645 Avenue du Cénacle, Quebec City, QC G1E 1B3, Canada
+p246
+(F46.8717025
+F-71.1911219
+tp247
+tp248
+sS'1011, Av Larue, Qu\xc3\xa9bec (QC) G1C 1J5 '
+p249
+(V1011 Avenue Larue, Quebec City, QC G1C 1J5, Canada
+p250
+(F46.8880006
+F-71.1723224
+tp251
+tp252
+sS'956, 1re Av, Qu\xc3\xa9bec (QC) G1L 3K4 '
+p253
+(V956 1re Rue, Quebec City, QC G1J, Canada
+p254
+(F46.8228204
+F-71.219377
+tp255
+tp256
+sS'325, Av Des Oblats, Qu\xc3\xa9bec (QC) G1K 1R9 '
+p257
+(V325 Avenue des Oblats, Quebec City, QC G1K, Canada
+p258
+(F46.8107354
+F-71.2365478
+tp259
+tp260
+sS'2200, Rue Coursol, Qu\xc3\xa9bec (QC) G2B 4Y4 '
+p261
+(V2200 Rue Coursol, Quebec City, QC G2B 4Y4, Canada
+p262
+(F46.8466663
+F-71.3264448
+tp263
+tp264
+sS'305, Rue Racine, Qu\xc3\xa9bec (QC) G2B 1E7 '
+p265
+(V305 Rue Racine, Quebec City, QC G2B 2Z9, Canada
+p266
+(F46.8512375
+F-71.3600733
+tp267
+tp268
+sS'155, Rue Bigaouette, Qu\xc3\xa9bec (QC) G1K 4L5 '
+p269
+(V155 Rue Bigaouette, Quebec City, QC G1K, Canada
+p270
+(F46.8119726
+F-71.2415929
+tp271
+tp272
+sS'844, Rue Paradis, Qu\xc3\xa9bec (QC) G1V 4J5 '
+p273
+(V844 Rue Paradis, Quebec City, QC G1V 4J5, Canada
+p274
+(F46.7874172
+F-71.2665764
+tp275
+tp276
+sS'5256, Av Des Sauges, Qu\xc3\xa9bec (QC) G1G 3V7 '
+p277
+(V5256 Avenue des Sauges, Quebec City, QC G1G 3V7, Canada
+p278
+(F46.8834116
+F-71.2858138
+tp279
+tp280
+sS'2600, Rue Biencourt, Qu\xc3\xa9bec (QC) G1V 1H3 '
+p281
+(V2600 Rue Biencourt, Quebec City, QC G1V 1H5, Canada
+p282
+(F46.7843149
+F-71.2954858
+tp283
+tp284
+sS'4720, Av Des Loisirs, Qu\xc3\xa9bec (QC) G1H 3G5 '
+p285
+(V4720 Avenue des Loisirs, Quebec City, QC G1H 2M2, Canada
+p286
+(F46.8461223
+F-71.2508468
+tp287
+tp288
+sS'2655, Rue Robitaille, Qu\xc3\xa9bec (QC) G1P 2M7 '
+p289
+(V2655 Rue Robitaille, Quebec City, QC G1P 2M7, Canada
+p290
+(F46.8187132
+F-71.3094877
+tp291
+tp292
+sS'3725, Rue Chevalier, Qu\xc3\xa9bec (QC) G1P 1M8 '
+p293
+(V3725 Rue Chevalier, Quebec City, QC G1P 4M5, Canada
+p294
+(F46.8125955
+F-71.3202506
+tp295
+tp296
+sS'4285, Rue Ren\xc3\xa9-Chaloult, Qu\xc3\xa9bec (QC) G2B 4R7 '
+p297
+(V4285 Rue René Chaloult, Quebec City, QC G2B 3S9, Canada
+p298
+(F46.8331872
+F-71.3595717
+tp299
+tp300
+sS'380, Rue Beaucage, Qu\xc3\xa9bec (QC) G1M 1H8 '
+p301
+(V380 Rue Beaucage, Quebec City, QC G1M 2H5, Canada
+p302
+(F46.8146168
+F-71.2639941
+tp303
+tp304
+sS'835, Av Brown, Qu\xc3\xa9bec (QC) G1S 4S1 '
+p305
+(V835 Avenue Brown, Quebec City, QC G1S 1Z5, Canada
+p306
+(F46.8016684
+F-71.2358285
+tp307
+tp308
+sS'153, Av Des Sablonni\xc3\xa8res, Qu\xc3\xa9bec (QC) G1B 1B8 '
+p309
+(V153 Avenue des Sablonnières, Quebec City, QC G1B 1B8, Canada
+p310
+(F46.9068468
+F-71.1979141
 tp311
 tp312
 sS'105, Rue Savio, Qu\xc3\xa9bec (QC) G1E 1G5 '
@@ -631,28 +631,260 @@ p314
 F-71.1756498
 tp315
 tp316
-sS"3200, Av D'Amours, Qu\xc3\xa9bec (QC) G1X 1L9 "
+sS'615, Av H\xc3\xa9l\xc3\xa8ne-Paradis, Qu\xc3\xa9bec (QC) G1G 5G1 '
 p317
-(V3200 Avenue d'Amours, Quebec City, QC G1X 1M2, Canada
+(V615 Avenue Hélène Paradis, Quebec City, QC G1G 3M3, Canada
 p318
-(F46.7749261
-F-71.3188501
+(F46.8695736
+F-71.2664122
 tp319
 tp320
-sS'1750, Rue Du P\xc3\xa9rigord, Qu\xc3\xa9bec (QC) G1G 5X3 '
+sS'333, Rue Perroteau, Qu\xc3\xa9bec (QC) G1C 5Z4 '
 p321
-(V1750 Rue Périgord, Quebec City, QC G1G 5X3, Canada
+(V333 Rue Perroteau, Quebec City, QC G1C 4X5, Canada
 p322
-(F46.8679776
-F-71.2895189
+(F46.8904821
+F-71.1993796
 tp323
 tp324
-sS'143, Rue Des Feux-Follets, Qu\xc3\xa9bec (QC) G1B 1K8 '
+sS'100, Ch Sainte-Foy, Qu\xc3\xa9bec (QC) G1R 1T2 '
 p325
-(V143 Rue St Olivier, Quebec City, QC G1B 3K5, Canada
+(V100 Chemin Ste-Foy, Quebec City, QC G1R 1T2, Canada
 p326
-(F46.911696
-F-71.197522
+(F46.8064972
+F-71.2283505
 tp327
 tp328
+sS'600, 1re Rue, Qu\xc3\xa9bec (QC) G1J 2X6 '
+p329
+(V600 1re Rue, Quebec City, QC G1J 2X6, Canada
+p330
+(F46.8219709
+F-71.2212794
+tp331
+tp332
+sS'255,  Grande All\xc3\xa9e Ouest, Qu\xc3\xa9bec (QC) G1R 5P2 '
+p333
+(V255 Grande Allée Ouest, Quebec City, QC G1R, Canada
+p334
+(F46.8005995
+F-71.2264367
+tp335
+tp336
+sS'365, Rue Du Bienheureux-Jean-XXIII, Qu\xc3\xa9bec (QC) G2N 1V4 '
+p337
+(V365 Rue Jean Xxiii, Quebec City, QC G2N 1V4, Canada
+p338
+(F46.8988483
+F-71.306397
+tp339
+tp340
+sS'620, Av Plante, Qu\xc3\xa9bec (QC) G1M 3R5 '
+p341
+(V620 Avenue Plante, Quebec City, QC G1M 3R5, Canada
+p342
+(F46.8243774
+F-71.2614195
+tp343
+tp344
+sS'320, Rue De Verdun, Qu\xc3\xa9bec (QC) G1N 4S4 '
+p345
+(V320 Rue de Verdun, Quebec City, QC G1N 2A3, Canada
+p346
+(F46.8054279
+F-71.2472483
+tp347
+tp348
+sS'2025, Rue Adjutor-Rivard, Qu\xc3\xa9bec (QC) G1J 1S2 '
+p349
+(V2025 Rue Adjutor Rivard, Quebec City, QC G1J 4S4, Canada
+p350
+(F46.842366
+F-71.2244434
+tp351
+tp352
+sS'2280, Av Monseigneur-Gosselin, Qu\xc3\xa9bec (QC) G1J 4Y2 '
+p353
+(V2280 Avenue Monseigneur Gosselin, Quebec City, QC G1J 1P3, Canada
+p354
+(F46.84493
+F-71.2248065
+tp355
+tp356
+sS'465, 64e Rue Est, Qu\xc3\xa9bec (QC) G1H 1Y1 '
+p357
+(V465 64e Rue Est, Quebec City, QC G1H 1Y3, Canada
+p358
+(F46.8553898
+F-71.2542236
+tp359
+tp360
+sS'895, Av Myrand, Qu\xc3\xa9bec (QC) G1V 2V8 '
+p361
+(V895 Avenue Myrand, Quebec City, QC G1V 2V8, Canada
+p362
+(F46.7868028
+F-71.2670177
+tp363
+tp364
+sS"375, Rue De L'Aventure, Qu\xc3\xa9bec (QC) G2M 1N3 "
+p365
+(V375 Rue de l'Aventure, Quebec City, QC G2M 1C5, Canada
+p366
+(F46.9059375
+F-71.3004874
+tp367
+tp368
+sS'139, Rue Bertrand, Qu\xc3\xa9bec (QC) G1B 1H8 '
+p369
+(V139 Rue Bertrand, Quebec City, QC G1B 1G8, Canada
+p370
+(F46.903385
+F-71.1899793
+tp371
+tp372
+sS'3400, Claisse, Qu\xc3\xa9bec (QC)   '
+p373
+(V3400 Rue Claisse, Quebec City, QC G1P 3A8, Canada
+p374
+(F46.8145347
+F-71.3153472
+tp375
+tp376
+sS'2000, Boul Montmorency, Qu\xc3\xa9bec (QC) G1J 5E7 '
+p377
+(V2000 Boulevard Montmorency, Quebec City, QC G1J, Canada
+p378
+(F46.8363904
+F-71.2157643
+tp379
+tp380
+sS'2267, Av Royale, Qu\xc3\xa9bec (QC) G1C 1P5 '
+p381
+(V2267 Avenue Royale, Quebec City, QC G1C 1P4, Canada
+p382
+(F46.8833147
+F-71.159683
+tp383
+tp384
+sS'3224, Rue Armand-Hamelin, Qu\xc3\xa9bec (QC) G1W 2W7 '
+p385
+(V3224 Rue Hamelin, Quebec City, QC G1W 2W9, Canada
+p386
+(F46.7554314
+F-71.3098069
+tp387
+tp388
+sS"1560, Rte De L'\xc3\x89glise, Qu\xc3\xa9bec (QC) G1W 3P5 "
+p389
+(V1560 Route de l'Église, Quebec City, QC G1W 3P8, Canada
+p390
+(F46.7604157
+F-71.2795669
+tp391
+tp392
+sS'1650, Boul La Morille, Qu\xc3\xa9bec (QC) G2K 2L2 '
+p393
+(V1650 Boulevard la Morille, Quebec City, QC G2K 2J9, Canada
+p394
+(F46.8422594
+F-71.3058719
+tp395
+tp396
+sS'8500, Boul Henri-Bourassa, Qu\xc3\xa9bec (QC) G1G 5X1 '
+p397
+(V8500 Boulevard Henri Bourassa, Quebec City, QC G1G 5X1, Canada
+p398
+(F46.8652068
+F-71.2703205
+tp399
+tp400
+sS'945, Av Belv\xc3\xa9d\xc3\xa8re, Qu\xc3\xa9bec (QC) G1S 3G2 '
+p401
+(V945 Avenue Belvédère, Quebec City, QC G1S, Canada
+p402
+(F46.7976777
+F-71.2397907
+tp403
+tp404
+sS'1430, Ch Sainte-Foy, Qu\xc3\xa9bec (QC) G1S 2N8 '
+p405
+(V1430 Chemin Sainte Foy, Quebec City, QC G1S 2N7, Canada
+p406
+(F46.7937695
+F-71.2564834
+tp407
+tp408
+sS'7600, 3e Av Est, Qu\xc3\xa9bec (QC) G1H 7L4 '
+p409
+(V7600 3e Av Est, Quebec City, QC G1H 1H5, Canada
+p410
+(F46.8609823
+F-71.2615867
+tp411
+tp412
+sS'1201, Rue De La Pointe-Aux-Li\xc3\xa8vres Nord, Qu\xc3\xa9bec (QC) G1L 4M1 '
+p413
+(VQuebec City, QC G1L 4M1, Canada
+p414
+(F46.822049
+F-71.241145
+tp415
+tp416
+sS'1885, Ch De La Canardi\xc3\xa8re, Qu\xc3\xa9bec (QC) G1J 2E5 '
+p417
+(V1885 Chemin de la Canardière, Quebec City, QC G1J 2E4, Canada
+p418
+(F46.8385881
+F-71.2217123
+tp419
+tp420
+sS'885, Myrand, Qu\xc3\xa9bec (QC)   '
+p421
+(V885 Avenue Myrand, Quebec City, QC G1V 2V8, Canada
+p422
+(F46.7871146
+F-71.2674492
+tp423
+tp424
+sS'7, Rue Robert-Rumilly, Qu\xc3\xa9bec (QC) G1K 2K5 '
+p425
+(V7 Rue Robert Rumilly, Quebec City, QC G1K 2K5, Canada
+p426
+(F46.8182213
+F-71.2361021
+tp427
+tp428
+sS'855, Av Holland, Qu\xc3\xa9bec (QC) G1S 3S5 '
+p429
+(V855 Avenue Holland, Quebec City, QC G1S 3S4, Canada
+p430
+(F46.7941905
+F-71.2516716
+tp431
+tp432
+sS'155, Rue Bessette, Qu\xc3\xa9bec (QC) G1C 7A7 '
+p433
+(V155 Rue Bessette, Quebec City, QC G1C 7A7, Canada
+p434
+(F46.8910027
+F-71.1933868
+tp435
+tp436
+sS'2324, Av Renouard, Qu\xc3\xa9bec (QC) G1E 4C3 '
+p437
+(V2324 Avenue Renouard, Quebec City, QC G1E 1R4, Canada
+p438
+(F46.8532562
+F-71.2105581
+tp439
+tp440
+sS'143, Rue Des Feux-Follets, Qu\xc3\xa9bec (QC) G1B 1K8 '
+p441
+(V143 Rue St Olivier, Quebec City, QC G1B 3K5, Canada
+p442
+(F46.911696
+F-71.197522
+tp443
+tp444
 s.
