@@ -65,7 +65,7 @@ for activity in root.getchildren():
         continue
     if d['DESCRIPTION'] in desc:
         continue
-    #print "%42s%44s" % (d['DESCRIPTION_ACT'], d['DESCRIPTION'])
+    print "%42s%44s" % (d['DESCRIPTION_ACT'], d['DESCRIPTION'])
     desc_act.add(d['DESCRIPTION_ACT'])
     desc.add(d['DESCRIPTION'])
     liste_adresses.add(d['ADRESSE'])
