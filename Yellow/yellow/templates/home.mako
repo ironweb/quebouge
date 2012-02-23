@@ -124,10 +124,20 @@
               </figure>
               <div class="content">
                 <h3>{{title}}</h3>
-                <ul class="meta" style="margin-top:4px;">
-                  <li><small></small>{{aujourdhui}}</li>
-                  <li><small></small>{{distance}} km</li>
-                  <li><small></small>{{price}}</li>
+                <ul class="meta" style="margin-top: 3px;">
+                  <li class="">
+                  {{#later_label}}
+                    <small>{{later_label}}</small>{{later_time}}
+                  {{/later_label}}
+                  {{#today_label}}
+                    <small>{{today_label}}</small>{{today_time}}
+                  {{/today_label}}
+                  {{#ends_label}}
+                    <small>{{ends_label}}</small>{{ends_time}}
+                  {{/ends_label}}
+                  </li>
+                  <li class="dist"><small></small>{{distance}} km</li>
+                  <li class="price"><small></small>{{price}}</li>
                 </ul>
               </div>
               <span class="arrow"></span>

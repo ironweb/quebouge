@@ -58,16 +58,26 @@ class Activity(Base):
     # joinedload
     @staticmethod
     def query_from_params(params):
-        """Params:
+        """Requête principale de recherche pour avoir les activités et
+        occurences.
+
+        Params:
         
         ``latlon`` requis pour tous les calls (pour la distance).
         ``bb`` est le bounding box
         ``radius`` dans une unité inconnue à ce jour
+
         """
+        if not params.get('latlon'):
+            return ValueError("`latlon` parameter required")
+        if 'bb' in params and 'radius' in params:
+            raise ValueError('Invalid input : both `radius` and `bb` were submitted.')
+
+        db = DBSession()
         latlon = lat_lon_to_point(params['latlon'])
         distance = functions.distance(Activity.position,
-                                      "POINT(46.8 -72.3)")
-        q = sql.select([Occurence.activity_id, Occurence.dtstart,
+                                      latlon)
+        q = sql.select([Occurence.id, Occurence.dtstart,
                         Occurence.dtend,
                         Activity.title, Activity.location,
                         Activity.location_info, Activity.position,
@@ -75,38 +85,62 @@ class Activity(Base):
                        from_obj=Occurence.__table__.join(Activity.__table__))
         q = q.where(Occurence.activity_id == Activity.id)
 
-        if 'bb' in params and 'radius' in params:
-            raise ValueError('Invalid input : both `radius` and `bb` were submitted.')
-
+        # By bounding-box
         if 'bb' in params:
             q = q.where(Activity.position.within(bb_to_polyon(params['bb'])))
 
+        # By radius
         if 'radius' in params:
             q = q.where(Activity.position.within(functions.buffer(latlon,
                                                   float(params['radius']))))
+        # Category
         if params.get('cat_id'):
             q = q.where(Activity.category_id == int(params['cat_id']))
 
+        # Start datetime
         if 'start_dt' in params:
             dt_start = extract_date_time(params['start_dt'])
+            dt_start_is_now = False
         else:
-            dt_start = datetime.date.today()
+            dt_start = datetime.datetime.now()
+            dt_start_is_now = True
 
-        q = q.where(Occurence.dtstart >= dt_start)
-
+        # End datetime
         if 'end_dt' in params:
-            q = q.where(Occurence.dtend <= extract_date_time(params['end_dt']))
+            dt_end = extract_date_time(params['end_dt'])
+        else:
+            dt_end = dt_start + datetime.timedelta(5) # jours
 
-        db = DBSession()
-        res = db.execute(q)
-        return [Activity._row_result_to_dict(row) for row in res]
+        q = q.where(Occurence.dtend <= dt_end)
+
+        # Get those before they end
+        if dt_start_is_now:
+            in_half_hour = dt_start + datetime.timedelta(0, 1800)
+            res1 = db.execute(q.where(Occurence.dtstart < in_half_hour) \
+                               .where(Occurence.dtend > dt_start) \
+                               .order_by(Occurence.dtend.asc()))
+        else:
+            res1 = []
+
+        # Get those before they start
+        res2 = db.execute(q.where(Occurence.dtstart >= dt_start) \
+                           .order_by(Occurence.dtstart))
+
+        ret1 = [Activity._row_result_to_dict(row, past=True) for row in res1]
+        ret2 = [Activity._row_result_to_dict(row, past=False) for row in res2]
+        return ret1 + ret2
 
     @staticmethod
-    def _row_result_to_dict(row):
+    def _row_result_to_dict(row, past):
+        """Convertit une requête pour être passée via JSON à l'appli web.
+
+        ``row`` est le résultat de la requête dans "query_from_params()".
+        ``past`` indique si l'événement est passé par rapport à now()
+        """
         point = wkb.loads(str(row.st_asbinary))
         delta = abs(row.dtend - row.dtstart)
         duration = delta.seconds + delta.days * 84600
-        out = dict(activity_id=row.activity_id,
+        out = dict(occurence_id=row.id,
                    dtstart=row.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
                    duration=duration,
                    title=row.title,
@@ -116,28 +150,57 @@ class Activity(Base):
                    price=("%.2f $" % row.price) if row.price else 'GRATUIT',
                    distance="%0.1f" % row.distance_1,
                    )
-        out.update(Activity._format_date(row))
+        out.update(Activity._format_date(row, past))
         return out
         
     @staticmethod
-    def _format_date(row):
+    def _format_date(row, past):
         today = datetime.date.today()
+        now = datetime.datetime.now()
         out = {}
         row_dt = row.dtstart
         row_date = row_dt.date()
-        if row_date == today:
-            out['aujourdhui'] = row_dt.strftime("%H:%M")
+        if past:
+            out['ends_label'] = "Jusqu'à"
+            out['ends_time'] = row.dtend.strftime("%H:%M")            
+        elif row_date == today:
+            if now + datetime.timedelta(0, 14400) > row_dt: # h
+                out['today_label'] = "Dans"
+                out['today_time'] = Activity._relative_time(row_dt, now)
+            else:
+                out['today_label'] = "Aujourd'hui"
+                out['today_time'] = row_dt.strftime("%H:%M")
         else:
             demain = today + datetime.timedelta(1)
             if demain == row_date:
-                out['plustard_label'] = 'Demain'
+                out['later_label'] = 'Demain'
             else:
                 jour = row_dt.strftime("%d").lstrip('0')
                 mois = row_dt.strftime("%b")
-                out['plustard_label'] = "%s %s" % (jour, mois)
-            out['plustard_heure'] = row_dt.strftime("%H:%M")
+                out['later_label'] = "%s %s" % (jour, mois)
+            out['later_heure'] = row_dt.strftime("%H:%M")
         return out
         
+    @staticmethod
+    def _relative_time(date, now):
+        """Return a relative time in the format:
+
+        1h
+        30 min.
+        45 min.
+        1h 45m
+        3h 25m
+        """
+        delta = abs(date - now).seconds
+        if delta >= 3600:
+            if delta % 3600:
+                div, mod = divmod(delta, 3600)
+                return "%dh %dm" % (div, int(round(mod / 60.0)))
+            else:
+                return "%dh" % (delta / 3600.0)
+        else:
+            return "%d min." % (int(round(delta / 60.0)))
+            
 
 GeometryDDL(Activity.__table__)
 
