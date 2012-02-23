@@ -2,8 +2,8 @@ hockey,Hockey
 aquaforme,Natation
 patinage,Patinage
 nage,Natation
-espagnole|espagnol,Langues
-yoga|viniyoga,Yoga
+espagnole|espagnol,Cours
+yoga|viniyoga,Mieux-être
 badminton,Badminton
 gymnastique,Gymnastique
 tennis,Tennis
@@ -13,112 +13,112 @@ natation,Natation
 taekwondo,Arts martiaux
 ballet,Danse
 piano,Musique
-peinture,Arts visuels
-dessin,Arts plastiques
+peinture,Arts
+dessin,Arts
 aquajogging,Natation
 musique,Musique
 stretching|streching,Conditionnement
-anglais,Langues
+anglais,Cours
 aquapoussette,Natation
 musculation,Conditionnement
 guitare,Musique
 baladi,Danse
 hip.hop,Danse
-reiki,Arts martiaux
+reiki,Mieux-être
 jazz.latino,Danse
 techniques.de.pointes,Danse
 chi.tao,Arts martiaux
 jogging,Conditionnement
-photographie,Arts visuels
-théâtre,Arts de la scène
-bridge,Oldies
-poterie.au.tour,Arts plastiques
+photographie,Arts
+théâtre,Théâtre
+bridge,Jeux de société
+poterie.au.tour,Arts
 yoseikan,Arts martiaux
 karat,Arts martiaux
-cuisine,Économie familiale
-relaxation,Conditionnement
+cuisine,Cours
+relaxation,Mieux-être
 trampoline,Conditionnement
 soccer,Soccer
 volley.ball,Volley-ball
-sculpture,Arts plastiques
-basket.?ball,Sports
+sculpture,Arts
+basket.?ball,Basketball
 judo,Arts martiaux
-zumba,Arts martiaux
+zumba,Conditionnement
 kung.fu,Arts martiaux
-bingo,Oldies
-âge.d.or,Oldies
+bingo,Jeux de société
+âge.d.or,Passe-temps
 bain.anim,Natation
-vitrail,Arts plastiques
-céramique,Arts plastiques
-massage,Eeee
+vitrail,Arts
+céramique,Arts
+massage,Mieux-être
 trapèze,Cirque
-méditation,Méditation
+méditation,Mieux-être
 aquaprénatal,Natation
 gym,Conditionnement
 abdos,Conditionnement
-informatique
+informatique, Cours
 aquatriathlon,Natation
-acrylique,Arts plastiques
-ski,Sports
-bijoux,Arts plastiques
+acrylique,Arts
+ski,Plein air
+bijoux,Arts
 cheerleading,Gymnastique
-plage
-pétanque,Oldies
+plage, Plein air
+pétanque,Passe-temps
 shotokan,Arts martiaux
 budo,Arts martiaux
-traîneau
-vélo,Sports
+traîneau, Plein air
+vélo,Plain air
 chorale,Musique
-volleyball,Sports
-ballon
-raquette,Sports
-ta.-chi,Arts martiaux
+volleyball,Volleyball
+ballon, Divers
+raquette,Plein air
+ta.-chi,Mieux-être
 cardio.pouss,Conditionnement
 cardio.boot,Conditionnement
 bains?.libre,Natation
-shuffleboard,Oldies
+shuffleboard,Passe-temps
 tonus.pilates,Conditionnement
-multi-sports,Sports
+multi-sports,Divers
 cardio-tonus,Conditionnement
 bain.-.dirige,Natation
-water-polo,Sports
-aqua.ext,Sports
+water-polo,Natation
+aqua.ext,Natation
 aquadultes,Natation
 aëkido|aëkibudo|kobudo|aëfkido,Arts martiaux
 djembé,Musique
-scrabble,Oldies
-croquet,Oldies
+scrabble,Jeux de société
+croquet,Passe-temps
 spinning,Conditionnement
 chant,Musique
-scrapbooking,Arts plastiques
-allemande,Langues
+scrapbooking,Arts
+allemande,Cours
 claquette,Danse
 escrime,Arts martiaux
 sauveur.nationale,Natation
 veil.musical,Musique
 aquados,Natation
 aquajeux,Natation
-tricot,Arts plastiques
+tricot,Passe-temps
 danse,Danse
 pousse.ton.poupon,Conditionnement
-quilles,Oldies
-aquarelle,Arts plastiques
+quilles,Passe-temps
+aquarelle,Arts
 work\s?out,Conditionnement
-courtepointe,Arts plastiques
-goalball
+courtepointe,Passe-temps
+goalball, Goalball
 jonglerie,Cirque
 ballet,Danse
-triathlon,Sports
+triathlon,Plein air
 bujinkan,Arts martiaux
-frisbee,Sports
-mandarin,Langues
-mandalas ?
+frisbee,Plein air
+mandarin,Cours
+mandalas, Arts
 ninjutsu,Arts martiaux
 aqualongeurs,Natation
-menuiserie
-littéraire
+menuiserie, Cours
+littéraire, Cours
 aquadulte,Natation
-baseball,Sports
+baseball,Baseball
 aérobique,Conditionnement
 aquaplaisir,Natation
 qi gong,Arts martiaux

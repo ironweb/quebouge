@@ -29,7 +29,7 @@
         
         <form action="" class="state-close filter">
           <div class="row">
-            <div class="sixcol">
+            <div class="twelvecol">
               <label for="lst-category">Cat&eacute;gories</label>
               <select name="category" id="lst-category">
                 % for category in categories:
@@ -37,17 +37,13 @@
                 % endfor
               </select>
             </div>
-            <div class="sixcol last">
-                 <label for="">Tarifications ($)</label>
-                 <input type="range" min="0" max="30" step="5">
-            </div>  
           </div>
           <div class="row">
             <div class="sixcol">
               <label for="lst-sports">Sports</label>
               <select name="sports" id="lst-sports">
                 <option value="">Toutes les sports</option>
-              </select>
+              </select>    
             </div>
             <div class="sixcol last">
                  <label for="">Distances (km)</label>
@@ -59,7 +55,7 @@
       </header>
       
      
-      <div id="home-view">
+      <div class="view">
         <div class="content"></div>
       </div>
       
@@ -71,42 +67,16 @@
 
     <section id="activity-page" class="page row">
       <header>
-        <section>
-          <h1><a href="/">Super duper apps</a></h1>
-          <a href="#" class="toggle-filters" data-state="close">Filtres</a>  
-        </section>
         
-        <form action="" class="state-close filter">
-          <div class="row">
-            <div class="sixcol">
-              <label for="lst-category">Cat&eacute;gories</label>
-              <select name="category" id="lst-category">
-                <option value="">Toutes les cat&eacute;gories</option>
-              </select>    
-            </div>
-            <div class="sixcol last">
-                 <label for="">Tarifications ($)</label>
-                 <input type="range" min="0" max="30" step="5">
-            </div>  
-          </div>
-          <div class="row">
-            <div class="sixcol">
-              <label for="lst-sports">Sports</label>
-              <select name="sports" id="lst-sports">
-                <option value="">Toutes les sports</option>
-              </select>    
-            </div>
-            <div class="sixcol last">
-                 <label for="">Distances (km)</label>
-                 <input type="range" min="0" max="10" step="0.5">
-            </div>  
-          </div>
-          
-        </form>
+        <section>
+          <h1><a href="/" class="back">Page 2</a></h1>
+          <a href="#" class="toggle-filters" data-state="close">Partager</a>  
+        </section>
+
       </header>
       
      
-      <div id="activity-view">
+      <div class="view">
         <div class="content"></div>
       </div>
       
