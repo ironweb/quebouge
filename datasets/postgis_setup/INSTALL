@@ -1,0 +1,20 @@
+Voir:
+
+  http://postgis.refractions.net/docs/ch02.html
+
+S'assurer de charger PostGIS dans la base qu'on crée.
+
+Pour moi ça ressemblait à:
+
+ createdb -U postgres -W -H 127.0.0.1  yellow_dev
+ psql -U postgres -W -h 127.0.0.1
+ > \c yellow_dev
+ > \i postgis_setup/postgis.sql
+ > \i postgis_setup/spatial_ref_sys.sql
+ > \i postgis_setup/postgis_comments.sql
+
+Ensuite, ça devrait être bon.  Mettre dans son development.ini, de quoi du genre:
+
+ sqlalchemy.url = postgresql://postgres:postgres@127.0.0.1/yellow_dev
+
+  - Alexandre Bourget

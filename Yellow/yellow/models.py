@@ -18,7 +18,9 @@ from sqlalchemy.orm import (
 
 from geoalchemy import (
     GeometryColumn,
-    Point)
+    Point,
+    GeometryDDL,
+    )
 
 
 from zope.sqlalchemy import ZopeTransactionExtension
@@ -41,6 +43,7 @@ class Activity(Base):
     category = relationship(Category)
     location = Column(Unicode(255))
     position = GeometryColumn(Point(2))
+GeometryDDL(Activity.__table__)
 
 class Occurence(Base):
     __tablename__= "occurences"
