@@ -9,7 +9,6 @@ Go in PGADMIN3, and drop WITH CASCADE the three following tables:
 Then, go in your virtual environment, and run:
 
   populate_Yellow my_development.ini
-  geocode_Yellow my_development.ini
 
 If you don't find those scripts, make sure you have run:
 
