@@ -103,7 +103,7 @@ def import_xml_data():
     # Loader les patterns
     mots_reg = {}
     check_list = []
-    for mot in open('../CHECK.txt'):
+    for mot in open('../datasets/CATEGORIZATION.txt'):
         pattern_categ = mot.strip().split(',')
         chk = MotChecker(pattern_categ[0], None if len(pattern_categ) < 2 else pattern_categ[1])
         check_list.append(chk)
