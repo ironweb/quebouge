@@ -32,8 +32,10 @@
             <div class="sixcol">
               <label for="lst-category">Cat&eacute;gories</label>
               <select name="category" id="lst-category">
-                <option value="">Toutes les cat&eacute;gories</option>
-              </select>    
+                % for category in categories:
+                  <option value="${category.id}">${category.name}</option>
+                % endfor
+              </select>
             </div>
             <div class="sixcol last">
                  <label for="">Tarifications ($)</label>
@@ -45,7 +47,7 @@
               <label for="lst-sports">Sports</label>
               <select name="sports" id="lst-sports">
                 <option value="">Toutes les sports</option>
-              </select>    
+              </select>
             </div>
             <div class="sixcol last">
                  <label for="">Distances (km)</label>
