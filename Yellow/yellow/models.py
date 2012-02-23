@@ -43,18 +43,19 @@ class Activity(Base):
     category = relationship(Category)
     location = Column(Unicode(255))
     position = GeometryColumn(Point(2))
-GeometryDDL(Activity.__table__)
 
 
+    # joinedload
     @classmethod
     def query_from_params(cls, params=None):
         if params is None: params = {}
-        query = DBSession.query(cls)
+        q = DBSession.query(cls)
         if 'bb' in params:
-            query.filter(cls.position.within(bb_to_polyon(params['bb'])))
+            q = q.filter(cls.position.within(bb_to_polyon(params['bb'])))
 
-        return query
+        return q
 
+GeometryDDL(Activity.__table__)
 
 class Occurence(Base):
     __tablename__= "occurences"
