@@ -23,7 +23,7 @@
     <section id="home-page" class="page row current">
       <header>
         <section>
-          <h1><a href="/">Super duper apps</a></h1>
+          <h1><a href="/">Loisirs à Québec</a></h1>
           <a href="#" class="toggle-filters" data-state="close">Filtres</a>  
         </section>
         
@@ -69,7 +69,7 @@
       <header>
         
         <section>
-          <h1><a href="/" class="back">Page 2</a></h1>
+          <h1><a href="/" class="back">&lt; Retour</a></h1>
           <a href="#" class="toggle-filters" data-state="close">Partager</a>  
         </section>
 
