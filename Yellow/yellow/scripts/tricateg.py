@@ -25,15 +25,9 @@ class DatabaseNode(object):
 
     @property
     def description(self):
-        d1 = self.node['DESCRIPTION']
-        d2 = self.node['DESCRIPTION_ACT']
-        if d1 in d2:
-            desc = d2
-        elif d2 in d1:
-            desc = d1
-        else:
-            desc = "%s, %s" % (d1, d2)
-        return desc
+        return self._extract_bigger_field(self.node['DESCRIPTION'],
+                                          self.node['DESCRIPTION_ACT'])
+
     def _to_dict(self):
         ret = {}
         for el in self.raw_node.getchildren():
@@ -61,9 +55,19 @@ class DatabaseNode(object):
 
     @property
     def location_info(self):
-        if self.node['LIEU_1'] == self.node['LIEU_2']:
-            return self.node['LIEU_1']
-        return "%s (%s)" % (self.node['LIEU_1'], self.node['LIEU_2'])
+        return self._extract_bigger_field(self.node['LIEU_1'],
+                                          self.node['LIEU_2'])
+
+    def _extract_bigger_field(self, v1, v2):
+        """Returns the biggest of two string if one is contained within the
+        other. Concatenate both otherwise"""
+        if v1 in v2:
+            desc = v2
+        elif v2 in v1:
+            desc = v1
+        else:
+            desc = "%s, %s" % (v1, v2)
+        return desc
 
 class Occurence(object):
     def __init__(self, start_datetime, activity):
@@ -104,8 +108,10 @@ def import_xml_data():
         chk = MotChecker(pattern_categ[0], None if len(pattern_categ) < 2 else pattern_categ[1])
         check_list.append(chk)
 
-    root1 = etree.parse("../datasets/LOISIR_PAYANT.XML").getroot()
-    root2 = etree.parse("../datasets/LOISIR_LIBRE.XML").getroot()
+    doc1 = etree.parse("../datasets/LOISIR_PAYANT.XML")
+    doc2 = etree.parse("../datasets/LOISIR_LIBRE.XML")
+    root1 = doc1.getroot()
+    root2 = doc2.getroot()
 
     # Checker chaque ligne du dataset avec les patterns pour les catégoriser
     res_by_mot = {}
