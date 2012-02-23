@@ -17,7 +17,6 @@ def my_view(request):
 def activities(request):
     query = Activity.query_from_params(request.params)
     results = query.all()
-    pprint(results)
     return {'num': len(results),
             'elements': [x.linear_row for x in results]}
 
