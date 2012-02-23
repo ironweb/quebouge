@@ -25,7 +25,7 @@ class DatabaseNode(object):
 
     @property
     def description(self):
-        return self._extract_bigger_field(self.node['DESCRIPTION']
+        return self._extract_bigger_field(self.node['DESCRIPTION'],
                                           self.node['DESCRIPTION_ACT'])
 
     def _to_dict(self):
@@ -67,6 +67,7 @@ class DatabaseNode(object):
             desc = v1
         else:
             desc = "%s, %s" % (v1, v2)
+        return desc
 
 class Occurence(object):
     def __init__(self, start_datetime, activity):
@@ -107,8 +108,10 @@ def import_xml_data():
         chk = MotChecker(pattern_categ[0], None if len(pattern_categ) < 2 else pattern_categ[1])
         check_list.append(chk)
 
-    root1 = etree.parse("../datasets/LOISIR_PAYANT.XML").getroot()
-    root2 = etree.parse("../datasets/LOISIR_LIBRE.XML").getroot()
+    doc1 = etree.parse("../datasets/LOISIR_PAYANT.XML")
+    doc2 = etree.parse("../datasets/LOISIR_LIBRE.XML")
+    root1 = doc1.getroot()
+    root2 = doc2.getroot()
 
     # Checker chaque ligne du dataset avec les patterns pour les catégoriser
     res_by_mot = {}
