@@ -1,0 +1,11 @@
+HTML5 Boilerplate
+Zepto (jQuery pour kicker IE)
+One-page app, pour miniser les requêtes HTTP
+* Low latency
+Pyramid
+SQLAlchemy / GeoAlchemy
+* Submitted issues to GeoAlchemy
+PostgreSQL + spatial extensions PostGIS
+Mobile first
+* Second layout at 1024px wide
+

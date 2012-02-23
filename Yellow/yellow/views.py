@@ -16,8 +16,7 @@ def my_view(request):
 
 @view_config(route_name='activities', renderer='json')
 def activities(request):
-    query = Activity.query_from_params(request.params)
-    results = query.all()
+    results = Activity.query_from_params(request.params)
     return {'num': len(results),
-            'elements': [x.linear_row for x in results]}
+            'elements': results}
 

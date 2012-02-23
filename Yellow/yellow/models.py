@@ -1,3 +1,5 @@
+# -=- encoding: utf-8 -=-
+
 from sqlalchemy import (
     Column,
     Integer,
@@ -7,6 +9,7 @@ from sqlalchemy import (
     UnicodeText,
     ForeignKey,
     DateTime,
+    sql,
     )
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -54,35 +57,65 @@ class Activity(Base):
 
     # joinedload
     @staticmethod
-    def query_from_params(params=None):
-        if params is None: params = {}
-        q = DBSession.query(Occurence)
-        q = q.options(joinedload("activity"))
-        q = q.join(Activity)
+    def query_from_params(params):
+        """Params:
+        
+        ``latlon`` requis pour tous les calls (pour la distance).
+        ``bb`` est le bounding box
+        ``radius`` dans une unité inconnue à ce jour
+        """
+        latlon = lat_lon_to_point(params['latlon'])
+        distance = functions.distance(Activity.position,
+                                      "POINT(46.8 -72.3)")
+        q = sql.select([Occurence.activity_id, Occurence.dtstart,
+                        Occurence.dtend,
+                        Activity.title, Activity.location,
+                        Activity.location_info, Activity.position,
+                        Activity.price, distance],
+                       from_obj=Occurence.__table__.join(Activity.__table__))
+        q = q.where(Occurence.activity_id == Activity.id)
 
         if 'bb' in params and 'radius' in params:
             raise ValueError('Invalid input : both `radius` and `bb` were submitted.')
 
         if 'bb' in params:
-            q = q.filter(Activity.position.within(bb_to_polyon(params['bb'])))
+            q = q.where(Activity.position.within(bb_to_polyon(params['bb'])))
 
         if 'radius' in params:
-            q = q.filter(Activity.position.within(functions.buffer(
-               lat_lon_to_point(params['latlon']), int(params['radius']))))
-
+            q = q.where(Activity.position.within(functions.buffer(latlon,
+                                                  float(params['radius']))))
         if 'cat_id' in params:
-            q = q.filter(Activity.category_id == int(params['cat_id']))
+            q = q.where(Activity.category_id == int(params['cat_id']))
 
         if 'start_dt' in params:
             dt_start = extract_date_time(params['start_dt'])
         else:
             dt_start = datetime.date.today()
-        q = q.filter(Occurence.dtstart >= dt_start)
+
+        q = q.where(Occurence.dtstart >= dt_start)
 
         if 'end_dt' in params:
-            q = q.filter(Occurence.dtend <= extract_date_time(params['end_dt']))
+            q = q.where(Occurence.dtend <= extract_date_time(params['end_dt']))
 
-        return q
+        db = DBSession()
+        res = db.execute(q)
+        return [Activity._row_result_to_dict(row) for row in res]
+
+    @staticmethod
+    def _row_result_to_dict(row):
+        point = wkb.loads(str(row.st_asbinary))
+        delta = abs(row.dtend - row.dtstart)
+        duration = delta.seconds + delta.days * 84600
+        return dict(activity_id=row.activity_id,
+                    dtstart=row.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
+                    duration=duration,
+                    title=row.title,
+                    location=row.location,
+                    location_info=row.location_info,
+                    position=(point.x, point.y),
+                    price=row.price,
+                    distance=row.distance_1,
+                    )
 
 GeometryDDL(Activity.__table__)
 
@@ -111,8 +144,8 @@ class Occurence(Base):
                     location=self.activity.location,
                     location_info=self.activity.location_info,
                     position=(point.x, point.y),
-                    price=self.activity_id)
-    
+                    price=self.price)
+
 def bb_to_polyon(bb_str):
     x1, y1, x2, y2  = bb_str.split(',')
     return "POLYGON((%s %s, %s %s, %s %s, %s %s, %s %s))" % \
