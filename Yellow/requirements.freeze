@@ -13,3 +13,4 @@ vobject==0.8.1c
 pytz==2011n
 sqlalchemy-migrate==0.7.2
 Fabric==1.4.0
+waitress==0.8.1
