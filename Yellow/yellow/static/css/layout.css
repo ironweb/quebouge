@@ -217,9 +217,10 @@ form.filter .row:first-child{
     display: block;
     float:left;
     margin-top:12px;
-    width: 13%;
-    height:40px;
-    background:url(/static/images/arrow.png) no-repeat center center;
+    width: 10%;
+    height: 40px;
+    background: url(/static/images/fleche.png) no-repeat center center;
+    background-size: 3ex;
 }
 
 #home-page li a{
@@ -242,13 +243,14 @@ form.filter .row:first-child{
     line-height:1em;
 }
 
-.occurence ul.meta{
+.occurence ul.meta {
     float:left;
     color: #84e0fe;
-    font-size:14px;
+    font-size:12px;
     margin:0;
     padding:0;
     line-height:1em;
+    padding-top: 4px;
 }
 .occurence ul.meta li{
     float:left;
@@ -264,7 +266,8 @@ form.filter .row:first-child{
 }
 .occurence span.price {
   display: block;
-  font-size: 70%;
+  font-size: 65%;
+  line-height: 2ex;
 }
 .occurence .meta span,
 .occurence .meta small {
@@ -272,10 +275,34 @@ form.filter .row:first-child{
     font-size:12px;
     display:block;
     margin-bottom:2px;
-    text-align:center;
+    text-align:left;
 }
-.occurence .meta .time small {
+.occurence .meta small { /* common top labels */
+  font-size: 75%;
+  padding-bottom: 0.5ex;
+}
+.occurence .meta .time {
   color: #84E0FE;
+  width: 14ex;
+}
+.occurence .meta .time small { /* time description */
+  font-weight: bold;
+  color: #84E0FE;
+}
+.occurence .meta .time span { /* time delay */
+  color: #84E0FE;
+  font-size: 200%;
+  font-weight: bold;
+}
+.occurence .meta .dist {
+    color: #d3d2d2;
+}
+.occurence .meta .dist small { /* label */
+}
+.occurence .meta .dist span { /* value */
+  display: inline;
+  font-size: 200%;
+  font-weight: bold;
 }
 
 /* Transition/animation (inspired by jQTouch) */

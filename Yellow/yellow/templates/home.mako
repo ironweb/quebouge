@@ -144,7 +144,7 @@
                       <span>{{ends_time}}</span>
                     {{/ends_label}}
                   </li>
-                  <li class="dist"><small>PROXIMITÉ</small>{{distance}} km</li>
+                  <li class="dist"><small>PROXIMITÉ</small><span>{{distance}}</span> km</li>
                 </ul>
               </div>
               <span class="arrow"></span>
