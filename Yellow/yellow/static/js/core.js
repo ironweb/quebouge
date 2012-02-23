@@ -2,15 +2,8 @@
  * Front Controller
  */
 FrontController = {
-    run:function() {
-        Router.init();
-        FrontController.addActions();
-
-        //start app
-        FrontController.start();        
-    },
     start:function() {
-        Router.run( window.href );
+        FrontController.addActions();      
     },
     addActions:function() {
         $('body').delegate('a', 'click', function(e){
@@ -25,7 +18,7 @@ FrontController = {
         })
     }     
 }
-
+/*
 Router = {
     routes:[],
     init:function(){
@@ -80,7 +73,7 @@ Router = {
         }
     }
 }
-
+*/
 $(document).ready(function() {
-    FrontController.run();
+    FrontController.start();
 })
