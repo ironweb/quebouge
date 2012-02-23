@@ -162,7 +162,12 @@ SearchController = {
         if(data.activities.length == 0){
             alert('rien pour le moment')
         }
-        //data.activities = data.activities.concat(data.activities,data.activities,data.activities);
+
+        // Cache the dataz
+        for(var i = 0; i < data.activities.length ; i++){
+          var item = data.activities[i];
+          OccurencesCache[item.occurence_id] = item;
+        }
 
         $('#home-page').find('div.content').html( Template.render('list-view', data) );
 
@@ -187,7 +192,8 @@ ActivityController = {
     init:function() {
       var opts = {
         zoom: ActivityController.zoom,
-        mapTypeId: google.maps.MapTypeId.SATELLITE
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
+        center:new google.maps.LatLng(0,0)
       };
       ActivityController.map = new google.maps.Map(
         document.getElementById("map-canvas"), opts);
@@ -198,7 +204,7 @@ ActivityController = {
       // Geo.coords
       // @todo : DRAW Activity
       var occurence = OccurencesCache[id];
-      ActivityController._drawPointAndRecenter();
+      ActivityController._drawPointAndRecenter(occurence);
     },
 
     show:function(url) {
@@ -223,11 +229,10 @@ ActivityController = {
       new google.maps.Marker({
         position: latlng,
         map: ActivityController.map,
-        title: total.title
+        title: point.title
       });
       ActivityController.map.setCenter(
         latlng, ActivityController.zoom);
-
     },
 
     _latLngFromPoint: function(point){
