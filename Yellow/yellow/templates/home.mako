@@ -124,10 +124,10 @@
               </figure>
               <div class="content">
                 <h3>{{title}}</h3>
-                <ul class="meta">
-                  <li><small>Aujoud'hui</small>{{when}}</li>
-                  <li><small>Distance</small>{{distance}}km</li>
-                  <li><small>Prix</small>{{price}}</li>
+                <ul class="meta" style="margin-top:4px;">
+                  <li><small></small>{{aujourdhui}}</li>
+                  <li><small></small>{{distance}} km</li>
+                  <li><small></small>{{price}}</li>
                 </ul>
               </div>
               <span class="arrow"></span>
