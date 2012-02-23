@@ -84,7 +84,7 @@ class Activity(Base):
         if 'radius' in params:
             q = q.where(Activity.position.within(functions.buffer(latlon,
                                                   float(params['radius']))))
-        if 'cat_id' in params:
+        if params.get('cat_id'):
             q = q.where(Activity.category_id == int(params['cat_id']))
 
         if 'start_dt' in params:
