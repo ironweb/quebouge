@@ -13,7 +13,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
-    relationship
+    relationship,
+    joinedload
     )
 
 from geoalchemy import (
@@ -46,16 +47,18 @@ class Activity(Base):
 
 
     # joinedload
-    @classmethod
-    def query_from_params(cls, params=None):
+    @staticmethod
+    def query_from_params(params=None):
         if params is None: params = {}
-        q = DBSession.query(cls)
+        q = DBSession.query(Occurence).options(joinedload("activity"))
         if 'bb' in params:
-            q = q.filter(cls.position.within(bb_to_polyon(params['bb'])))
-
+            q = q.join(Activity).filter(Activity.position.within(bb_to_polyon(params['bb'])))
+        # TODO: if 'from_date' in params
+            # Filter by Occurence.dtstart => params['from_date'] en datetime
         return q
 
 GeometryDDL(Activity.__table__)
+
 
 class Occurence(Base):
     __tablename__= "occurences"
@@ -69,10 +72,10 @@ class Occurence(Base):
 
 
 def bb_to_polyon(bb_str):
-    x1, y1, x2, y2  = bb_str.split(',')
-    polygon_path = x1, y1, x2, y1, x2, y2, x1, y2
-    return "POINT(%s)" % ', '.join(polygon_path)
+    x1, y1, x2, y2  = bb_str.split(',')    
+    return "POLYGON((%s %s, %s %s, %s %s, %s %s, %s %s))" % \
+        (x1, y1, x2, y1, x2, y2, x1, y2, x1, y1)
 
 def lat_lon_to_point(point_str):
-    return "POINT(%s, %s)" % point_str.slit(',')
+    return "POINT(%s  %s)" % point_str.slit(',')
 
