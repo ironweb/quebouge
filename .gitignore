@@ -9,7 +9,6 @@ data/
 paster.log
 
 # Personal config file
-development.ini
 abourget.ini
 
 # Test stuff
