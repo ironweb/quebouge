@@ -41,10 +41,9 @@ FrontController = {
 
         });*/
         
-        $('#home-page').delegate('ol a','tap', function(e){
+        $('#home-page').delegate('ol a','click', function(e){
             e.preventDefault();
             e.stopPropagation();
-
             FrontController.loadPage( 'activity', this.href );
         });
 

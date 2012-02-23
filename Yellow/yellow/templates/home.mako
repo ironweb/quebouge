@@ -17,9 +17,7 @@
   <link rel="stylesheet" href="/static/css/layout.css">
   
   <script src="/static/js/libs/modernizr.custom.79709.js"></script>
-  <script src="/static/js/libs/modernizr.custom.79709.js"></script>
-	<script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?sensor=true">
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true">
 </script>
 
 </head>
