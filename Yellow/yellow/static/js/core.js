@@ -2,8 +2,18 @@
  * Front Controller
  */
 FrontController = {
+    init:function() {
+        FrontController.addActions();
+
+        //prepare controller
+        SearchController.init();
+
+
+        FrontController.start();    
+    },
     start:function() {
-        FrontController.addActions();      
+        //add future router here
+        SearchController.load();      
     },
     addActions:function() {
         $('body').delegate('a', 'click', function(e){
@@ -12,11 +22,45 @@ FrontController = {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                History.pushState({state:1}, this.title, this.href);    
+                //History.pushState({state:1}, this.title, this.href);    
             }
 
         })
     }     
+}
+
+SearchController = {
+    $form:false,
+    init:function(){
+        SearchController.$form = $('form');
+        SearchController.$form.bind('submit', SearchController.doSubmit);
+    },
+    load:function(){
+        SearchController.$form.trigger('submit');
+    },
+    doSubmit:function() {
+        //do an ajax call to load data from the form
+        //fake data
+        var data = {
+            activities:[{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"}]
+        }
+        console.debug(data)
+        $('#home-view').children('.content').html( Template.render('list-view', data) );
+    }
+}
+
+Template = {
+    list:[],
+    get:function( name ){
+        if(!Template.list[name]){
+            //load the template
+            Template.list[name] = $( '#tpl-' + name ).html();
+        }
+        return Template.list[name];
+    },
+    render:function( name, data ) {
+        return Mustache.to_html( Template.get(name), data );     
+    }
 }
 /*
 Router = {
@@ -75,5 +119,5 @@ Router = {
 }
 */
 $(document).ready(function() {
-    FrontController.start();
+    FrontController.init();
 })
