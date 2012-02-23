@@ -1,3 +1,4 @@
+(function($){
 /**
  * Front Controller
  */
@@ -72,7 +73,7 @@ FrontController = {
                 break;    
             case 'activity':
             default:
-                ActivityController.show();
+                ActivityController.show(url);
                 break;
         }
     }     
@@ -183,13 +184,23 @@ SearchController = {
 
 ActivityController = {
     init:function() {
-            
+      var opts = {
+        zoom: 11,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      };
+      ActivityController.map = new google.maps.Map(
+        document.getElementById("map-canvas"), myOptions);
+
+
     },
-    load:function() {
-            
+    load:function(id) {
+      // Map geo coords as user.
+      // Geo.coords
+
     },
-    show:function() {
-        
+
+    show:function(url) {
         var $outElement = $('#container>.page.current');
         $('#activity-page').addClass('current slideleft in');
         //$outElement.addClass('slideleft out');
@@ -198,8 +209,22 @@ ActivityController = {
             $outElement.removeClass('current slideleft out');
             $('#activity-page').removeClass('slideleft in')    
         },250);
-        
+
+        ActivityController.load(ActivityController._urlToId(url));
+    },
+
+    _urlToId: function(url){
+      return url.split('/').pop();
+    },
+
+    _drawPoint: function(point){
+      new google.maps.Marker({
+        position: new google.maps.LatLng(point.position[0], point.position[1]),
+        map: ActivityController.map,
+        title: total.title
+      });
     }
+
 }
 
 Template = {
@@ -212,7 +237,7 @@ Template = {
         return Template.list[name];
     },
     render:function( name, data ) {
-        return Mustache.to_html( Template.get(name), data );     
+        return Mustache.to_html( Template.get(name), data );
     }
 }
 
@@ -301,4 +326,6 @@ Router = {
 
 $(document).ready(function() {
     FrontController.init();
+    ActivityController.init();
 })
+})($);
