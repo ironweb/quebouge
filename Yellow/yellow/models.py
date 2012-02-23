@@ -69,8 +69,20 @@ class Occurence(Base):
     dtstart = Column(DateTime)
     dtend = Column(DateTime)
 
+    @property
+    def duration(self):
+        delta = abs(self.dtend - self.dtstart)
+        return delta.seconds + delta.days * 84600
 
-
+    @property
+    def linear_row(self):
+        return dict(dtstart=self.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
+                    duration=self.duration,
+                    title=self.activity.title,
+                    location=self.activity.location,
+                    position=self.activity.position.coords(DBSession),
+                    activity_id=self.activity_id)
+    
 def bb_to_polyon(bb_str):
     x1, y1, x2, y2  = bb_str.split(',')    
     return "POLYGON((%s %s, %s %s, %s %s, %s %s, %s %s))" % \

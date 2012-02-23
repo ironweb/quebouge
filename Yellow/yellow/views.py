@@ -19,5 +19,5 @@ def activities(request):
     results = query.all()
     pprint(results)
     return {'num': len(results),
-            'elements': [x.activity.title for x in results]}
+            'elements': [x.linear_row for x in results]}
 
