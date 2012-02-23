@@ -44,7 +44,7 @@ SearchController = {
         var data = {
             activities:[{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"}]
         }
-        console.debug(data)
+
         $('#home-view').children('.content').html( Template.render('list-view', data) );
     }
 }
