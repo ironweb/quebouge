@@ -40,7 +40,6 @@ setup(name='Yellow',
       main = yellow:main
       [console_scripts]
       populate_Yellow = yellow.scripts.populate:main
-      geocode_Yellow = yellow.scripts.geocode:main
       """,
       )
 
