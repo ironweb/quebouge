@@ -20,7 +20,7 @@
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <div id="page" class="row">
     <header>
-      <h1><a href="/test">Yellow</a></h1>
+      <h1><a href="/activity/374">Yellow</a></h1>
     </header>
     
     <div role="main">
@@ -36,8 +36,8 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/0.8/zepto.min.js"></script>
   <!--<script>window.jQuery || document.write('<script src="/static/js/libs/jquery-1.7.1.min.js"><\/script>')</script>-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.3.0/mustache.min.js"></script>
-  <script src="//balupton.github.com/jquery-scrollto/scripts/jquery.scrollto.min.js"></script>
   <script src="/static/js/libs/native.history.js"></script>
+  <script src="/static/js/davis.light.js"></script>
   <script src="/static/js/core.js"></script>
 
   <script>
