@@ -43,6 +43,18 @@ class Activity(Base):
     category = relationship(Category)
     location = Column(Unicode(255))
     position = GeometryColumn(Point(2))
+
+
+    # joinedload
+    @classmethod
+    def query_from_params(cls, params=None):
+        if params is None: params = {}
+        q = DBSession.query(cls)
+        if 'bb' in params:
+            q = q.filter(cls.position.within(bb_to_polyon(params['bb'])))
+
+        return q
+
 GeometryDDL(Activity.__table__)
 
 class Occurence(Base):
@@ -53,4 +65,14 @@ class Occurence(Base):
     activity = relationship(Activity)
     dtstart = Column(DateTime)
     dtend = Column(DateTime)
-    
+
+
+
+def bb_to_polyon(bb_str):
+    x1, y1, x2, y2  = bb_str.split(',')
+    polygon_path = x1, y1, x2, y1, x2, y2, x1, y2
+    return "POINT(%s)" % ', '.join(polygon_path)
+
+def lat_lon_to_point(point_str):
+    return "POINT(%s, %s)" % point_str.slit(',')
+
