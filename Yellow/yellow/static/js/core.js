@@ -14,6 +14,9 @@ FrontController = {
         SearchController.init();
 
         //init libs
+        SearchController.addSpinner();
+        SearchController.$spinner.show();
+        
         Geo.init();
 
         //start Application from Geo object (after we get the geo position)
@@ -88,7 +91,6 @@ SearchController = {
     init:function(){
         SearchController.$form = $('form');
         SearchController.$form.bind('submit', SearchController.doSubmit);
-        SearchController.addSpinner();
 
         SearchController.$linkdropdown = $('#show-cat-dropdown');
         SearchController.$dropdown     = $('#lst-category');
