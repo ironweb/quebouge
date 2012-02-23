@@ -32,7 +32,13 @@ FrontController = {
                 //History.pushState({state:1}, this.title, this.href);    
             }
 
-        })
+        });
+
+        $('header').find('a.toggle-filters').bind('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+           $(this).closest("header").find('form.filter').toggleClass('state-close'); 
+        });
     }     
 }
 
@@ -50,8 +56,10 @@ SearchController = {
         console.debug(Geo.getPosition())
         //fake data
         var data = {
-            activities:[{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"},{id:476,category:"test",desc:"jgnsdfbgfdb", distance:"0.5km"}]
+            activities:[{id:476,category:"test",title:"Natation", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Hockey", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Conditionnement physique", distance:"0.5km", when:"20h00"},{id:476,category:"test",title:"Natation", distance:"0.5km", when:"20h00"}]
         }
+
+        data.activities = data.activities.concat(data.activities,data.activities,data.activities);
 
         $('#home-view').children('.content').html( Template.render('list-view', data) );
     }

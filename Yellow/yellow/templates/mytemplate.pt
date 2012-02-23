@@ -19,23 +19,101 @@
 </head>
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-  <div id="page" class="row">
-    <header>
-      <h1><a href="/activity/374">Yellow</a></h1>
-      <form action=""></form>
-    </header>
-    
-    <div role="main">
+  <div role="main" id="container">
+    <section id="home-page" class="page row current">
+      <header>
+        <section>
+          <h1><a href="/">Super duper apps</a></h1>
+          <a href="#" class="toggle-filters" data-state="close">Filtres</a>  
+        </section>
+        
+        <form action="" class="state-close filter">
+          <div class="row">
+            <div class="sixcol">
+              <label for="lst-category">Cat&eacute;gories</label>
+              <select name="category" id="lst-category">
+                <option value="">Toutes les cat&eacute;gories</option>
+              </select>    
+            </div>
+            <div class="sixcol last">
+                 <label for="">Tarifications ($)</label>
+                 <input type="range" min="0" max="30" step="5">
+            </div>  
+          </div>
+          <div class="row">
+            <div class="sixcol">
+              <label for="lst-sports">Sports</label>
+              <select name="sports" id="lst-sports">
+                <option value="">Toutes les sports</option>
+              </select>    
+            </div>
+            <div class="sixcol last">
+                 <label for="">Distances (km)</label>
+                 <input type="range" min="0" max="10" step="0.5">
+            </div>  
+          </div>
+          
+        </form>
+      </header>
+      
+     
       <div id="home-view">
         <div class="content"></div>
       </div>
-    </div>
+      
 
-    <footer>
+      <footer>
 
-    </footer>
+      </footer>
+    </section>
+
+    <section id="activity-page" class="page row">
+      <header>
+        <section>
+          <h1><a href="/">Super duper apps</a></h1>
+          <a href="#" class="toggle-filters" data-state="close">Filtres</a>  
+        </section>
+        
+        <form action="" class="state-close filter">
+          <div class="row">
+            <div class="sixcol">
+              <label for="lst-category">Cat&eacute;gories</label>
+              <select name="category" id="lst-category">
+                <option value="">Toutes les cat&eacute;gories</option>
+              </select>    
+            </div>
+            <div class="sixcol last">
+                 <label for="">Tarifications ($)</label>
+                 <input type="range" min="0" max="30" step="5">
+            </div>  
+          </div>
+          <div class="row">
+            <div class="sixcol">
+              <label for="lst-sports">Sports</label>
+              <select name="sports" id="lst-sports">
+                <option value="">Toutes les sports</option>
+              </select>    
+            </div>
+            <div class="sixcol last">
+                 <label for="">Distances (km)</label>
+                 <input type="range" min="0" max="10" step="0.5">
+            </div>  
+          </div>
+          
+        </form>
+      </header>
+      
+     
+      <div id="activity-view">
+        <div class="content"></div>
+      </div>
+      
+
+      <footer>
+
+      </footer>
+    </section>
   </div>
-
   <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/0.8/zepto.min.js"></script>
   <!--<script>window.jQuery || document.write('<script src="/static/js/libs/jquery-1.7.1.min.js"><\/script>')</script>-->
@@ -57,10 +135,17 @@
           {{#activities}}
           <li>
             <a href="/show/{{id}}"> 
-              <img src="/static/images/{{category}}.gif" alt="{{category}}" />
-              <h3>{{name}}</h3>
-              <p class="desc">{{desc}}</p>
-              <p class="distance">{{distance}}</p>
+              <figure>
+                <img src="/static/images/{{category}}.gif" alt="{{category}}" />  
+              </figure>
+              <div class="content">
+                <h3>{{title}}</h3>
+                <ul class="meta">
+                  <li><small>Aujoud'hui</small>{{when}}</li>
+                  <li><small>Distance</small>{{distance}}</li>
+                  <li><small>Prix</small>{{price}} $</li>
+                </ul>
+              </div>
               <span class="arrow"></span>
             </a>   
           </li>
