@@ -104,10 +104,8 @@ def import_xml_data():
         chk = MotChecker(pattern_categ[0], None if len(pattern_categ) < 2 else pattern_categ[1])
         check_list.append(chk)
 
-    doc1 = etree.parse("../datasets/LOISIR_PAYANT.XML")
-    doc2 = etree.parse("../datasets/LOISIR_LIBRE.XML")
-    root1 = doc1.getroot()
-    root2 = doc2.getroot()
+    root1 = etree.parse("../datasets/LOISIR_PAYANT.XML").getroot()
+    root2 = etree.parse("../datasets/LOISIR_LIBRE.XML").getroot()
 
     # Checker chaque ligne du dataset avec les patterns pour les catégoriser
     res_by_mot = {}

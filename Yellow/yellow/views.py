@@ -1,16 +1,17 @@
+# -=- encoding: utf-8 -=-
 from pyramid.view import view_config
 from pprint import pprint
 
 from .models import (
     DBSession,
     Activity,
+    Category,
     )
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
+@view_config(route_name='home', renderer='/home.mako')
 def my_view(request):
-    return {}
-    one = DBSession.query(MyModel).filter(MyModel.name=='one').first()
-    return {'one':one, 'project':'Yellow'}
+    categories = DBSession.query(Category).all()
+    return {'categories': [Category(name=u'Toutes les catégories')] + categories}
 
 
 @view_config(route_name='activities', renderer='json')

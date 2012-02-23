@@ -32,14 +32,18 @@
             <div class="twelvecol">
               <label for="lst-category">Cat&eacute;gories</label>
               <select name="category" id="lst-category">
-                <option value="">Toutes les cat&eacute;gories</option>
+                % for category in categories:
+                  <option value="${category.id}">${category.name}</option>
+                % endfor
               </select>
             </div>
           </div>
           <div class="row">
             <div class="sixcol">
-              <label for="">Tarifications ($)</label>
-              <input type="range" min="0" max="30" step="5">    
+              <label for="lst-sports">Sports</label>
+              <select name="sports" id="lst-sports">
+                <option value="">Toutes les sports</option>
+              </select>    
             </div>
             <div class="sixcol last">
                  <label for="">Distances (km)</label>

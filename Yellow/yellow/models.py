@@ -24,6 +24,7 @@ from geoalchemy import (
     GeometryDDL,
     )
 from geoalchemy.functions import functions
+from shapely import wkb
 
 
 from zope.sqlalchemy import ZopeTransactionExtension
@@ -102,15 +103,14 @@ class Occurence(Base):
 
     @property
     def linear_row(self):
+        point = wkb.loads(str(self.activity.position.geom_wkb))
         return dict(activity_id=self.activity_id,
                     dtstart=self.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
                     duration=self.duration,
                     title=self.activity.title,
                     location=self.activity.location,
                     location_info=self.activity.location_info,
-                    # @todo : fix this : fire requests like crazy.
-                    #position=self.activity.position.coords(DBSession),
-                    position='12.11,12.11',
+                    position=(point.x, point.y),
                     price=self.activity_id)
     
 def bb_to_polyon(bb_str):
