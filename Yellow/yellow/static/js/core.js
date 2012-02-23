@@ -5,6 +5,8 @@
 FrontController = {
     isStarted:false,
     init:function() {
+        window.scrollTo(0, 1);
+
         FrontController.addActions();
 
         //prepare controller
@@ -49,10 +51,10 @@ FrontController = {
             FrontController.loadPage( 'home', "/" );
         });
 
-        $('form.filter').delegate('select', 'change', SearchController.load);
+        //$('form.filter').delegate('select', 'change', SearchController.load);
 
-        $(window).bind('resize', Layout.adjustHeight);
-        window.addEventListener( "orientationchange", Layout.adjustHeight, false );
+        //$(window).bind('resize', Layout.adjustHeight);
+        //window.addEventListener( "orientationchange", Layout.adjustHeight, false );
     },
     loadPage:function( pagename, url ){
         switch( pagename ){
@@ -68,7 +70,7 @@ FrontController = {
 }
 
 Layout = {
-    adjustHeight:function() {
+    /*adjustHeight:function() {
         var documentHeight = $(document).height(),
             $homepage      = $('#home-page'),
             headerHeight   = $homepage.children('header').height(),
@@ -77,7 +79,7 @@ Layout = {
         $container.css('min-height', documentHeight);
         //headerHeight
         $container.find('.page').find('ol').css('max-height', documentHeight);   
-    }
+    }*/
 }
 
 SearchController = {
@@ -86,6 +88,11 @@ SearchController = {
         SearchController.$form = $('form');
         SearchController.$form.bind('submit', SearchController.doSubmit);
         SearchController.addSpinner();
+
+        SearchController.$linkdropdown = $('#show-cat-dropdown');
+        SearchController.$dropdown     = $('#lst-category');
+        SearchController.$linkdropdown.bind('click', SearchController.displayDropdown);
+        SearchController.$dropdown.bind('change', SearchController.onChangeDropdown);
     },
     load:function(){
         SearchController.$form.trigger('submit');
@@ -153,7 +160,7 @@ SearchController = {
         $('#home-page').find('div.content').html( Template.render('list-view', data) );
 
         SearchController.$spinner.hide();
-        Layout.adjustHeight();
+        //Layout.adjustHeight();
     },
     show:function() {
         
@@ -166,6 +173,21 @@ SearchController = {
             $('#home-page').removeClass('slideright in')    
         },250);
         
+    },
+    displayDropdown:function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.debug(SearchController.$dropdown)
+        SearchController.$dropdown.trigger('click')
+        SearchController.$dropdown.trigger('focus')
+        //SearchController.$dropdown.focus();
+    },
+    onChangeDropdown:function(){
+        //populate the link, with the current selection
+        $(this).val();
+
+        //trigger the search
+        SearchController.load();
     }
 }
 

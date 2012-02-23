@@ -13,8 +13,6 @@ body{
     width: 100%;
 }
 .page{
-    border-left:1px solid #ccc;
-    border-right:1px solid #ccc;
     min-height: 679px;
     position:absolute;
     top:0;
@@ -45,6 +43,7 @@ body{
 header{
     border-bottom:5px solid #84e0fe;
     overflow:hidden;
+    text-align:center;
 }
 header section{
     background: #d5d4d4; /* Old browsers */
@@ -59,8 +58,17 @@ header section{
     border-bottom:1px solid #b8b8b8;
     overflow: hidden;
 }
-header section h1{
+
+header h1{
+    overflow: hidden;
+    margin: 0 auto;
+    float: none;
+    width: 330px;
     overflow:hidden;
+}
+header h1 a, header h1 a:visited{
+    color: #000;
+    font-size:17px;
 }
 
 header section a{
@@ -95,15 +103,7 @@ header::after{
     background: linear-gradient(top, #000000 0%,rgba(0,0,0,0) 100%); /* W3C */
 }
 
-header h1{
-    margin:0;
-    float:left;
-    margin-left:10px;
-}
-header h1 a, header h1 a:visited{
-    color: #000;
-    font-size:17px;
-}
+
 
 header a.toggle-filters{
     float:right;
@@ -130,17 +130,10 @@ header a.toggle-filters{
 
 }
 
-header a.show-cat-dropdown{
-    
-}
-
-.js header select{
-    display:none;
-}
 
 form.filter{
-    padding:0 5%;
-    
+    padding:10px 0;
+    display:block;
     background: #d3d2d2; /* Old browsers */
     background: -moz-linear-gradient(top, #d3d2d2 0%, #f4f4f4 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d3d2d2), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
@@ -151,35 +144,11 @@ form.filter{
     border-top:1px solid #fff;
 
 }
-form.filter .row .sixcol{
-    width: 48%;
-    padding:0;
-    margin-right: 3.8%;
-    float:left;
-}
-form.filter .row .last{
-    margin-right:0;
-}
-
-form.filter label{
-    display: block;
-    text-align:center;
-    color: #262626;
-    font-weight:bold;
-    font-size:12px;
-}
 
 form.filter select, form.filter input{
     display-inline:block;
-    width:100%;
-}
-
-form.filter .row{
-    margin-top:5px;
-    padding-bottom: 5px; 
-}
-form.filter .row:first-child{
-    margin-top:0;
+    margin:0 auto;
+    width:70%;
 }
 
 #home-page ol{
@@ -188,8 +157,8 @@ form.filter .row:first-child{
     margin:0;
     height:100%;
     max-height:400px;
-    overflow-y:auto;
-    overflow-x:hidden;
+    /*overflow-y:auto;
+    overflow-x:hidden;*/
 }
 #home-page ol>li{
     float:left;

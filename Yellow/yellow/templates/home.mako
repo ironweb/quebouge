@@ -10,6 +10,8 @@
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/1140.css">
   <link rel="stylesheet" href="/static/css/layout.css">
@@ -34,18 +36,13 @@
         </section>
         
         <form action="" class="state-close filter filterbox">
-          <div class="row">
-            <div class="twelvecol">
-              <a href="#" id="show-cat-dropdown">Toutes les activités à Québec</a>
               
-              <select name="category" id="lst-category">
-                % for category in categories:
-                  <option value="${category.id}">${category.name}</option>
-                % endfor
-              </select>
-              
-            </div>
-          </div>
+            <select name="category" id="lst-category">
+              % for category in categories:
+                <option value="${category.id}">${category.name}</option>
+              % endfor
+            </select>
+
         </form>
       </header>
       
