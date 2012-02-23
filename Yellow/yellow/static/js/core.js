@@ -129,7 +129,6 @@ SearchController = {
         var center = Geo.getPosition(),
             $this = $(this);
         
-        new Date();
         var dataToSend = {
             latlon:center.latitude+','+center.longitude,
             radius:$this.find('select[name=distance]').val(),
