@@ -106,16 +106,38 @@ class Activity(Base):
         point = wkb.loads(str(row.st_asbinary))
         delta = abs(row.dtend - row.dtstart)
         duration = delta.seconds + delta.days * 84600
-        return dict(activity_id=row.activity_id,
-                    dtstart=row.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
-                    duration=duration,
-                    title=row.title,
-                    location=row.location,
-                    location_info=row.location_info,
-                    position=(point.x, point.y),
-                    price=row.price if row.price else 'GRATUIT',
-                    distance="%0.1f" % row.distance_1,
-                    )
+        out = dict(activity_id=row.activity_id,
+                   dtstart=row.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
+                   duration=duration,
+                   title=row.title,
+                   location=row.location,
+                   location_info=row.location_info,
+                   position=(point.x, point.y),
+                   price=("%.2f $" % row.price) if row.price else 'GRATUIT',
+                   distance="%0.1f" % row.distance_1,
+                   )
+        out.update(Activity._format_date(row))
+        return out
+        
+    @staticmethod
+    def _format_date(row):
+        today = datetime.date.today()
+        out = {}
+        row_dt = row.dtstart
+        row_date = row_dt.date()
+        if row_date == today:
+            out['aujourdhui'] = row_dt.strftime("%H:%M")
+        else:
+            demain = today + datetime.timedelta(1)
+            if demain == row_date:
+                out['plustard_label'] = 'Demain'
+            else:
+                jour = row_dt.strftime("%d").lstrip('0')
+                mois = row_dt.strftime("%b")
+                out['plustard_label'] = "%s %s" % (jour, mois)
+            out['plustard_heure'] = row_dt.strftime("%H:%M")
+        return out
+        
 
 GeometryDDL(Activity.__table__)
 
