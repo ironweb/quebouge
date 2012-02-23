@@ -27,3 +27,8 @@ sort api : to be determined
 
     psql postgres
     CREATE DATABASE yellow_dev OWNER `your_user`;
+    
+    #load in required data in …
+    
+    # Get some data
+    ./env/bin/populate_Yellow `your_config_file`;

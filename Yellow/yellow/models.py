@@ -22,9 +22,12 @@ from geoalchemy import (
     Point,
     GeometryDDL,
     )
+from geoalchemy.functions import functions
 
 
 from zope.sqlalchemy import ZopeTransactionExtension
+
+import datetime
 
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
@@ -50,11 +53,32 @@ class Activity(Base):
     @staticmethod
     def query_from_params(params=None):
         if params is None: params = {}
-        q = DBSession.query(Occurence).options(joinedload("activity"))
+        q = DBSession.query(Occurence)
+        q = q.options(joinedload("activity"))
+        q = q.join(Activity)
+
+        if 'bb' in params and 'radius' in params:
+            raise ValueError('Invalid input : both `radius` and `bb` were submitted.')
+
         if 'bb' in params:
-            q = q.join(Activity).filter(Activity.position.within(bb_to_polyon(params['bb'])))
-        # TODO: if 'from_date' in params
-            # Filter by Occurence.dtstart => params['from_date'] en datetime
+            q = q.filter(Activity.position.within(bb_to_polyon(params['bb'])))
+
+        if 'radius' in params:
+            q = q.filter(Activity.position.within(functions.buffer(
+               lat_lon_to_point(params['latlon']), int(params['radius']))))
+
+        if 'cat_id' in params:
+            q = q.filter(Activity.category_id == int(params['cat_id']))
+
+        if 'start_dt' in params:
+            dt_start = extract_date_time(params['start_dt'])
+        else:
+            dt_start = datetime.date.today()
+        q = q.filter(Occurence.dtstart >= dt_start)
+
+        if 'end_dt' in params:
+            q = q.filter(Occurence.dtend <= extract_date_time(params['end_dt']))
+
         return q
 
 GeometryDDL(Activity.__table__)
@@ -80,14 +104,24 @@ class Occurence(Base):
                     duration=self.duration,
                     title=self.activity.title,
                     location=self.activity.location,
-                    position=self.activity.position.coords(DBSession),
+                    # @todo : fix this : fire requests like crazy.
+                    #position=self.activity.position.coords(DBSession),
+                    position='12.11,12.11',
                     activity_id=self.activity_id)
     
 def bb_to_polyon(bb_str):
-    x1, y1, x2, y2  = bb_str.split(',')    
+    x1, y1, x2, y2  = bb_str.split(',')
     return "POLYGON((%s %s, %s %s, %s %s, %s %s, %s %s))" % \
         (x1, y1, x2, y1, x2, y2, x1, y2, x1, y1)
 
 def lat_lon_to_point(point_str):
-    return "POINT(%s  %s)" % point_str.slit(',')
+    return "POINT(%s  %s)" % tuple(point_str.split(','))
 
+def extract_date_time(time_str):
+    formats = ("%Y-%m-%d %H:%M:%S",  "%Y-%m-%d")
+    for format in formats:
+        try:
+            return datetime.datetime.strptime(time_str, format)
+        except ValueError:
+            pass
+    raise ValueError("Date format submitted not valid")
