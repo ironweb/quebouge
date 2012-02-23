@@ -1,0 +1,24 @@
+Hockey,hockey.png
+Natation,natation.png
+Patinage,patinage.png
+Cours,cours.png
+Mieux-être,mieux-être.png
+Badminton,badminton.png
+Gymnastique,gymnastique.png
+Tennis,tennis.png
+Danse,danse.png
+Conditionnement, conditionnement.png
+Musique,musique.png
+Arts martiaux,artsmartiaux.png
+Arts,arts.png
+Baseball, baseball.png
+Basketball,basketball.png
+Goalball,goalball.png
+Cirque,cirque.png
+Passe-temps,passetemps.png
+Plein air,pleinair.png
+Jeux de société,jeuxsociete.png
+Volleyball,volleyball.png
+Soccer,soccer.png
+Théâtre,theatre.png
+Divers,divers.png
