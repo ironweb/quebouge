@@ -84,10 +84,9 @@ class Occurence(Base):
                     activity_id=self.activity_id)
     
 def bb_to_polyon(bb_str):
-    x1, y1, x2, y2  = bb_str.split(',')    
+    x1, y1, x2, y2  = bb_str.split(',')
     return "POLYGON((%s %s, %s %s, %s %s, %s %s, %s %s))" % \
         (x1, y1, x2, y1, x2, y2, x1, y2, x1, y1)
 
 def lat_lon_to_point(point_str):
-    return "POINT(%s  %s)" % point_str.slit(',')
-
+    return "POINT(%s  %s)" % tuple(point_str.split(','))
