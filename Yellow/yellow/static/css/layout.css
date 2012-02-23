@@ -305,6 +305,11 @@ form.filter .row:first-child{
   font-weight: bold;
 }
 
+#map-canvas{
+	width:300px;
+	height:300px;
+}
+
 /* Transition/animation (inspired by jQTouch) */
 .in,.out{
     -webkit-animation-duration:250ms;-webkit-animation-fill-mode:both;-webkit-animation-timing-function:ease-in-out}

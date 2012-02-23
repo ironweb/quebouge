@@ -89,7 +89,7 @@
           <a href="#" class="toggle-filters" data-state="close">Partager</a>  
         </section>
 
-        <div id="map-canvas" style="width:100%; height:100%"></div>
+        <div id="map-canvas"></div>
 
       </header>
       
@@ -124,7 +124,7 @@
       <ol>
           {{#activities}}
           <li class="occurence">
-            <a href="/show/{{id}}"> 
+            <a href="/show/{{occurence_id}}">
               <figure>
                 <img src="/static/images/default.png" alt="{{category}}" style="width:50px;" /><br />
                 <span class="price">{{price}}</span>
