@@ -33,8 +33,8 @@ FrontController = {
             }
 
         });*/
-
-        $('#home-page').delegate('a','click', function(e){
+        
+        $('#home-page').delegate('ol a','click', function(e){
             e.preventDefault();
             e.stopPropagation();
 
@@ -48,10 +48,16 @@ FrontController = {
             FrontController.loadPage( 'home', "/" );
         });
 
-        $('header').find('a.toggle-filters').bind('click', function(e){
+        $('header').find('a.toggle-filters').unbind('click').bind('click', function(e){
             e.preventDefault();
             e.stopPropagation();
-           $(this).closest("header").find('form.filter').toggleClass('state-close'); 
+            var $element  = $(this).closest("header").find('.filterbox');
+            if($element.css("display") == 'block'){
+                $element.css("display", 'none!important');
+            }else{
+                $element.css("display", 'block!important');
+            } 
+            $element.focus();
         });
 
         $(window).bind('resize', Layout.adjustHeight);
@@ -92,7 +98,35 @@ SearchController = {
     load:function(){
         SearchController.$form.trigger('submit');
     },
-    doSubmit:function() {
+    doSubmit:function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var center = Geo.getPosition(),
+            $this = $(this);
+        
+        new Date();
+        var dataToSend = {
+            latlon:center.latitude+','+center.longitude,
+            radius:$this.find('select[name=distance]').val(),
+            max_price:$this.find('select[name=price]').val(),
+            cat_id:$this.find('select[name=category]').val()
+        }
+
+        $.ajax({
+            type:'GET',
+            url:'/activities',
+            data:dataToSend,
+            dataType:'json',
+            success:SearchController.appendData
+        });
+
+        return false;
+    },
+    appendData:function(data) {
+        console.debug(data);
+        return;
+
         //do an ajax call to load data from the form
         //fake data
         var data = {
@@ -108,9 +142,9 @@ SearchController = {
     show:function() {
         
         var $outElement = $('#container>.page.current');
-        $('#home-page').addClass('current slideright in');
+        $('#home-page').addClass('current');
         $outElement.addClass('slideright out');
-
+        //$('#home-page').addClass('current'); 
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
             $('#home-page').removeClass('slideright in')    
@@ -130,7 +164,7 @@ ActivityController = {
         
         var $outElement = $('#container>.page.current');
         $('#activity-page').addClass('current slideleft in');
-        $outElement.addClass('slideleft out');
+        //$outElement.addClass('slideleft out');
 
         setTimeout(function(){
             $outElement.removeClass('current slideleft out');
