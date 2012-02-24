@@ -150,6 +150,7 @@
             <h3>{{title}}</h3>
             <h4>École Saint-Sacrament (Gymnase)</h4>
             <p class="address">1424 Chemin des Avoines, Saint-Clinclin</p>
+            <p class="fulldate">{{dtstart}}</p>
             <p class="phone"><a href="tel:{{arrond_phone}}">{{arrond_phone}}</a></p>
           </td>
           <td class="last">

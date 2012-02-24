@@ -185,8 +185,8 @@ class Activity(Base):
         row_dt = row.dtstart
         row_date = row_dt.date()
         if past:
-            out['ends_label'] = "JUSQU'À"
-            out['ends_time'] = row.dtend.strftime("%H:%M")            
+            out['ends_label'] = "TERMINE DANS"
+            out['ends_time'] = Activity._relative_time(now, row.dtend)
         elif row_date == today:
             if now + datetime.timedelta(0, 14400) > row_dt: # h
                 out['today_label'] = "DANS"
