@@ -236,7 +236,8 @@ ActivityController = {
         scaleControl: false,
         panControl: false,
         overviewMapControl: false,
-        mapTypeControl: false
+        mapTypeControl: false,
+        draggable: false
       };
       ActivityController.map_canvas = $("#map-canvas");
       ActivityController.map = new google.maps.Map(
