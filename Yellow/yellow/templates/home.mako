@@ -46,7 +46,7 @@
                 <option value="${category.id}">${category.name}</option>
               % endfor
             </select>
-
+            <a href="#" id="supertimor">SUPER TIMOR</a>
         </form>
       </header>
       
@@ -95,6 +95,16 @@
   <script src="/static/js/libs/spin.min.js"></script>
   <script src="/static/js/core.js"></script>
 % endif
+
+% if request.params.get('mobile_app'):
+  % if js_mobile_mini.enabled:
+  <script src="${js_mobile_mini.compiled_url()}"></script>
+  % else:
+  <script src="/static/js/phonegap-1.4.1.js"></script>
+  <script src="/static/js/mobile_app.js"></script>
+  % endif
+% endif
+
 
   <script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

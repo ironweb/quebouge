@@ -5,7 +5,7 @@ from pprint import pprint
 import os
 import hashlib
 
-from yellow.minify import JsMinify, CssMinify
+from yellow.minify import JsMinify, CssMinify, MobileJsMinify
 
 from .models import (
     DBSession,
@@ -20,7 +20,9 @@ def home(request):
     return {'categories': [first_categ] + \
                            sorted(categories, key=lambda x: x.name.lower()),
             'js_mini': JsMinify(request),
-            'css_mini': CssMinify(request)}
+            'css_mini': CssMinify(request),
+            'js_mobile_mini': MobileJsMinify(request),
+            }
 
 
 @view_config(route_name='activities', renderer='json')
@@ -33,6 +35,10 @@ def activities(request):
 @view_config(route_name='minify_js')
 def minified_js(request):
     return JsMinify(request).render_to_response(request.matchdict['hash'])
+
+@view_config(route_name='minify_mobile_js')
+def minified_mobile_js(request):
+    return MobileJsMinify(request).render_to_response(request.matchdict['hash'])
 
 @view_config(route_name='minify_css')
 def minified_css(request):

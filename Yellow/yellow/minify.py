@@ -96,6 +96,17 @@ class JsMinify(Minify):
     content_type = 'text/javascript'
     route_name = 'minify_js'
 
+    
+class MobileJsMinify(Minify):
+    file_list = [('js', 'mobile_app.js'),
+                 ('js', 'phonegap-1.4.1.js'),
+                 ]
+    type = 'js'
+    ext = '.min.js'
+    content_type = 'text/javascript'
+    route_name = 'minify_mobile_js'
+
+
 class CssMinify(Minify):
     file_list = [('css', 'normalize.css'),
                  ('css', 'layout.css'),
