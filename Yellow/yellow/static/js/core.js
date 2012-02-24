@@ -31,29 +31,39 @@ FrontController = {
         SearchController.load();      
     },
     addActions:function() {
-        /*$('body').delegate('a', 'click', function(e){
-            
-            if(Router.History.enabled){
-                e.preventDefault();
-                e.stopPropagation();
-                
-                //History.pushState({state:1}, this.title, this.href);    
-            }
-
-        });*/
         
         $('#home-page').delegate('ol a','click', function(e){
             e.preventDefault();
             e.stopPropagation();
-            FrontController.loadPage( 'activity', this.href );
+
+            if( Modernizr.history ){
+                History.pushState({state:2}, this.title, this.href);
+            }else{
+                FrontController.loadPage( this.href );
+            }
         });
 
         $('#activity-page').delegate('a.back','click', function(e){
             e.preventDefault();
             e.stopPropagation();
 
-            FrontController.loadPage( 'home', "/" );
+            if( Modernizr.history ){
+                History.pushState({state:1}, this.title, '/');
+            }else{
+                FrontController.loadPage( "/" );
+            }
+            
         });
+
+        if(Modernizr.history){
+            History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+                var State = History.getState(); // Note: We are using History.getState() instead of event.state
+                History.log(State.data, State.title, State.url);
+
+                FrontController.loadPage( State.url );
+            });    
+        }
+        
 
         //$('form.filter').delegate('select', 'change', SearchController.load);
 
@@ -68,16 +78,25 @@ FrontController = {
             }
         });
     },
-    loadPage:function( pagename, url ){
-        switch( pagename ){
-            case 'home':
+    loadPage:function( url ){
+
+        url = FrontController.clearUrl(url);
+
+        switch( url ){
+            case '/':
                 SearchController.show();
                 break;    
-            case 'activity':
             default:
                 ActivityController.show(url);
                 break;
         }
+
+    },
+    clearUrl:function( url ){
+        if(url == ''){
+            return '/';
+        }
+        return url.split(window.location.origin).pop();
     }     
 }
 
@@ -158,8 +177,6 @@ SearchController = {
     appendData:function(data) {
 
         //do an ajax call to load data from the form
-        //fake data
-
         var data = {
             activities: data.elements
         }
@@ -177,14 +194,21 @@ SearchController = {
         });
     },
     show:function() {
-        
-        var $outElement = $('#container>.page.current');
-        $('#home-page').addClass('current');
+
+        var $outElement = $('#container>.page.current'),
+            $inElement  = $('#home-page');
+        $outElement.css("top", -window.pageYOffset);
+        $inElement.addClass('current').css("top", 0);
         $outElement.addClass('slideright out');
         //$('#home-page').addClass('current');
+        scrollTo(0, 0);
+
+        var toStart = 'translateX(' + '-' + window.innerWidth + 'px)';
+        $inElement.css('webkitTransform', toStart);
+
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
-            $('#home-page').removeClass('slideright in')
+            $inElement.removeClass('slideright in').css( 'webkitTransform', '')
 
            // ActivityController.__init();
         },250);
@@ -199,6 +223,7 @@ SearchController = {
 ActivityController = {
     zoom: 11,
     map:false,
+    markersList:[],
     init:function() {
       if(ActivityController.map) return;
       var opts = {
@@ -211,7 +236,8 @@ ActivityController = {
         scaleControl: false,
         panControl: false,
         overviewMapControl: false,
-        mapTypeControl: false
+        mapTypeControl: false,
+        draggable: false
       };
       ActivityController.map_canvas = $("#map-canvas");
       ActivityController.map = new google.maps.Map(
@@ -220,6 +246,8 @@ ActivityController = {
 
     load:function(id) {
       var occurence = OccurencesCache[id];
+
+      ActivityController._cleanMap();
       ActivityController._drawPointsAndRecenter(occurence);
 
       var $activity_page = $('#activity-page');
@@ -245,16 +273,24 @@ ActivityController = {
 
     show:function(url) {
 
-        var $outElement = $('#container>.page.current');
-        $('#activity-page').addClass('current slideleft in');
-        //$outElement.addClass('slideleft out');
+        var $outElement = $('#container>.page.current'),
+            $inElement  = $('#activity-page').addClass('current slideleft in').css("top", 0);
+        
+        $outElement.css("top", -window.pageYOffset);
+        
+        scrollTo(0, 0);
+
+        var toStart = 'translateX(' + window.innerWidth + 'px)';
+        $inElement.css('webkitTransform', toStart);
 
         setTimeout(function(){
             $outElement.removeClass('current slideleft out');
-            $('#activity-page').removeClass('slideleft in')
+            $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
+
             ActivityController.init();
             ActivityController.load(ActivityController._urlToId(url));
         },250);
+
     },
 
     _urlToId: function(url){
@@ -267,21 +303,32 @@ ActivityController = {
       var user_geoloc = new google.maps.LatLng(Geo.coords.latitude, Geo.coords.longitude)
       markers.extend(latlng)
       markers.extend(user_geoloc)
-      new google.maps.Marker({
+      var activityMarker = new google.maps.Marker({
         position: latlng,
         map: ActivityController.map,
         title: point.title
       });
-      new google.maps.Marker({
+      ActivityController.markersList.push(activityMarker);
+      var userMarker = new google.maps.Marker({
         icon: '/static/images/pinpoint.png',
         position: user_geoloc,
         map: ActivityController.map
       });
+      ActivityController.markersList.push(userMarker);
       ActivityController.map.fitBounds(markers)
+      
     },
 
     _latLngFromPoint: function(point){
       return new google.maps.LatLng(point.position[0], point.position[1]);
+    },
+
+    _cleanMap:function(){
+        if (ActivityController.markersList.length > 0 ) {
+            for (var i = 0; i < ActivityController.markersList.length; i++ ) {
+                ActivityController.markersList[i].setMap(null);
+            }
+        }    
     }
 
 }
@@ -313,62 +360,7 @@ Geo = {
         }
     }
 }
-/* 
-Router = {
-    routes:[],
-    init:function(){
-        Router.History = window.History; // Note: We are using a capital H instead of a lower h
-        if ( !Router.History.enabled ) {
-            // History.js is disabled for this browser.
-            // This is because we can optionally choose to support HTML4 browsers or not.
-            return false;
-        } 
 
-        Router.routes.push( new Davis.Route ('get', '/', function(req){
-           console.debug(req)
-        }) );
-        Router.routes.push( new Davis.Route ('get', '/activity/:id', function(req){
-            console.debug(req.params['id'])
-        }) );
-
-        Router.History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
-            var State = Router.History.getState(); // Note: We are using History.getState() instead of event.state
-            Router.History.log(State.data, State.title, State.url);
-
-            Router.run( State.url );
-        });
-    },
-    current:function() {
-        var hash = Router.History.getHash();
-        if(hash == ''){
-            hash = '/';
-        }
-        return hash; 
-    },
-    run:function( path ) {
-         var req = Router.getRequest( path );
-
-         route = req.path.split(location.origin).pop(); 
-         for(var x=0;x<Router.routes.length;x++){
-            if(Router.routes[x].match( 'get', route )){
-                Router.routes[x].run(req);
-                continue;
-            }
-         }       
-    },
-    getRequest:function( path ){
-        if(!path){
-            return Davis.Request.forPageLoad();
-        }else{
-            return new Davis.Request( {
-                title   : "",//don't care about the title, seriously!
-                fullPath: path,
-                method  : "get" //always get request, for now
-            });
-        }
-    }
-}
-*/
 
 $(document).ready(function() {
     FrontController.init();

@@ -91,6 +91,7 @@
   <script src="${js_mini.compiled_url()}"></script>
 % else:
   <script src="/static/js/libs/zepto.min.js"></script>
+  <script src="/static/js/libs/native.history.js"></script>
   <script src="/static/js/libs/dust-full-0.3.0.js"></script>
   <script src="/static/js/libs/spin.min.js"></script>
   <script src="/static/js/core.js"></script>
@@ -138,13 +139,10 @@
     <script id="tpl_map_view" type="text/html">
       <table>
         <tr>
-          <td class="first icon_price">
-            {>partial_icon_price/}
-          </td>
           <td class="middle">
             <h3>{title}</h3>
-            <h4>École Saint-Sacrament (Gymnase)</h4>
-            <p class="address">1424 Chemin des Avoines, Saint-Clinclin</p>
+            <h4>{location_info}</h4>
+            <p class="address">{location}</p>
             <p class="fulldate">{dtstart}</p>
             <p class="phone"><a href="tel:{arrond_phone}">{arrond_phone}</a></p>
           </td>
