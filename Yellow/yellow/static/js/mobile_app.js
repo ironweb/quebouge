@@ -1,6 +1,6 @@
 Zepto(function() {document.addEventListener("deviceready", function() {
 
-    console.log("ALKSADJLSAKJDLSAKJDLAKSJDLSAKJDLAKSJLDKSAJDL");
+  console.log("ALKSADJLSAKJDLSAKJDLAKSJDLSAKJDLAKSJLDKSAJDL");
   
   var Share = function() {};
 
@@ -24,9 +24,10 @@ Zepto(function() {document.addEventListener("deviceready", function() {
     var share_text = $(this).data('share'); 
     console.log("SHARE TEXT: " + share_text);
     window.plugins.share.show({subject: text,
-			       text: text,
-			       function() {},
-			       function() {alert('Share failed')}});
+			       text: text},
+			      function() {},
+			      function() {alert('Share failed')}
+			     );
     });
 
 }, false)});
