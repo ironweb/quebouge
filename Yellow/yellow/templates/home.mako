@@ -12,6 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+  <link rel="apple-touch-icon" href="/static/images/apple-icon.png"/>
+
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/1140.css">
   <link rel="stylesheet" href="/static/css/layout.css">
@@ -168,17 +170,12 @@
     </script>
 
     <script id="tpl-map-view-howtogo" type="text/x-mustache-template">
-        <a class="button bordered back">
-            <span class="pointer"></span>
-            <span class="content">
-                <span class="label">retour</span>
-            </span>
-        </a>
-        <ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?daddr={{location_url_safe}}&oq=My+lo">
-          <li><a href="#" data-dirflg="w" class="foot">à pied</a></li>
-          <li><a href="#" data-dirflg="r" class="bus">transport en commun</a></li>
-          <li><a href="#" data-dirflg="b" class="bike">en vélo</a></li>
-          <li><a href="#" data-dirflg="b" class="car">en auto</a></li>
+        <a class="back">back</a>
+				<ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?saddr={{saddr}}&daddr={{location_url_safe}}&oq=My+lo">
+          <li><a href="#" data-dirflg="">en voiture</a></li>
+          <li><a href="#" data-dirflg="w">à pied</a></li>
+          <li><a href="#" data-dirflg="r">transport en commun</a></li>
+          <li><a href="#" data-dirflg="b">en vélo</a></li>
         </ul>
     </script>
   </div>

@@ -211,19 +211,23 @@ ActivityController = {
       var occurence = OccurencesCache[id];
       ActivityController._drawPointAndRecenter(occurence);
 
+      var $activity_page = $('#activity-page');
+      $activity_page.find('div.content').html( Template.render('map-view', occurence_tmpl) );
+
+      $activity_page.find('div.content').html( Template.render('map-view', occurence) )
+
       //load template with data
       var occurence_tmpl = $.extend({}, occurence);
       occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
-      $('#activity-page').find('div.content').html( Template.render('map-view', occurence_tmpl) );
+      occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
+      $activity_page.find('section.sec').html( Template.render('map-view-howtogo', occurence_tmpl) );
 
+      // Bind direction clicks
       var $direction_links = $('#direction-links');
       $direction_links.delegate('a', 'click', function(e){
         e.preventDefault();
-        debugger
         window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
       });
-      $('#activity-page').find('div.content').html( Template.render('map-view', occurence) );
-      $('#activity-page').find('section.sec').html( Template.render('map-view-howtogo', occurence) );
     },
 
     show:function(url) {
