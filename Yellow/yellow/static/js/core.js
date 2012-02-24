@@ -94,6 +94,12 @@ FrontController = {
             return '/';
         }
         return url.split(window.location.origin).pop();
+    },
+    getTimeoutDuration:function(){
+        if(Modernizr.mq("screen and (max-width: 767px)")){
+            return 250;
+        }
+        return 0;
     }     
 }
 
@@ -218,7 +224,7 @@ SearchController = {
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
             $inElement.removeClass('slideright in').css( 'webkitTransform', '')
-        },250);
+        },FrontController.getTimeoutDuration());
         
     },
     onChangeDropdown:function(){
@@ -336,7 +342,7 @@ ActivityController = {
                 $outElement.removeClass('current slideleft out');
                 $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
                 show_page();
-            },250);
+            },FrontController.getTimeoutDuration());
         }
     },
 
@@ -384,7 +390,7 @@ ActivityController = {
       setTimeout(function(){
             ActivityController.map
           ActivityController.map.fitBounds(bounds);
-      },700)
+      },FrontController.getTimeoutDuration()*3)
       
     },
 
