@@ -12,6 +12,8 @@ def main(global_config, **settings):
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('home', '/')
     config.add_route('activities', '/activities')
-    config.scan()
+    config.add_route('minify_js', '/min/js/{hash}')
+    config.add_route('minify_css', '/min/css/{hash}')
+    config.scan('yellow.views')
     return config.make_wsgi_app()
 

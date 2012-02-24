@@ -12,9 +12,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+% if css_mini.enabled:
+  <link rel="stylesheet" href="${css_mini.compiled_url()}">
+% else:
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/1140.css">
   <link rel="stylesheet" href="/static/css/layout.css">
+% endif
   
   <script src="/static/js/libs/modernizr.custom.79709.js"></script>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDZIPb-rrtMF5CEVw-vq8zj-fL9ZbQoxS0&sensor=false&region=CA&language=fr">
@@ -81,12 +85,14 @@
       </footer>
     </section>
   </div>
-  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+% if js_mini.enabled:
+  <script src="${js_mini.compiled_url()}"></script>
+% else:
   <script src="/static/js/libs/zepto.min.js"></script>
-  <!--<script>window.jQuery || document.write('<script src="/static/js/libs/jquery-1.7.1.min.js"><\/script>')</script>-->
   <script src="/static/js/libs/mustache-0.4.0.min.js"></script>
   <script src="/static/js/libs/spin.min.js"></script>
   <script src="/static/js/core.js"></script>
+% endif
 
   <script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
