@@ -1,4 +1,6 @@
 Zepto(function() {document.addEventListener("deviceready", function() {
+
+    console.log("ALKSADJLSAKJDLSAKJDLAKSJDLSAKJDLAKSJLDKSAJDL");
   
   var Share = function() {};
 
@@ -19,7 +21,7 @@ Zepto(function() {document.addEventListener("deviceready", function() {
 
   console.log("Stuff ici ALSKDJ LSAKJD LSAK JDLKSA JDLAKSJ DLKSAJ DLKSA JDLSAK JDLKSA JDLASKJD LSAK JDLAKSJ DLKSAJ DLAKJD LKJSAD");
   $('.phonegap').delegate('.share_button', 'click', function() {
-    var share_text = $(this).data('share') + ' ' + window.location.href;
+    var share_text = $(this).data('share'); 
     console.log("SHARE TEXT: " + share_text);
     window.plugins.share.show({subject: text,
 			       text: text,

@@ -164,7 +164,7 @@ SearchController = {
         
         var dataToSend = {
             latlon:center.latitude+','+center.longitude,
-            radius:2.0,
+            radius:1.5,
             //max_price:$this.find('select[name=price]').val(),
             cat_id:$this.find('select[name=category]').val()
         }
