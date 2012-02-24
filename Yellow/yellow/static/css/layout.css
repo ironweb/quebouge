@@ -45,10 +45,10 @@ body{
     background:rgba(0,0,0,0.75);
 }
 .view .spinner{
-    position:absolute;
-    top:30%;
-    height:40px;
-    width: 100%;
+    position: relative;
+    top: 240px;
+    height: 40px;
+    left: 50%;
 }
 
 header{
