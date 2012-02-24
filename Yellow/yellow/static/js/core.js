@@ -318,13 +318,10 @@ ActivityController = {
                 $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
                 show_page();
             },250);
-        }
     },
-
-    _urlToId: function(url){
-      return url.split('/').pop();
+    _urlToId:function(url){
+        return '/'    
     },
-
     _drawPointsAndRecenter: function(point){
       var bounds = new google.maps.LatLngBounds();
       var latlng = ActivityController._latLngFromPoint(point);
