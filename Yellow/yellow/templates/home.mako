@@ -113,7 +113,7 @@
       <ol>
           {#activities}
           <li class="occurence">
-            <a href="/show/{occurence_id}">
+            <a href="/activity/{occurence_id}">
               <figure class="icon_price">
                 {>partial_icon_price/}
               </figure>
