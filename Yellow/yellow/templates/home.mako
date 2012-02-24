@@ -137,25 +137,19 @@
       </ol>  
     </script>
     <script id="tpl_map_view" type="text/html">
-      <table>
-        <tr>
-          <td class="middle">
+      <div class="colLeft">
             <h3>{title}</h3>
-            <h4>{location_info}</h4>
+            <p class="address">{location_info}</p>
             <p class="address">{location}</p>
-            <p class="fulldate">{dtstart}</p>
-            <p class="phone"><a href="tel:{arrond_phone}">{arrond_phone}</a></p>
-          </td>
-          <td class="last meta">
+            <p class="phone"><span>Contacter la ville:</span><a href="tel:{arrond_phone}">{arrond_phone}</a></p>
+      </div>
+      <div class="colRight">
             <p class="time">
               {>partial_when/}
             </p>        
-            <p class="dist">
-              {>partial_where/}
-            </p>
-          </td>
-        </tr>
-      </table>
+            <p class="price">{price}</p>
+
+      </div>
     </script>
 
     <script id="partial_icon_price" type="text/html">

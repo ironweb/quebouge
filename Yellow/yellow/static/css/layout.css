@@ -253,36 +253,55 @@ form.filter select, form.filter input{
 
     overflow:hidden;
     color: #ffffff;;
+    display:table;
+    width:100%;
 }
 #activity-page .colLeft{
     width:70%;
     border-right:1px solid #636363;
-    min-height:50px;
-    float:left;
-    padding:10px 0;
-}
-
-#activity-page table{
-    border-collapse:collapse;
-    width: 100%;
-}
-
-#activity-page td{
+    display:table-cell;
     padding:10px;
 }
-#activity-page td img{
-    max-width:50px;
-}
-
-#activity-page td.first{
-    width: 50px;
-}
-#activity-page td.last{
+#activity-page .colRight{
     width:100px;
     border-left:1px solid #000;
+    min-height:50px;
+    display:table-cell;
+    padding:10px;
 }
-#activity-page td.middle{
-    border-right:1px solid #636363;
+
+#activity-page .colLeft p.address{
+    color: #b8b8b8;
+    font-size:11px;
+    margin-bottom: 7px;
+    margin-top: 0;
+    font-weight:bold;
+}
+#activity-page .colLeft p.phone{
+    overflow:hidden;
+    float:right;
+    margin-top:20px;
+}
+#activity-page .colLeft p.phone span{
+    display:block;
+    float:left;
+    font-size:11px;
+    width:50px;
+    padding-right:0;
+    text-align:right;
+}
+
+#activity-page .colLeft p.phone a{
+    float:right;
+    display:block;
+    color: #84e0fe;
+    font-size:20px;
+    text-decoration:none;
+    margin:4px 0 0 6px;
+}
+
+#activity-page .colRight p{
+    margin:0;
 }
 
 
@@ -294,7 +313,8 @@ form.filter select, form.filter input{
     padding:0;
     margin:0;
     font-style:italic;
-    font-size:13px;
+    font-size:15px;
+    margin-bottom:7px;
 }
 #activity-page .content h4{
     color: #84e0fe;
@@ -306,7 +326,7 @@ form.filter select, form.filter input{
     font-weight:normal;
     padding-right:5px;
 }
-#activity-page td p{
+#activity-page .colLeft p{
     float:left;
     margin:0;
     font-size:12px;
@@ -315,7 +335,7 @@ form.filter select, form.filter input{
     color: #d3d2d2;
     clear:both;
 }
-#activity-page td .phone a{
+#activity-page .phone a{
     font-size:14px;
     color: #fff;    
 }
@@ -389,24 +409,29 @@ form.filter select, form.filter input{
     background: #84e0fe; /* Old browsers */
 }
 
-/*
-#activity-page .when{
+
+#activity-page .time{
     color:#84e0fe;
     font-size:13px;
     font-weight:bold;
     text-align:left;
     margin:0;
     line-height:1em;
+    margin-bottom:15px;
 }
-#activity-page .when span{
+#activity-page .time span{
     display:block;
     font-size:20px;
     margin-top:4px;
 }
-#activity-page .when{
-    margin-bottom:15px;
+
+#activity-page .colRight .price{
+    font-size:17px;
+    font-weight:bold;
+    margin-top:10px;
 }
-*/
+
+/*
 
 
 #activity-page .where{
@@ -422,7 +447,7 @@ form.filter select, form.filter input{
     font-size:18px;
     margin-top:4px;
 }
-
+*/
 #activity-page a.back{
     display: inline-block;
     background:#d2d1d1 url(/static/images/home.png) no-repeat 6px center;
@@ -618,7 +643,7 @@ form.filter select, form.filter input{
         width: 280px;
     }    
     header h1 img{
-        width:145px;
+        width:135px;
     }
     header section strong{
         font-size:14px;
