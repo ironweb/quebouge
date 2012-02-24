@@ -224,7 +224,7 @@ SearchController = {
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
             $inElement.removeClass('slideright in').css( 'webkitTransform', '')
-
+            OrientationMap.resize();
            // ActivityController.__init();
         },250);
         
@@ -353,6 +353,8 @@ OrientationMap = {
         init:false,
         $obj:false,
         map:false,
+        bounds:false,
+        isopen:false,
         markersList:[]
     },
     activity:{
@@ -365,15 +367,16 @@ OrientationMap = {
     resultInit:false,
     activityInit:false,
     init:function(){
-        if( !Modernizr.touch || OrientationMap.isInit ){
+        //if( !Modernizr.touch || OrientationMap.isInit ){
+        if( OrientationMap.isInit ){
             return;
         }
 
         window.addEventListener( "orientationchange", OrientationMap.test, false );
     },
     prepare:function(){
-        if(!Modernizr.touch || OrientationMap.isInit){
-        //if(OrientationMap.isInit){
+        //if(!Modernizr.touch || OrientationMap.isInit){
+        if(OrientationMap.isInit){
             return;
         }
 
@@ -406,7 +409,7 @@ OrientationMap = {
         if(!OrientationMap.results.init){
             OrientationMap.results.map = OrientationMap.getMapOverlayObject(OrientationMap.results.$obj[0]);
         }
-
+        OrientationMap.results.isopen = true;
         //clear cache
         for(var x=0;x<OrientationMap.results.markersList.length;x++){
             OrientationMap.results.markersList[x].setMap(null);
@@ -447,9 +450,16 @@ OrientationMap = {
             OrientationMap.results.markersList.push(marker)
         });
 
-        OrientationMap.results.map.fitBounds(bounds)
-
         OrientationMap.results.$obj.show();
+        OrientationMap.results.bounds = bounds;
+        OrientationMap.resize();
+    },
+    resize:function(){
+        if(OrientationMap.results.isopen){
+            google.maps.event.trigger(OrientationMap.results.map, 'resize')
+            OrientationMap.results.map.fitBounds(OrientationMap.results.bounds)
+        }
+        
     },
     displayActivityMap:function() {
         var $d = $(document);
@@ -465,6 +475,7 @@ OrientationMap = {
     hideMap:function(){
         if(OrientationMap.results.$obj){
             OrientationMap.results.$obj.hide();
+            OrientationMap.results.isopen = false;
         }
         
         if(OrientationMap.activity.$obj){
