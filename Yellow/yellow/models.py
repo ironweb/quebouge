@@ -268,10 +268,10 @@ class Occurence(Base):
     @staticmethod
     def query_from_id(id, latlon_str):
         latlon = lat_lon_to_point(latlon_str)
-        q = Activity._create_query_with_fields(params['latlon'])
+        q = Activity._create_query_with_fields(latlon)
         q = q.where(Occurence.id == id)
         # @todo : set proper past true/false
-        row = DBSession().execute(q.limit(1))[0]
+        row = DBSession().execute(q.limit(1)).fetchone()
         return Activity._row_result_to_dict(row, past=False)
 
 def bb_to_polyon(bb_str):

@@ -12,6 +12,7 @@ from yellow.minify import JsMinify, CssMinify
 from .models import (
     DBSession,
     Activity,
+    Occurence,
     Category,
     )
 
@@ -19,13 +20,14 @@ from .models import (
 def home(request):
     return render_layout(request)
 
-@view_config(route_name='activity')
+@view_config(route_name='activity', renderer='json')
 def activity(request):
     request_type = request.accept.best_match(['application/json',
                                               'text/html'])
-    if request_type == 'applcation/json':
-        return Occurence.query_from_id(request.matchdict['id'],
+    if request_type == 'application/json':
+        data = Occurence.query_from_id(request.matchdict['id'],
                                        request.params.get('latlon'))
+        return data
     else:
         return render_layout(request)
 
