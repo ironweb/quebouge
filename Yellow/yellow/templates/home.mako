@@ -102,7 +102,7 @@
           <li class="occurence">
             <a href="/show/{{occurence_id}}">
               <figure>
-                <img src="/static/images/category_icons/{{categ_icon}}" alt="{{category}}" style="width:50px;" /><br />
+                <img src="/static/images/category_icons/{{categ_icon}}" alt="{{category}}" /><br />
                 <span class="price">{{price}}</span>
               </figure>
               <div class="content">
@@ -132,22 +132,30 @@
       </ol>  
     </script>
     <script id="tpl-map-view" type="text/x-mustache-template">
-      <div class="colLeft">
-        <h3>Conditionnement physique</h3>
-        <h4>École Saint-Sacrament (Gymnase)</h4>
-
-				
-      </div>
-      <div class="colRight">
-        <p class="when">
-          aujourd'hui
-          <strong>20:00</strong>
-        </p>
-        <p class="where">
-          distance (km)
-          <strong>1,1</strong>
-        </p>
-      </div>
+      <table>
+        <tr>
+          <td class="first">
+            <img src="/static/images/category_icons/{{categ_icon}}" alt="{{category}}" />
+            <span class="price">{{price}}</span>
+          </td>
+          <td class="middle">
+            <h3>{{title}}</h3>
+            <h4>École Saint-Sacrament (Gymnase)</h4>
+            <p class="address">1424 Chemin des Avoines,Saint-Clinclin</p>
+            <p class="phone"><a href="#">4186482646</a></p>
+          </td>
+          <td class="last">
+            <p class="when">
+            aujourd'hui
+            <strong>20:00</strong>
+          </p>
+          <p class="where">
+            distance (km)
+            <strong>1,1</strong>
+          </p>
+          </td>
+        </tr>
+      </table>
     </script>
 
     <script id="tpl-map-view-howtogo" type="text/x-mustache-template">

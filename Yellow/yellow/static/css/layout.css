@@ -260,13 +260,38 @@ form.filter select, form.filter input{
     float:left;
     padding:10px 0;
 }
-#activity-page .colRight{
-    width:29%;
-    border-left:1px solid #000;
-    min-height:50px;
-    float:left;
-    padding:10px 0;
+
+#activity-page table{
+    border-collapse:collapse;
+    width: 100%;
 }
+
+#activity-page td{
+    padding:10px;
+}
+#activity-page td img{
+    max-width:50px;
+}
+
+#activity-page td.first{
+    width: 50px;
+}
+#activity-page td.last{
+    width:80px;
+    border-left:1px solid #000;
+}
+#activity-page td.middle{
+    border-right:1px solid #636363;
+}
+
+
+#activity-page .price {
+    font-size:12px;
+    text-align:center;
+    display: block;
+    clear: both;
+}
+
 #activity-page .content h3{
     color: #ffffff;
     text-shadow:1px 1px 1px #000;
@@ -275,16 +300,31 @@ form.filter select, form.filter input{
     padding:0;
     margin:0;
     font-style:italic;
-    padding-left:20px;
-    font-size:15px;
+    font-size:14px;
 }
 #activity-page .content h4{
     color: #84e0fe;
     padding:0;
     margin:0;
-    font-size:14px;
-    padding:5px 0 0 20px;
+    font-size:13px;
+    padding:5px 0 0 0;
+    line-height:1em;
+    padding-right:5px;
 }
+#activity-page td p{
+    float:left;
+    margin:0;
+    font-size:12px;
+    line-height:1em;
+    margin-top:6px;
+    color: #d3d2d2;
+    clear:both;
+}
+#activity-page td .phone a{
+    font-size:14px;
+    color: #fff;    
+}
+
 #activity-page .back{
     display: inline-block;
     float:left;
