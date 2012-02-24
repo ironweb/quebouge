@@ -430,6 +430,14 @@ Geo = {
 
 
 $(document).ready(function() {
-    FrontController.init();
+    if (window.PhoneGap) {
+        // For PhoneGap application.
+        document.addEventListener("deviceready", function() {
+            FrontController.init();
+        }, false);
+    } else {
+        FrontController.init();
+    }
 });
+
 })($);
