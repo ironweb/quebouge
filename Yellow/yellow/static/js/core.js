@@ -177,14 +177,21 @@ SearchController = {
         });
     },
     show:function() {
-        
-        var $outElement = $('#container>.page.current');
-        $('#home-page').addClass('current');
+
+        var $outElement = $('#container>.page.current'),
+            $inElement  = $('#home-page');
+        $outElement.css("top", -window.pageYOffset);
+        $inElement.addClass('current').css("top", 0);
         $outElement.addClass('slideright out');
         //$('#home-page').addClass('current');
+        scrollTo(0, 0);
+
+        var toStart = 'translateX(' + '-' + window.innerWidth + 'px)';
+        $inElement.css('webkitTransform', toStart);
+
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
-            $('#home-page').removeClass('slideright in')
+            $inElement.removeClass('slideright in').css( 'webkitTransform', '')
 
            // ActivityController.__init();
         },250);
@@ -245,16 +252,24 @@ ActivityController = {
 
     show:function(url) {
 
-        var $outElement = $('#container>.page.current');
-        $('#activity-page').addClass('current slideleft in');
-        //$outElement.addClass('slideleft out');
+        var $outElement = $('#container>.page.current'),
+            $inElement  = $('#activity-page').addClass('current slideleft in').css("top", 0);
+        
+        $outElement.css("top", -window.pageYOffset);
+        
+        scrollTo(0, 0);
+
+        var toStart = 'translateX(' + window.innerWidth + 'px)';
+        $inElement.css('webkitTransform', toStart);
 
         setTimeout(function(){
             $outElement.removeClass('current slideleft out');
-            $('#activity-page').removeClass('slideleft in')
+            $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
+
             ActivityController.init();
             ActivityController.load(ActivityController._urlToId(url));
         },250);
+
     },
 
     _urlToId: function(url){
