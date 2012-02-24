@@ -161,7 +161,7 @@ class Activity(Base):
         delta = abs(row.dtend - row.dtstart)
         duration = delta.seconds + delta.days * 84600
         phone = row.arrondissement_phone
-        nice_phone = "+1-%s-%s-%s" % (phone[:3], phone[3:6], phone[6:])
+        nice_phone = "%s-%s-%s" % (phone[:3], phone[3:6], phone[6:])
         out = dict(occurence_id=row.id,
                    dtstart=row.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
                    duration=duration,
@@ -191,7 +191,7 @@ class Activity(Base):
             out['ends_time'] = Activity._relative_time(now, row.dtend)
         elif row_date == today:
             if now + datetime.timedelta(0, 14400) > row_dt: # h
-                out['today_label'] = "DANS"
+                out['today_label'] = u"DÉBUTE DANS"
                 out['today_time'] = Activity._relative_time(row_dt, now)
             else:
                 out['today_label'] = "AUJOURD'HUI"
