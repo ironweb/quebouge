@@ -191,7 +191,7 @@ class Activity(Base):
             out['ends_time'] = Activity._relative_time(now, row.dtend)
         elif row_date == today:
             if now + datetime.timedelta(0, 14400) > row_dt: # h
-                out['today_label'] = "DANS"
+                out['today_label'] = u"DÉBUTE DANS"
                 out['today_time'] = Activity._relative_time(row_dt, now)
             else:
                 out['today_label'] = "AUJOURD'HUI"
