@@ -1,5 +1,4 @@
 pyramid==1.3a7
-Paste==1.7.5.1
 python-dateutil==1.5
 SQLAlchemy==0.7.5
 GeoAlchemy==0.6

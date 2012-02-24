@@ -71,7 +71,7 @@ def push_apache_config(restart=False):
     
 @task
 def install_update_virtenv():
-    with cd("/home/jaunes/quebouge-%s" % role):
+    with cd("/home/jaunes/quebouge-%s/Yellow" % role):
 
         # Create env if it doesn't exist already
         if not exists("env"):
@@ -79,8 +79,8 @@ def install_update_virtenv():
 
         run_as_app("mkdir -p /home/jaunes/.pip")
         # Install the requirements.
-        run_as_app("PIP_DOWNLOAD_CACHE=/home/jaunes/.pip /home/jaunes/quebouge-%s/env/bin/pip install -r Yellow/requirements.freeze" % (role))
-        run_as_app("/home/jaunes/quebouge-%s/env/bin/python Yellow/setup.py develop" % (role))
+        run_as_app("PIP_DOWNLOAD_CACHE=/home/jaunes/.pip /home/jaunes/quebouge-%s/Yellow/env/bin/pip install -r requirements.freeze" % (role))
+        run_as_app("/home/jaunes/quebouge-%s/Yellow/env/bin/python setup.py develop" % (role))
 
 
 @task
