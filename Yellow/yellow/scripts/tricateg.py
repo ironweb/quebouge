@@ -33,7 +33,7 @@ class DatabaseNode(object):
         desc = self.node['DESCRIPTION']
         desc_act = self.node['DESCRIPTION_ACT']
         lower_desc = desc
-        if all(word in desc for word in ('bain', 'libre', 'pour', 'tous')):
+        if all(word in lower_desc for word in ('bain', 'libre', 'pour', 'tous')):
             return desc
         return self._extract_bigger_field(desc, desc_act)
 

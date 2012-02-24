@@ -84,6 +84,7 @@ class DatabasePopulator(object):
         new_arr.phone = arr_phone
         new_arr.name = arr_name
         with transaction.manager:
+            import pdb;pdb.set_trace()
             DBSession().add(new_arr)
         self.phone_arrondissements[arr_name] = new_arr
         return new_arr

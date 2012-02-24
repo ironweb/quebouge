@@ -1,18 +1,7 @@
-To update the database do the following steps:
+Simply run:
 
-Go in PGADMIN3, and drop WITH CASCADE the three following tables:
+  populate_Yellow your_development.ini
 
- - activities
- - categories
- - occurences
+It will drop tables, reload data from the datasets/ (which you can update :).
 
-Then, go in your virtual environment, and run:
 
-  populate_Yellow my_development.ini
-
-If you don't find those scripts, make sure you have run:
-
-  python setup.py develop
-
-before.  This will take the 'entry_points' in the setup.py and write the
-scripts in the env/bin/ directory.
