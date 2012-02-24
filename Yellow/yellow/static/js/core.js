@@ -183,18 +183,7 @@ SearchController = {
         },250);
         
     },
-    displayDropdown:function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.debug(SearchController.$dropdown)
-        SearchController.$dropdown.trigger('click')
-        SearchController.$dropdown.trigger('focus')
-        //SearchController.$dropdown.focus();
-    },
     onChangeDropdown:function(){
-        //populate the link, with the current selection
-        $(this).val();
-
         //trigger the search
         SearchController.load();
     }
@@ -202,7 +191,11 @@ SearchController = {
 
 ActivityController = {
     zoom: 11,
+    map:false,
     init:function() {
+      if(ActivityController.map){
+          return;
+      }  
       var opts = {
         zoom: ActivityController.zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -219,6 +212,9 @@ ActivityController = {
       // @todo : DRAW Activity
       var occurence = OccurencesCache[id];
       ActivityController._drawPointAndRecenter(occurence);
+
+      //load template with data
+      $('#activity-page').find('div.content').html( Template.render('map-view', occurence) );
     },
 
     show:function(url) {

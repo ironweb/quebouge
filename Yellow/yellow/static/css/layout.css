@@ -2,6 +2,9 @@
 body{
     font-family:"Helvetica Neue", Arial, sans-serif;
 }
+::-moz-selection { background: #84e0fe; color: #fff; text-shadow: none; }
+::selection { background: #84e0fe; color: #fff; text-shadow: none; }
+
 
 #pDebug{
     display: none!important;
@@ -238,7 +241,7 @@ form.filter select, form.filter input{
     line-height:1em;
 }
 
-#activity-page .box{
+#activity-page .content{
     background: #353535; /* Old browsers */
     background: -moz-linear-gradient(top, #353535 0%, #262626 81%, #262626 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#353535), color-stop(81%,#262626), color-stop(100%,#262626)); /* Chrome,Safari4+ */
@@ -246,7 +249,101 @@ form.filter select, form.filter input{
     background: -o-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* IE10+ */
     background: linear-gradient(top, #353535 0%,#262626 81%,#262626 100%); /* W3C */
+
+    overflow:hidden;
+    color: #ffffff;;
 }
+#activity-page .colLeft{
+    width:70%;
+    border-right:1px solid #636363;
+    min-height:50px;
+    float:left;
+    padding:10px 0;
+}
+#activity-page .colRight{
+    width:29%;
+    border-left:1px solid #000;
+    min-height:50px;
+    float:left;
+    padding:10px 0;
+}
+#activity-page .content h3{
+    color: #ffffff;
+    text-shadow:1px 1px 1px #000;
+    text-transform:uppercase;
+    line-height:1em;
+    padding:0;
+    margin:0;
+    font-style:italic;
+    padding-left:20px;
+    font-size:15px;
+}
+#activity-page .content h4{
+    color: #84e0fe;
+    padding:0;
+    margin:0;
+    font-size:14px;
+    padding:5px 0 0 20px;
+}
+
+#activity-page .howtogo{
+    float:right;
+    margin-right:10px;
+}
+#activity-page .howtogo li{
+    float:left;
+    list-style:none;
+    font-size:13px;
+    margin-left:10px;
+    line-height:24px;
+}
+
+#activity-page .howtogo a{
+    display: inline-block;
+    border:2px solid #84e0fe;
+    width:20px;
+    height:20px;
+    text-indent:-99999px;
+     
+
+    background: #ade8fb; /* Old browsers */
+    background: -moz-linear-gradient(top, #ade8fb 0%, #84e0fe 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ade8fb), color-stop(100%,#84e0fe)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ade8fb 0%,#84e0fe 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ade8fb 0%,#84e0fe 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ade8fb 0%,#84e0fe 100%); /* IE10+ */
+    background: linear-gradient(top, #ade8fb 0%,#84e0fe 100%); /* W3C */
+
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;        
+}
+
+#activity-page .howtogo a:hover{
+    background: #84e0fe; /* Old browsers */
+}
+
+#activity-page .when,
+#activity-page .where{
+    color:#d3d2d2;
+    font-size:15px;
+    font-weight:bold;
+    text-align:center;
+    margin:0;
+    line-height:1em;
+}
+#activity-page .when{
+    margin-bottom:17px;
+}
+
+#activity-page .when strong,
+#activity-page .where strong{
+    display:block;
+    font-size:23px;
+    color: #84e0fe;
+    margin-top:7px;
+}
+
 
 .occurence ul.meta {
     float:left;
