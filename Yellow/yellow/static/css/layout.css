@@ -90,6 +90,7 @@ header section strong{
     margin-left:13px;
     font-size:17px;
     float:left;
+    line-height: 3.4ex;
 }
 header::after{
     content:'';

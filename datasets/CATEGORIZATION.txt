@@ -56,21 +56,21 @@ méditation,Mieux-être
 aquaprénatal,Natation
 gym,Conditionnement
 abdos,Conditionnement
-informatique, Cours
+informatique,Cours
 aquatriathlon,Natation
 acrylique,Arts
 ski,Plein air
 bijoux,Arts
 cheerleading,Gymnastique
-plage, Plein air
+plage,Plein air
 pétanque,Passe-temps
 shotokan,Arts martiaux
 budo,Arts martiaux
-traîneau, Plein air
-vélo,Plain air
+traîneau,Plein air
+vélo,Plein air
 chorale,Musique
 volleyball,Volleyball
-ballon, Divers
+ballon,Divers
 raquette,Plein air
 ta.-chi,Mieux-être
 cardio.pouss,Conditionnement
@@ -105,18 +105,18 @@ quilles,Passe-temps
 aquarelle,Arts
 work\s?out,Conditionnement
 courtepointe,Passe-temps
-goalball, Goalball
+goalball,Goalball
 jonglerie,Cirque
 ballet,Danse
 triathlon,Plein air
 bujinkan,Arts martiaux
 frisbee,Plein air
 mandarin,Cours
-mandalas, Arts
+mandalas,Arts
 ninjutsu,Arts martiaux
 aqualongeurs,Natation
-menuiserie, Cours
-littéraire, Cours
+menuiserie,Cours
+littéraire,Cours
 aquadulte,Natation
 baseball,Baseball
 aérobique,Conditionnement

@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Yellow team app</title>
+  <title>Québouge - Ici, maintenant</title>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -35,7 +35,7 @@
         <section>
           <h1>
             <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
-            <strong>Ici, maintenant.</strong>
+            <strong>Ici, maintenant</strong>
           </h1>
         </section>
         

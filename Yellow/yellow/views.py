@@ -16,8 +16,9 @@ from .models import (
 @view_config(route_name='home', renderer='/home.mako')
 def home(request):
     categories = DBSession.query(Category).all()
-    
-    return {'categories': [Category(id='', name=u'Toutes les catégories')] + categories,
+    first_categ = Category(id='', name=u'- Tous les loisirs à Québec -')
+    return {'categories': [first_categ] + \
+                           sorted(categories, key=lambda x: x.name.lower()),
             'js_mini': JsMinify(request),
             'css_mini': CssMinify(request)}
 
