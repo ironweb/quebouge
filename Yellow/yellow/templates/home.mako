@@ -30,62 +30,89 @@
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <div role="main" id="container">
-    <section id="home-page" class="page row current">
-      <header>
-        <section>
-          <h1>
-            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
-            <strong>Ici, maintenant</strong>
-          </h1>
-        </section>
-        
-        <form action="" class="state-close filter filterbox">
+    <div class="wrap">
+    <section id="geo-loader-page" class="page row current">
+          <header>
+            <section>
+              <h1>
+                <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+                <strong>Ici, maintenant</strong>
+              </h1>
+            </section>
+          </header>
+
+          <div class="view">
+              <div class="content">
+                <h2>Acquisition des coordonnées de géolocalisation</h2>
+                <img src="/static/images/boussole.png" alt="Acquisition des coordonnées de géolocalisation">
+              </div>
               
-            <select name="category" id="lst-category">
-              % for category in categories:
-                <option value="${category.id}">${category.name}</option>
-              % endfor
-            </select>
-
-        </form>
-      </header>
-      
-     
-      <div class="view">
-        <div class="content"></div>
-      </div>
-      
-
-      <footer>
-
-      </footer>
+            </div>
+            
     </section>
-
-    <section id="activity-page" class="page row">
-      <header>
-        <section>
-          <h1>
-            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
-            <strong>Ici, maintenant.</strong>
-          </h1>
+    <section id="home-page" class="page row">
+          <header>
+            <section>
+              <h1>
+                <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+                <strong>Ici, maintenant</strong>
+              </h1>
+            </section>
+            
+            <form action="" class="state-close filter filterbox">
+                  
+                <select name="category" id="lst-category">
+                  % for category in categories:
+                    <option value="${category.id}">${category.name}</option>
+                  % endfor
+                </select>
+    
+            </form>
+          </header>
+          
+          <div class="error hide">
+              <div class="content">
+                <h2>Aucun résultat trouvé</h2>
+                <img src="/static/images/aucunresultat.png" alt="Aucun résultats trouvés">
+          </div>
+              
+            </div>
+          <div class="view">
+            <div class="content"></div>
+          </div>
+          
+    
+          <footer>
+    
+          </footer>
         </section>
-        <section class="sec">
-        </section>  
-
-      </header>
-      
-     
-      <div class="view">
-        <div class="content"></div>
-
-        <div id="map-canvas"></div>
+    
+        <section id="activity-page" class="page row">
+          <header>
+            <section>
+              <h1>
+                <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+                <strong>Ici, maintenant.</strong>
+              </h1>
+            </section>
+            <section class="sec">
+            </section>  
+    
+          </header>
+          
+         
+          <div class="view">
+            <div class="content"></div>
+    
+            <div id="wrap-map-canvas"><div id="map-canvas"></div></div>
+          </div>
+          
+    
+          <footer>
+    
+          </footer>
+        </section>
       </div>
-      
-
-      <footer>
-
-      </footer>
-    </section>
   </div>
 % if js_mini.enabled:
   <script src="${js_mini.compiled_url()}"></script>
@@ -113,7 +140,7 @@
       <ol>
           {#activities}
           <li class="occurence">
-            <a href="/show/{occurence_id}">
+            <a href="/activity/{occurence_id}">
               <figure class="icon_price">
                 {>partial_icon_price/}
               </figure>
@@ -137,25 +164,18 @@
       </ol>  
     </script>
     <script id="tpl_map_view" type="text/html">
-      <table>
-        <tr>
-          <td class="middle">
+      <div class="colLeft">
             <h3>{title}</h3>
-            <h4>{location_info}</h4>
             <p class="address">{location}</p>
-            <p class="fulldate">{dtstart}</p>
-            <p class="phone"><a href="tel:{arrond_phone}">{arrond_phone}</a></p>
-          </td>
-          <td class="last meta">
+            <p class="phone"><span>Contacter la ville:</span><a href="tel:{arrond_phone}">{arrond_phone}</a></p>
+      </div>
+      <div class="colRight">
             <p class="time">
               {>partial_when/}
             </p>        
-            <p class="dist">
-              {>partial_where/}
-            </p>
-          </td>
-        </tr>
-      </table>
+            <p class="price">{price}</p>
+
+      </div>
     </script>
 
     <script id="partial_icon_price" type="text/html">
@@ -185,7 +205,7 @@
 
 
     <script id="tpl_map_view_howtogo" type="text/html">
-        <a class="back">back</a>
+        <a class="back" href="/">back</a>
         <ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?saddr={saddr}&daddr={location_url_safe}&oq=My+lo">
           <li><a href="#" data-dirflg="" class="car">en voiture</a></li>
           <li><a href="#" data-dirflg="w" class="foot">à pied</a></li>

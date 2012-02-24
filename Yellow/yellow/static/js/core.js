@@ -22,13 +22,11 @@ FrontController = {
 
         //start Application from Geo object (after we get the geo position)
     },
-    start:function() {
+    start:function(url) {
         if(FrontController.isStarted){
             return;
         }
-
-        //add future router here
-        SearchController.load();      
+        FrontController.loadPage(url, true);
     },
     addActions:function() {
         
@@ -36,7 +34,7 @@ FrontController = {
             e.preventDefault();
             e.stopPropagation();
 
-            if( Modernizr.history ){
+            if( Modernizr.history && History.enabled ){
                 History.pushState({state:2}, this.title, this.href);
             }else{
                 FrontController.loadPage( this.href );
@@ -47,19 +45,18 @@ FrontController = {
             e.preventDefault();
             e.stopPropagation();
 
-            if( Modernizr.history ){
-                History.pushState({state:1}, this.title, '/');
+            if( Modernizr.history){
+                History.pushState(null, this.title, '/');
             }else{
                 FrontController.loadPage( "/" );
             }
-            
+
         });
 
         if(Modernizr.history){
             History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
                 var State = History.getState(); // Note: We are using History.getState() instead of event.state
                 History.log(State.data, State.title, State.url);
-
                 FrontController.loadPage( State.url );
             });    
         }
@@ -78,16 +75,16 @@ FrontController = {
             }
         });
     },
-    loadPage:function( url ){
+    loadPage:function( url, first_page ){
 
         url = FrontController.clearUrl(url);
 
         switch( url ){
             case '/':
-                SearchController.show();
-                break;    
+                SearchController.show(url, first_page);
+                break;
             default:
-                ActivityController.show(url);
+                ActivityController.show(url, first_page);
                 break;
         }
 
@@ -115,6 +112,7 @@ Layout = {
 
 SearchController = {
     $form:false,
+    _loaded: false,
     init:function(){
         SearchController.$form = $('form');
         SearchController.$form.bind('submit', SearchController.doSubmit);
@@ -125,6 +123,7 @@ SearchController = {
         SearchController.$dropdown.bind('change', SearchController.onChangeDropdown);
     },
     load:function(){
+        SearchController._loaded = true;
         SearchController.$form.trigger('submit');
     },
     addSpinner:function(){
@@ -152,6 +151,8 @@ SearchController = {
         e.preventDefault();
         e.stopPropagation();
 
+        $('#home-page .error').addClass('hide');
+
         var center = Geo.getPosition(),
             $this = $(this);
         
@@ -175,7 +176,12 @@ SearchController = {
         return false;
     },
     appendData:function(data) {
-
+        if(data.elements.length == 0){
+            $('#home-page .error').removeClass('hide');
+            $('#home-page').find('.view div.content').empty();
+            SearchController.$spinner.hide();
+            return false;
+        }
         //do an ajax call to load data from the form
         var data = {
             activities: data.elements
@@ -188,19 +194,22 @@ SearchController = {
         }
 
         dust.render('tpl_list_view', data, function(err, out) {
-            $('#home-page').find('div.content').html(out);
+            $('#home-page').find('.view div.content').html(out);
             SearchController.$spinner.hide();
             //Layout.adjustHeight();
         });
     },
-    show:function() {
+    show:function(url, first_page) {
+        if(first_page || !SearchController._loaded) SearchController.load();
 
-        var $outElement = $('#container>.page.current'),
+        var $outElement = $('#container .wrap>.page.current'),
             $inElement  = $('#home-page');
+
+        if($inElement.css('display') == 'block') return;
+
         $outElement.css("top", -window.pageYOffset);
         $inElement.addClass('current').css("top", 0);
         $outElement.addClass('slideright out');
-        //$('#home-page').addClass('current');
         scrollTo(0, 0);
 
         var toStart = 'translateX(' + '-' + window.innerWidth + 'px)';
@@ -209,8 +218,6 @@ SearchController = {
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
             $inElement.removeClass('slideright in').css( 'webkitTransform', '')
-
-           // ActivityController.__init();
         },250);
         
     },
@@ -221,76 +228,112 @@ SearchController = {
 }
 
 ActivityController = {
-    zoom: 11,
+    zoom: 9,
     map:false,
     markersList:[],
     init:function() {
       if(ActivityController.map) return;
       var opts = {
+        zoom:13,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: new google.maps.LatLng(0,0),
+        center: new google.maps.LatLng(Geo.coords.latitude,Geo.coords.longitude),
         disableDefaultUI: false,
         streetViewControl:false,
         zoomControl: false,
         scrollwheel: false,
         scaleControl: false,
+        mapTypeId: 'quebouge',
         panControl: false,
         overviewMapControl: false,
         mapTypeControl: false,
         draggable: false
       };
       ActivityController.map_canvas = $("#map-canvas");
+      ActivityController.map_canvas.width($(document).width())
       ActivityController.map = new google.maps.Map(
         ActivityController.map_canvas[0], opts);
+
+        var styledMapType = new google.maps.StyledMapType([
+          {
+            stylers: [
+              { invert_lightness: true },
+              { visibility: "on" },
+              { lightness: 8 },
+              { hue: "#00f6ff" },
+              { saturation: -98 },
+              { gamma: 1.58 }
+            ]
+          }
+        ]);
+        ActivityController.map.mapTypes.set('quebouge', styledMapType);
     },
 
-    load:function(id) {
-      var occurence = OccurencesCache[id];
+    load:function(url) {
+        var id = ActivityController._urlToId(url)
+        var occurence = OccurencesCache[id];
+        if(occurence){
+            ActivityController._load(occurence);
+        }
+        else{
+            var latlon = Geo.getPosition();
+            url += '?latlon=' + latlon.latitude + ',' + latlon.longitude;
+            $.getJSON(url, function(occurence){
+                ActivityController._load(occurence);
+            });
+        }
+    },
 
-      ActivityController._cleanMap();
-      ActivityController._drawPointsAndRecenter(occurence);
+    // Inner load : once data is ready
+    _load: function(occurence){
+        SearchController.$spinner.hide();
+        ActivityController._cleanMap();
+        ActivityController._drawPointsAndRecenter(occurence);
 
-      var $activity_page = $('#activity-page');
-      dust.render('tpl_map_view', occurence, function(err, out) {
-        $activity_page.find('div.content').html(out);
-      });
-      // load template with data
-      var occurence_tmpl = $.extend({}, occurence);
-      occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
-      occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
-      dust.render('tpl_map_view_howtogo', occurence_tmpl, function(err, out) {
-        $activity_page.find('section.sec').html(out);
-        // Bind direction clicks
-        var $direction_links = $('#direction-links');
-        $direction_links.delegate('a', 'click', function(e){
-          e.preventDefault();
-          window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
+        var $activity_page = $('#activity-page');
+        dust.render('tpl_map_view', occurence, function(err, out) {
+          $activity_page.find('div.content').html(out);
         });
-      });
-
-
+        // load template with data
+        var occurence_tmpl = $.extend({}, occurence);
+        occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
+        occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
+        dust.render('tpl_map_view_howtogo', occurence_tmpl, function(err, out) {
+          $activity_page.find('section.sec').html(out);
+          // Bind direction clicks
+          var $direction_links = $('#direction-links');
+          $direction_links.delegate('a', 'click', function(e){
+            e.preventDefault();
+            window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
+          });
+        });
     },
 
-    show:function(url) {
+    show:function(url, first_page) {
+        var $outElement = $('#container>.wrap>.page.current'),
+            $inElement  = $('#activity-page')
 
-        var $outElement = $('#container>.page.current'),
-            $inElement  = $('#activity-page').addClass('current slideleft in').css("top", 0);
-        
-        $outElement.css("top", -window.pageYOffset);
-        
-        scrollTo(0, 0);
-
-        var toStart = 'translateX(' + window.innerWidth + 'px)';
-        $inElement.css('webkitTransform', toStart);
-
-        setTimeout(function(){
-            $outElement.removeClass('current slideleft out');
-            $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
-
+        var show_page = function(){
             ActivityController.init();
-            ActivityController.load(ActivityController._urlToId(url));
-        },250);
+            ActivityController.load(url);
+        }
 
+        if(first_page){
+            $inElement.addClass('current');
+            show_page();
+        }
+        else{
+            $inElement.addClass('current slideleft in').css("top", 0);
+            $outElement.css("top", -window.pageYOffset);
+            scrollTo(0, 0);
+            var toStart = 'translateX(' + window.innerWidth + 'px)';
+            $inElement.css('webkitTransform', toStart);
+
+            setTimeout(function(){
+                $outElement.removeClass('current slideleft out');
+                $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
+                show_page();
+            },250);
+        }
     },
 
     _urlToId: function(url){
@@ -298,24 +341,45 @@ ActivityController = {
     },
 
     _drawPointsAndRecenter: function(point){
-      var markers = new google.maps.LatLngBounds();
+      var bounds = new google.maps.LatLngBounds();
       var latlng = ActivityController._latLngFromPoint(point);
       var user_geoloc = new google.maps.LatLng(Geo.coords.latitude, Geo.coords.longitude)
-      markers.extend(latlng)
-      markers.extend(user_geoloc)
+
+      bounds.extend(latlng)
+      bounds.extend(user_geoloc)
+
+      var icon_activity = new google.maps.MarkerImage(
+          '/static/images/pinpoint/pin_'+point.categ_icon,
+          // This marker is 20 pixels wide by 32 pixels tall.
+          new google.maps.Size(22, 30)
+      );
+
       var activityMarker = new google.maps.Marker({
         position: latlng,
+        icon:icon_activity,
         map: ActivityController.map,
         title: point.title
       });
+
       ActivityController.markersList.push(activityMarker);
+
+      var icon_me = new google.maps.MarkerImage(
+          '/static/images/pinpoint/pin_me.png',
+          // This marker is 20 pixels wide by 32 pixels tall.
+          new google.maps.Size(24, 24)
+      );
+
       var userMarker = new google.maps.Marker({
-        icon: '/static/images/pinpoint.png',
+        icon: icon_me,
         position: user_geoloc,
         map: ActivityController.map
       });
+
       ActivityController.markersList.push(userMarker);
-      ActivityController.map.fitBounds(markers)
+      
+      setTimeout(function(){
+          ActivityController.map.fitBounds(bounds);
+      },100)
       
     },
 
@@ -327,8 +391,10 @@ ActivityController = {
         if (ActivityController.markersList.length > 0 ) {
             for (var i = 0; i < ActivityController.markersList.length; i++ ) {
                 ActivityController.markersList[i].setMap(null);
+                ActivityController.markersList[i] = null
             }
-        }    
+        } 
+          ActivityController.markersList = new Array();
     }
 
 }
@@ -337,6 +403,7 @@ ActivityController = {
 Geo = {
     coords:false,
     init:function(){
+
         Modernizr.load({
             test: Modernizr.geolocation,
             nope: '/static/js/libs/geolocalisation.js',
@@ -349,8 +416,8 @@ Geo = {
         navigator.geolocation.getCurrentPosition(function(data){
             Geo.coords = data.coords;
             FrontController.ready = true;
-            FrontController.start();                
-        });   
+            FrontController.start( window.location.pathname );
+        });
     },
     getPosition:function() {
         if (!Geo.coords) {
@@ -364,5 +431,5 @@ Geo = {
 
 $(document).ready(function() {
     FrontController.init();
-})
+});
 })($);
