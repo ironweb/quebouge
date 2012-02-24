@@ -219,7 +219,6 @@ ActivityController = {
       var $direction_links = $('#direction-links');
       $direction_links.delegate('a', 'click', function(e){
         e.preventDefault();
-        debugger
         window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
       });
       $('#activity-page').find('div.content').html( Template.render('map-view', occurence) );
