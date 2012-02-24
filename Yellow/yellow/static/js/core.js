@@ -161,10 +161,7 @@ SearchController = {
         //fake data
 
         var data = {
-            activities:data.elements
-        }
-        if(data.activities.length == 0){
-            alert('rien pour le moment')
+            activities: data.elements
         }
 
         // Cache the dataz

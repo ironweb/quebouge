@@ -130,6 +130,8 @@
               <span class="arrow"></span>
             </a>   
           </li>
+          {:else}
+          <li>Aucun résultat</li>
           {/activities}
       </ol>  
     </script>
