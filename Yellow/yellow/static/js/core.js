@@ -151,6 +151,8 @@ SearchController = {
         e.preventDefault();
         e.stopPropagation();
 
+        $('#home-page .error').addClass('hide');
+
         var center = Geo.getPosition(),
             $this = $(this);
         
@@ -174,7 +176,12 @@ SearchController = {
         return false;
     },
     appendData:function(data) {
-
+        if(data.elements.length == 0){
+            $('#home-page .error').removeClass('hide');
+            $('#home-page').find('.view div.content').empty();
+            SearchController.$spinner.hide();
+            return false;
+        }
         //do an ajax call to load data from the form
         var data = {
             activities: data.elements
@@ -187,7 +194,7 @@ SearchController = {
         }
 
         dust.render('tpl_list_view', data, function(err, out) {
-            $('#home-page').find('div.content').html(out);
+            $('#home-page').find('.view div.content').html(out);
             SearchController.$spinner.hide();
             //Layout.adjustHeight();
         });
@@ -301,24 +308,32 @@ ActivityController = {
         });
     },
 
-    show:function(url) {
+    show:function(url, first_page) {
+        var $outElement = $('#container>.wrap>.page.current'),
+            $inElement  = $('#activity-page')
 
-        var $outElement = $('#container>.page.current'),
-            $inElement  = $('#activity-page').addClass('current slideleft in').css("top", 0);
-        
-        $outElement.css("top", -window.pageYOffset);
-        
-        scrollTo(0, 0);
+        var show_page = function(){
+            ActivityController.init();
+            ActivityController.load(url);
+        }
 
-        var toStart = 'translateX(' + window.innerWidth + 'px)';
-        $inElement.css('webkitTransform', toStart);
+        if(first_page){
+            $inElement.addClass('current');
+            show_page();
+        }
+        else{
+            $inElement.addClass('current slideleft in').css("top", 0);
+            $outElement.css("top", -window.pageYOffset);
+            scrollTo(0, 0);
+            var toStart = 'translateX(' + window.innerWidth + 'px)';
+            $inElement.css('webkitTransform', toStart);
 
             setTimeout(function(){
                 $outElement.removeClass('current slideleft out');
                 $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
                 show_page();
-        },250);
-
+            },250);
+        }
     },
 
     _urlToId: function(url){
@@ -388,6 +403,7 @@ ActivityController = {
 Geo = {
     coords:false,
     init:function(){
+
         Modernizr.load({
             test: Modernizr.geolocation,
             nope: '/static/js/libs/geolocalisation.js',

@@ -31,6 +31,25 @@
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <div role="main" id="container">
     <div class="wrap">
+    <section id="geo-loader-page" class="page row current">
+          <header>
+            <section>
+              <h1>
+                <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+                <strong>Ici, maintenant</strong>
+              </h1>
+            </section>
+          </header>
+
+          <div class="view">
+              <div class="content">
+                <h2>Acquisition des coordonnées de géolocalisation</h2>
+                <img src="/static/images/boussole.png" alt="Acquisition des coordonnées de géolocalisation">
+              </div>
+              
+            </div>
+            
+    </section>
     <section id="home-page" class="page row">
           <header>
             <section>
@@ -51,7 +70,13 @@
             </form>
           </header>
           
-         
+          <div class="error hide">
+              <div class="content">
+                <h2>Aucun résultat trouvé</h2>
+                <img src="/static/images/aucunresultat.png" alt="Aucun résultats trouvés">
+          </div>
+              
+            </div>
           <div class="view">
             <div class="content"></div>
           </div>
