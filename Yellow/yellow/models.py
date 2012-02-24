@@ -88,6 +88,7 @@ class Activity(Base):
                                       latlon)
         joins = Occurence.__table__.join(Activity.__table__) \
                   .join(Category.__table__).join(Arrondissement.__table__)
+        distance = "(ST_Distance_Sphere(activities.position, GeomFromText('%s', 4326)) * 1.2) as distance_1" % latlon
         q = sql.select([Occurence.id, Occurence.dtstart,
                         Occurence.dtend,
                         Activity.title, Activity.location,
@@ -170,7 +171,7 @@ class Activity(Base):
                    location_info=row.location_info,
                    position=(point.x, point.y),
                    price=("%.2f $" % row.price) if row.price else 'GRATUIT',
-                   distance="%0.1f" % row.distance_1,
+                   distance="%0.1f" % (row.distance_1 / 1000.0),
                    categ_name=row.category_name,
                    categ_icon=row.icon_name,
                    arrond_name=row.arrondissement_name,
