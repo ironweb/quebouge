@@ -146,12 +146,21 @@
           </td>
           <td class="last">
             <p class="when">
-            aujourd'hui
-            <strong>20:00</strong>
-          </p>
+              {{#later_label}}
+                <small>{{later_label}}</small>
+                <span>{{later_time}}</span>
+              {{/later_label}}
+              {{#today_label}}
+                <small>{{today_label}}</small>
+                <span>{{today_time}}</span>
+              {{/today_label}}
+              {{#ends_label}}
+                <small>{{ends_label}}</small>
+                <span>{{ends_time}}</span>
+              {{/ends_label}}
+            </p>
           <p class="where">
-            distance (km)
-            <strong>1,1</strong>
+            <small>PROXIMITÉ</small><span>{{distance}} km</span>
           </p>
           </td>
         </tr>
