@@ -39,7 +39,7 @@ cuisine,Cours
 relaxation,Mieux-être
 trampoline,Conditionnement
 soccer,Soccer
-volley.ball,Volley-ball
+volley.ball,Volleyball
 sculpture,Arts
 basket.?ball,Basketball
 judo,Arts martiaux
