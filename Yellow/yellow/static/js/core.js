@@ -26,7 +26,6 @@ FrontController = {
         if(FrontController.isStarted){
             return;
         }
-        //SearchController.load();
         FrontController.loadPage(url, true);
     },
     addActions:function() {
@@ -84,7 +83,7 @@ FrontController = {
         switch( url ){
             case '/':
                 SearchController.show(url, first_page);
-                break;    
+                break;
             default:
                 ActivityController.show(url, first_page);
                 break;
@@ -261,6 +260,7 @@ ActivityController = {
 
     // Inner load : once data is ready
     _load: function(occurence){
+        debugger
         SearchController.$spinner.hide();
         ActivityController._cleanMap();
         ActivityController._drawPointsAndRecenter(occurence);
@@ -383,5 +383,5 @@ Geo = {
 
 $(document).ready(function() {
     FrontController.init();
-})
+});
 })($);

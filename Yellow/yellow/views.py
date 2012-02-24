@@ -21,11 +21,8 @@ def home(request):
 
 @view_config(route_name='activity')
 def activity(request):
-    #return Response(body=request.accept)
-    # if requested json
-    # else : return home template
-    request_type = request.accept.best_match(['application/json', 'text/html'])
-    import pdb; pdb.set_trace()
+    request_type = request.accept.best_match(['application/json',
+                                              'text/html'])
     if request_type == 'applcation/json':
         return Occurence.query_from_id(request.matchdict['id'],
                                        request.params.get('latlon'))
