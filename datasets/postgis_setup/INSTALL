@@ -1,3 +1,41 @@
+Permission setup PostgreSQL
+---------------------------
+
+(Testé sous Ubuntu Oneiric)
+
+Pour les permissions PostgreSQL (voir http://wiki.spry.com/Change_forgotten_PostgreSQL_password):
+
+  $ sudo su postgres
+  $ psql
+  postgres=# ALTER USER postgres WITH ENCRYPTED PASSWORD 'superbob123';
+  ALTER ROLE
+  postgres=# \q
+
+Éditer le fichier pg_hba pour se donner accès via le socket:
+
+  vim /etc/postgresql/9.1/main/pg_hba.conf
+
+Ajouter la ligne:
+
+  host    all             postgres        127.0.0.1/32            md5
+
+sous la ligne:
+
+  local   all             postgres                                peer
+
+Redémarrer:
+
+  # /etc/init.d/postgresql restart
+
+
+Créer la base maintenant:
+
+  
+
+
+Pour créer la base PostGIS
+--------------------------
+
 Voir:
 
   http://postgis.refractions.net/docs/ch02.html
@@ -6,15 +44,27 @@ S'assurer de charger PostGIS dans la base qu'on crée.
 
 Pour moi ça ressemblait à:
 
- createdb -U postgres -W -H 127.0.0.1  yellow_dev
- psql -U postgres -W -h 127.0.0.1
+ (createdb -U postgres -W -h 127.0.0.1  yellow_dev)
+ (psql -U postgres -W -h 127.0.0.1)
+
+ sudo su postgres
+ createdb quebouge_prod
+ psql quebouge_prod
  > \c yellow_dev
  > \i postgis_setup/postgis.sql
  > \i postgis_setup/spatial_ref_sys.sql
  > \i postgis_setup/postgis_comments.sql
 
+Si on update d'un dump (avec pg_dump):
+
+  createdb quebouge_prod
+  psql quebouge_prod -f /tmp/go.sql
+
 Ensuite, ça devrait être bon.  Mettre dans son development.ini, de quoi du genre:
 
- sqlalchemy.url = postgresql://postgres:postgres@127.0.0.1/yellow_dev
+ sqlalchemy.url = postgresql://postgres:postgres@127.0.0.1/yellow_dev?client_encoding=utf8
+
+ATTTTENTION!! Vous allez avoir plein d'erreurs si vous mettez pas 'client_encoding=utf8' en quelque
+part dans l'URL ou dans la configuration de postgres.
 
   - Alexandre Bourget

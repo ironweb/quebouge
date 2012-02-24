@@ -1,0 +1,38 @@
+Installation sous Ubuntu
+------------------------
+
+L'installation est faite via Fabric:
+
+  . env/bin/activate
+  cd deploy
+  fab --list
+
+Pour l'installation (qui utilies puppet et une définition de l'état de départ), exécuteR:
+
+  fab -R prod bootstrap
+
+On pousse les configs:
+
+  fab -R prod push_init_script
+  fab -R prod push_apache_config:restart=True
+
+Ensuite on installe:
+
+  fab -R prod install
+
+Aller installer le fichier .ini dans le répertoire:
+
+  /home/jaunes/quebouge-prod/prod.ini
+
+(et dev pour l'env de dev)
+
+----
+
+Pour updater:
+
+  fab -R prod push
+
+Pour refaire la BD:
+
+  fab -R prod re_populate_database
+
