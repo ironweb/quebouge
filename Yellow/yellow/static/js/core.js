@@ -206,6 +206,7 @@ SearchController = {
 ActivityController = {
     zoom: 11,
     map:false,
+    markersList:[],
     init:function() {
       if(ActivityController.map) return;
       var opts = {
@@ -227,6 +228,8 @@ ActivityController = {
 
     load:function(id) {
       var occurence = OccurencesCache[id];
+
+      ActivityController._cleanMap();
       ActivityController._drawPointsAndRecenter(occurence);
 
       var $activity_page = $('#activity-page');
@@ -282,21 +285,32 @@ ActivityController = {
       var user_geoloc = new google.maps.LatLng(Geo.coords.latitude, Geo.coords.longitude)
       markers.extend(latlng)
       markers.extend(user_geoloc)
-      new google.maps.Marker({
+      var activityMarker = new google.maps.Marker({
         position: latlng,
         map: ActivityController.map,
         title: point.title
       });
-      new google.maps.Marker({
+      ActivityController.markersList.push(activityMarker);
+      var userMarker = new google.maps.Marker({
         icon: '/static/images/pinpoint.png',
         position: user_geoloc,
         map: ActivityController.map
       });
+      ActivityController.markersList.push(userMarker);
       ActivityController.map.fitBounds(markers)
+      
     },
 
     _latLngFromPoint: function(point){
       return new google.maps.LatLng(point.position[0], point.position[1]);
+    },
+
+    _cleanMap:function(){
+        if (ActivityController.markersList.length > 0 ) {
+            for (var i = 0; i < ActivityController.markersList.length; i++ ) {
+                ActivityController.markersList[i].setMap(null);
+            }
+        }    
     }
 
 }
