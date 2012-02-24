@@ -63,6 +63,9 @@
             <strong>Ici, maintenant.</strong>
           </h1>
         </section>
+        <section class="sec">
+          
+        </section>
 
       </header>
       
@@ -131,10 +134,11 @@
     </script>
     <script id="tpl-map-view" type="text/x-mustache-template">
       <div class="colLeft">
-        <h3></h3>
-        <h4></h4>
+        <h3>Conditionnement physique</h3>
+        <h4>École Saint-Sacrament (Gymnase)</h4>
 
-        <ul>
+        <ul class="howtogo">
+          <li>me rendre</li>
           <li><a href="#">à pied</a></li>
           <li><a href="#">transport en commun</a></li>
           <li><a href="#">en vélo</a></li>
@@ -142,7 +146,12 @@
       </div>
       <div class="colRight">
         <p class="when">
-          <strong></strong>
+          aujourd'hui
+          <strong>20:00</strong>
+        </p>
+        <p class="where">
+          distance (km)
+          <strong>1,1</strong>
         </p>
       </div>
     </script>
