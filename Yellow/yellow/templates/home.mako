@@ -30,62 +30,64 @@
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <div role="main" id="container">
+    <div class="wrap">
     <section id="home-page" class="page row current">
-      <header>
-        <section>
-          <h1>
-            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
-            <strong>Ici, maintenant</strong>
-          </h1>
+          <header>
+            <section>
+              <h1>
+                <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+                <strong>Ici, maintenant</strong>
+              </h1>
+            </section>
+            
+            <form action="" class="state-close filter filterbox">
+                  
+                <select name="category" id="lst-category">
+                  % for category in categories:
+                    <option value="${category.id}">${category.name}</option>
+                  % endfor
+                </select>
+    
+            </form>
+          </header>
+          
+         
+          <div class="view">
+            <div class="content"></div>
+          </div>
+          
+    
+          <footer>
+    
+          </footer>
         </section>
-        
-        <form action="" class="state-close filter filterbox">
-              
-            <select name="category" id="lst-category">
-              % for category in categories:
-                <option value="${category.id}">${category.name}</option>
-              % endfor
-            </select>
-
-        </form>
-      </header>
-      
-     
-      <div class="view">
-        <div class="content"></div>
-      </div>
-      
-
-      <footer>
-
-      </footer>
-    </section>
-
-    <section id="activity-page" class="page row">
-      <header>
-        <section>
-          <h1>
-            <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
-            <strong>Ici, maintenant.</strong>
-          </h1>
+    
+        <section id="activity-page" class="page row">
+          <header>
+            <section>
+              <h1>
+                <a href="/"><img src="/static/images/logo.png" title="Québouge"></a>
+                <strong>Ici, maintenant.</strong>
+              </h1>
+            </section>
+            <section class="sec">
+            </section>  
+    
+          </header>
+          
+         
+          <div class="view">
+            <div class="content"></div>
+    
+            <div id="map-canvas"></div>
+          </div>
+          
+    
+          <footer>
+    
+          </footer>
         </section>
-        <section class="sec">
-        </section>  
-
-      </header>
-      
-     
-      <div class="view">
-        <div class="content"></div>
-
-        <div id="map-canvas"></div>
       </div>
-      
-
-      <footer>
-
-      </footer>
-    </section>
   </div>
 % if js_mini.enabled:
   <script src="${js_mini.compiled_url()}"></script>
@@ -139,7 +141,6 @@
     <script id="tpl_map_view" type="text/html">
       <div class="colLeft">
             <h3>{title}</h3>
-            <p class="address">{location_info}</p>
             <p class="address">{location}</p>
             <p class="phone"><span>Contacter la ville:</span><a href="tel:{arrond_phone}">{arrond_phone}</a></p>
       </div>
@@ -179,7 +180,7 @@
 
 
     <script id="tpl_map_view_howtogo" type="text/html">
-        <a class="back">back</a>
+        <a class="back" href="/">back</a>
         <ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?saddr={saddr}&daddr={location_url_safe}&oq=My+lo">
           <li><a href="#" data-dirflg="" class="car">en voiture</a></li>
           <li><a href="#" data-dirflg="w" class="foot">à pied</a></li>

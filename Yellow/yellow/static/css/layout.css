@@ -15,6 +15,14 @@ body{
     min-height: 679px;
     width: 100%;
 }
+
+#container>.wrap{
+    max-width: 768px;
+margin: 0 auto;
+width: 100%;
+height: 100%;
+position: relative;
+}
 .page{
     min-height: 679px;
     position:absolute;
@@ -257,7 +265,7 @@ form.filter select, form.filter input{
     width:100%;
 }
 #activity-page .colLeft{
-    width:70%;
+    width:67%;
     border-right:1px solid #636363;
     display:table-cell;
     padding:10px;
@@ -280,7 +288,7 @@ form.filter select, form.filter input{
 #activity-page .colLeft p.phone{
     overflow:hidden;
     float:right;
-    margin-top:20px;
+    margin-top:5px;
 }
 #activity-page .colLeft p.phone span{
     display:block;

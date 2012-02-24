@@ -173,7 +173,7 @@ class Activity(Base):
                    price=("%.2f $" % row.price) if row.price else 'GRATUIT',
                    distance="%0.1f" % (row.distance_1 / 1000.0),
                    categ_name=row.category_name,
-                   categ_icon=row.icon_name,
+                   categ_icon=row.icon_name.strip(),
                    arrond_name=row.arrondissement_name,
                    arrond_phone=nice_phone,
                    )

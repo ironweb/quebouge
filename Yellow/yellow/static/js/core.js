@@ -195,7 +195,7 @@ SearchController = {
     },
     show:function() {
 
-        var $outElement = $('#container>.page.current'),
+        var $outElement = $('#container .wrap>.page.current'),
             $inElement  = $('#home-page');
         $outElement.css("top", -window.pageYOffset);
         $inElement.addClass('current').css("top", 0);
@@ -209,7 +209,6 @@ SearchController = {
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
             $inElement.removeClass('slideright in').css( 'webkitTransform', '')
-
            // ActivityController.__init();
         },250);
         
@@ -234,6 +233,7 @@ ActivityController = {
         zoomControl: false,
         scrollwheel: false,
         scaleControl: false,
+        mapTypeId: 'quebouge',
         panControl: false,
         overviewMapControl: false,
         mapTypeControl: false,
@@ -242,6 +242,20 @@ ActivityController = {
       ActivityController.map_canvas = $("#map-canvas");
       ActivityController.map = new google.maps.Map(
         ActivityController.map_canvas[0], opts);
+
+        var styledMapType = new google.maps.StyledMapType([
+          {
+            stylers: [
+              { invert_lightness: true },
+              { visibility: "on" },
+              { lightness: 8 },
+              { hue: "#00f6ff" },
+              { saturation: -98 },
+              { gamma: 1.58 }
+            ]
+          }
+        ]);
+        ActivityController.map.mapTypes.set('quebouge', styledMapType);
     },
 
     load:function(id) {
@@ -267,13 +281,13 @@ ActivityController = {
           window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
         });
       });
-
+      google.maps.event.trigger(ActivityController.map, 'resize');
 
     },
 
     show:function(url) {
 
-        var $outElement = $('#container>.page.current'),
+        var $outElement = $('#container .wrap>.page.current'),
             $inElement  = $('#activity-page').addClass('current slideleft in').css("top", 0);
         
         $outElement.css("top", -window.pageYOffset);
@@ -301,16 +315,34 @@ ActivityController = {
       var markers = new google.maps.LatLngBounds();
       var latlng = ActivityController._latLngFromPoint(point);
       var user_geoloc = new google.maps.LatLng(Geo.coords.latitude, Geo.coords.longitude)
+      
+
       markers.extend(latlng)
       markers.extend(user_geoloc)
+
+      var icon_activity = new google.maps.MarkerImage(
+          '/static/images/pinpoint/pin_'+point.categ_icon,
+          // This marker is 20 pixels wide by 32 pixels tall.
+          new google.maps.Size(22, 30)
+      );
+      
       var activityMarker = new google.maps.Marker({
         position: latlng,
+        icon:icon_activity,
         map: ActivityController.map,
         title: point.title
       });
+      console.debug(activityMarker)
       ActivityController.markersList.push(activityMarker);
+
+      var icon_me = new google.maps.MarkerImage(
+          '/static/images/pinpoint/pin_me.png',
+          // This marker is 20 pixels wide by 32 pixels tall.
+          new google.maps.Size(24, 24)
+      );
+
       var userMarker = new google.maps.Marker({
-        icon: '/static/images/pinpoint.png',
+        icon: icon_me,
         position: user_geoloc,
         map: ActivityController.map
       });
