@@ -168,11 +168,17 @@
     </script>
 
     <script id="tpl-map-view-howtogo" type="text/x-mustache-template">
-        <a class="back">back</a>
+        <a class="button bordered back">
+            <span class="pointer"></span>
+            <span class="content">
+                <span class="label">retour</span>
+            </span>
+        </a>
         <ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?daddr={{location_url_safe}}&oq=My+lo">
-          <li><a href="#" data-dirflg="w">à pied</a></li>
-          <li><a href="#" data-dirflg="r">transport en commun</a></li>
-          <li><a href="#" data-dirflg="b">en vélo</a></li>
+          <li><a href="#" data-dirflg="w" class="foot">à pied</a></li>
+          <li><a href="#" data-dirflg="r" class="bus">transport en commun</a></li>
+          <li><a href="#" data-dirflg="b" class="bike">en vélo</a></li>
+          <li><a href="#" data-dirflg="b" class="car">en auto</a></li>
         </ul>
     </script>
   </div>
