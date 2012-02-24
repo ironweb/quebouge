@@ -35,6 +35,13 @@ body{
     background:#f2f2f2;
 }
 
+.share_button {
+  display: none;
+}
+.phonegap .share_button {
+  display: block;
+}
+
 .page:not(.current){
     display: none;
 }
