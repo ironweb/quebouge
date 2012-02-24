@@ -138,7 +138,7 @@ header a.toggle-filters{
 }
 
 
-form.filter{
+form.filter, header section.sec{
     padding:10px 0;
     display:block;
     background: #d3d2d2; /* Old browsers */
@@ -285,9 +285,14 @@ form.filter select, form.filter input{
     font-size:14px;
     padding:5px 0 0 20px;
 }
-
+#activity-page .back{
+    display: inline-block;
+    float:left;
+}
 #activity-page .howtogo{
     float:right;
+    margin:0;
+    padding:0;
     margin-right:10px;
 }
 #activity-page .howtogo li{
@@ -301,10 +306,9 @@ form.filter select, form.filter input{
 #activity-page .howtogo a{
     display: inline-block;
     border:2px solid #84e0fe;
-    width:20px;
-    height:20px;
+    width:30px;
+    height:30px;
     text-indent:-99999px;
-     
 
     background: #ade8fb; /* Old browsers */
     background: -moz-linear-gradient(top, #ade8fb 0%, #84e0fe 100%); /* FF3.6+ */

@@ -215,6 +215,7 @@ ActivityController = {
 
       //load template with data
       $('#activity-page').find('div.content').html( Template.render('map-view', occurence) );
+      $('#activity-page').find('section.sec').html( Template.render('map-view-howtogo', occurence) );
     },
 
     show:function(url) {

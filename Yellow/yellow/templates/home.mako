@@ -64,8 +64,7 @@
           </h1>
         </section>
         <section class="sec">
-          
-        </section>
+        </section>  
 
       </header>
       
@@ -137,12 +136,6 @@
         <h3>Conditionnement physique</h3>
         <h4>École Saint-Sacrament (Gymnase)</h4>
 
-        <ul class="howtogo">
-          <li>me rendre</li>
-          <li><a href="#">à pied</a></li>
-          <li><a href="#">transport en commun</a></li>
-          <li><a href="#">en vélo</a></li>
-        </ul>
       </div>
       <div class="colRight">
         <p class="when">
@@ -154,6 +147,17 @@
           <strong>1,1</strong>
         </p>
       </div>
+    </script>
+
+    <script id="tpl-map-view-howtogo" type="text/x-mustache-template">
+        <a class="back">back</a>
+        <ul class="howtogo">
+          <li>me rendre</li>
+          <li><a href="#">à pied</a></li>
+          <li><a href="#">transport en commun</a></li>
+          <li><a href="#">en vélo</a></li>
+          <li><a href="#">en auto</a></li>
+        </ul>
     </script>
   </div>
 </body>
