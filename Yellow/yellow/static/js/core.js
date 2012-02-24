@@ -22,13 +22,11 @@ FrontController = {
 
         //start Application from Geo object (after we get the geo position)
     },
-    start:function() {
+    start:function(url) {
         if(FrontController.isStarted){
             return;
         }
-
-        //add future router here
-        SearchController.load();      
+        FrontController.loadPage(url, true);
     },
     addActions:function() {
         
@@ -47,12 +45,12 @@ FrontController = {
             e.preventDefault();
             e.stopPropagation();
 
-            if( Modernizr.history ){
+            if( Modernizr.history){
                 History.pushState(null, this.title, '/');
             }else{
                 FrontController.loadPage( "/" );
             }
-            
+
         });
 
         if(Modernizr.history){
@@ -77,16 +75,16 @@ FrontController = {
             }
         });
     },
-    loadPage:function( url ){
+    loadPage:function( url, first_page ){
 
         url = FrontController.clearUrl(url);
 
         switch( url ){
             case '/':
-                SearchController.show();
-                break;    
+                SearchController.show(url, first_page);
+                break;
             default:
-                ActivityController.show(url);
+                ActivityController.show(url, first_page);
                 break;
         }
 
@@ -114,6 +112,7 @@ Layout = {
 
 SearchController = {
     $form:false,
+    _loaded: false,
     init:function(){
         SearchController.$form = $('form');
         SearchController.$form.bind('submit', SearchController.doSubmit);
@@ -124,6 +123,7 @@ SearchController = {
         SearchController.$dropdown.bind('change', SearchController.onChangeDropdown);
     },
     load:function(){
+        SearchController._loaded = true;
         SearchController.$form.trigger('submit');
     },
     addSpinner:function(){
@@ -192,14 +192,17 @@ SearchController = {
             //Layout.adjustHeight();
         });
     },
-    show:function() {
+    show:function(url, first_page) {
+        if(first_page || !SearchController._loaded) SearchController.load();
 
         var $outElement = $('#container .wrap>.page.current'),
             $inElement  = $('#home-page');
+
+        if($inElement.css('display') == 'block') return;
+
         $outElement.css("top", -window.pageYOffset);
         $inElement.addClass('current').css("top", 0);
         $outElement.addClass('slideright out');
-        //$('#home-page').addClass('current');
         scrollTo(0, 0);
 
         var toStart = 'translateX(' + '-' + window.innerWidth + 'px)';
@@ -208,7 +211,6 @@ SearchController = {
         setTimeout(function(){
             $outElement.removeClass('current slideright out');
             $inElement.removeClass('slideright in').css( 'webkitTransform', '')
-           // ActivityController.__init();
         },250);
         
     },
@@ -259,36 +261,49 @@ ActivityController = {
         ActivityController.map.mapTypes.set('quebouge', styledMapType);
     },
 
-    load:function(id) {
-      var occurence = OccurencesCache[id];
+    load:function(url) {
+        var id = ActivityController._urlToId(url)
+        var occurence = OccurencesCache[id];
+        if(occurence){
+            ActivityController._load(occurence);
+        }
+        else{
+            var latlon = Geo.getPosition();
+            url += '?latlon=' + latlon.latitude + ',' + latlon.longitude;
+            $.getJSON(url, function(occurence){
+                ActivityController._load(occurence);
+            });
+        }
+    },
 
-      ActivityController._cleanMap();
-      ActivityController._drawPointsAndRecenter(occurence);
+    // Inner load : once data is ready
+    _load: function(occurence){
+        SearchController.$spinner.hide();
+        ActivityController._cleanMap();
+        ActivityController._drawPointsAndRecenter(occurence);
 
-      var $activity_page = $('#activity-page');
-      dust.render('tpl_map_view', occurence, function(err, out) {
-        $activity_page.find('div.content').html(out);
-      });
-      // load template with data
-      var occurence_tmpl = $.extend({}, occurence);
-      occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
-      occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
-      dust.render('tpl_map_view_howtogo', occurence_tmpl, function(err, out) {
-        $activity_page.find('section.sec').html(out);
-        // Bind direction clicks
-        var $direction_links = $('#direction-links');
-        $direction_links.delegate('a', 'click', function(e){
-          e.preventDefault();
-          window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
+        var $activity_page = $('#activity-page');
+        dust.render('tpl_map_view', occurence, function(err, out) {
+          $activity_page.find('div.content').html(out);
         });
-      });
-      //google.maps.event.trigger(ActivityController.map, 'resize');
-
+        // load template with data
+        var occurence_tmpl = $.extend({}, occurence);
+        occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
+        occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
+        dust.render('tpl_map_view_howtogo', occurence_tmpl, function(err, out) {
+          $activity_page.find('section.sec').html(out);
+          // Bind direction clicks
+          var $direction_links = $('#direction-links');
+          $direction_links.delegate('a', 'click', function(e){
+            e.preventDefault();
+            window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
+          });
+        });
     },
 
     show:function(url) {
 
-        var $outElement = $('#container .wrap>.page.current'),
+        var $outElement = $('#container>.page.current'),
             $inElement  = $('#activity-page').addClass('current slideleft in').css("top", 0);
         
         $outElement.css("top", -window.pageYOffset);
@@ -298,14 +313,12 @@ ActivityController = {
         var toStart = 'translateX(' + window.innerWidth + 'px)';
         $inElement.css('webkitTransform', toStart);
 
-        setTimeout(function(){
-            $outElement.removeClass('current slideleft out');
-            $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
-
-            ActivityController.init();
-            ActivityController.load(ActivityController._urlToId(url));
-        },250);
-
+            setTimeout(function(){
+                $outElement.removeClass('current slideleft out');
+                $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
+                show_page();
+            },250);
+        }
     },
 
     _urlToId: function(url){
@@ -387,8 +400,8 @@ Geo = {
         navigator.geolocation.getCurrentPosition(function(data){
             Geo.coords = data.coords;
             FrontController.ready = true;
-            FrontController.start();                
-        });   
+            FrontController.start( window.location.pathname );
+        });
     },
     getPosition:function() {
         if (!Geo.coords) {
@@ -402,5 +415,5 @@ Geo = {
 
 $(document).ready(function() {
     FrontController.init();
-})
+});
 })($);

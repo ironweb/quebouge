@@ -31,7 +31,7 @@
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <div role="main" id="container">
     <div class="wrap">
-    <section id="home-page" class="page row current">
+    <section id="home-page" class="page row">
           <header>
             <section>
               <h1>
@@ -115,7 +115,7 @@
       <ol>
           {#activities}
           <li class="occurence">
-            <a href="/show/{occurence_id}">
+            <a href="/activity/{occurence_id}">
               <figure class="icon_price">
                 {>partial_icon_price/}
               </figure>

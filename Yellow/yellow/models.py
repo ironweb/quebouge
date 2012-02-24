@@ -64,7 +64,6 @@ class Activity(Base):
     arrondissement_id = Column(Integer, ForeignKey("arrondissements.id"))
     arrondissement = relationship(Arrondissement)
 
-    # joinedload
     @staticmethod
     def query_from_params(params):
         """Requête principale de recherche pour avoir les activités et
@@ -83,26 +82,9 @@ class Activity(Base):
             raise ValueError('Invalid input : both `radius` and `bb` were submitted.')
 
         db = DBSession()
+
         latlon = lat_lon_to_point(params['latlon'])
-        distance = functions.distance(Activity.position,
-                                      latlon)
-        joins = Occurence.__table__.join(Activity.__table__) \
-                  .join(Category.__table__).join(Arrondissement.__table__)
-        distance = "(ST_Distance_Sphere(activities.position, GeomFromText('%s', 4326)) * 1.2) as distance_1" % latlon
-        q = sql.select([Occurence.id, Occurence.dtstart,
-                        Occurence.dtend,
-                        Activity.title, Activity.location,
-                        Activity.location_info, Activity.position,
-                        Activity.price, distance,
-                        Category.icon_name,
-                        "categories.name as category_name",
-                        "arrondissements.name as arrondissement_name",
-                        "arrondissements.phone as arrondissement_phone",
-                       ],
-                       from_obj=joins)
-        q = q.where(Occurence.activity_id == Activity.id) \
-             .where(Activity.category_id == Category.id) \
-             .where(Arrondissement.id == Activity.arrondissement_id)
+        q = Activity._create_query_with_fields(latlon)
 
         # By bounding-box
         if 'bb' in params:
@@ -179,7 +161,31 @@ class Activity(Base):
                    )
         out.update(Activity._format_date(row, past))
         return out
-        
+
+    @staticmethod
+    def _create_query_with_fields(latlon):
+        distance = functions.distance(Activity.position,
+                                      latlon)
+        joins = Occurence.__table__.join(Activity.__table__) \
+                  .join(Category.__table__).join(Arrondissement.__table__)
+        distance = "(ST_Distance_Sphere(activities.position, GeomFromText('%s', 4326)) * 1.2) as distance_1" % latlon
+        q = sql.select([Occurence.id, Occurence.dtstart,
+                        Occurence.dtend,
+                        Activity.title, Activity.location,
+                        Activity.location_info, Activity.position,
+                        Activity.price, distance,
+                        Category.icon_name,
+                        "categories.name as category_name",
+                        "arrondissements.name as arrondissement_name",
+                        "arrondissements.phone as arrondissement_phone",
+                       ],
+                       from_obj=joins)
+        q = q.where(Occurence.activity_id == Activity.id) \
+             .where(Activity.category_id == Category.id) \
+             .where(Arrondissement.id == Activity.arrondissement_id)
+
+        return q
+
     @staticmethod
     def _format_date(row, past):
         today = datetime.date.today()
@@ -258,6 +264,15 @@ class Occurence(Base):
                     position=(point.x, point.y),
                     price=self.price,
                     )
+
+    @staticmethod
+    def query_from_id(id, latlon_str):
+        latlon = lat_lon_to_point(latlon_str)
+        q = Activity._create_query_with_fields(latlon)
+        q = q.where(Occurence.id == id)
+        # @todo : set proper past true/false
+        row = DBSession().execute(q.limit(1)).fetchone()
+        return Activity._row_result_to_dict(row, past=False)
 
 def bb_to_polyon(bb_str):
     x1, y1, x2, y2  = bb_str.split(',')
