@@ -45,12 +45,12 @@ FrontController = {
             e.preventDefault();
             e.stopPropagation();
 
-            if( Modernizr.history ){
-                History.pushState({state:1}, this.title, '/');
+            if( Modernizr.history){
+                History.pushState(null, this.title, '/');
             }else{
                 FrontController.loadPage( "/" );
             }
-            
+
         });
 
         if(Modernizr.history){
@@ -113,6 +113,7 @@ Layout = {
 
 SearchController = {
     $form:false,
+    _loaded: false,
     init:function(){
         SearchController.$form = $('form');
         SearchController.$form.bind('submit', SearchController.doSubmit);
@@ -123,6 +124,7 @@ SearchController = {
         SearchController.$dropdown.bind('change', SearchController.onChangeDropdown);
     },
     load:function(){
+        SearchController._loaded = true;
         SearchController.$form.trigger('submit');
     },
     addSpinner:function(){
@@ -192,7 +194,7 @@ SearchController = {
         });
     },
     show:function(url, first_page) {
-        if(first_page) SearchController.load();
+        if(first_page || !SearchController._loaded) SearchController.load();
 
         var $outElement = $('#container>.page.current'),
             $inElement  = $('#home-page');
