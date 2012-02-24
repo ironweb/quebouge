@@ -531,9 +531,10 @@ form.filter select, form.filter input{
 }
 
 #map-canvas{
-  width: 300px;
   height: 300px;
+  width: 100%;
 }
+
 
 /* Transition/animation (inspired by jQTouch) */
 .in,.out{

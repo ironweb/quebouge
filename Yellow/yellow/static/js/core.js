@@ -195,19 +195,23 @@ ActivityController = {
     init:function() {
       if(ActivityController.map) return;
       var opts = {
-        zoom: ActivityController.zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: new google.maps.LatLng(0,0),
-        streetViewControl:false
+        disableDefaultUI: false,
+        streetViewControl:false,
+        zoomControl: false,
+        scrollwheel: false,
+        scaleControl: false,
+        panControl: false,
+        overviewMapControl: false,
+        mapTypeControl: false
       };
+      ActivityController.map_canvas = $("#map-canvas");
       ActivityController.map = new google.maps.Map(
-        document.getElementById("map-canvas"), opts);
+        ActivityController.map_canvas[0], opts);
     },
 
     load:function(id) {
-      // TODO Map geo coords as user.
-      // Geo.coords
-      // @todo : DRAW Activity
       var occurence = OccurencesCache[id];
       ActivityController._drawPointsAndRecenter(occurence);
 
@@ -228,6 +232,8 @@ ActivityController = {
         e.preventDefault();
         window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
       });
+
+
     },
 
     show:function(url) {
