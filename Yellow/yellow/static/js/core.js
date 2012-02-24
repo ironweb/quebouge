@@ -193,9 +193,7 @@ ActivityController = {
     zoom: 11,
     map:false,
     init:function() {
-      if(ActivityController.map){
-          return;
-      }  
+      if(ActivityController.map) return;
       var opts = {
         zoom: ActivityController.zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -214,7 +212,16 @@ ActivityController = {
       ActivityController._drawPointAndRecenter(occurence);
 
       //load template with data
-      $('#activity-page').find('div.content').html( Template.render('map-view', occurence) );
+      var occurence_tmpl = $.extend({}, occurence);
+      occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
+      $('#activity-page').find('div.content').html( Template.render('map-view', occurence_tmpl) );
+
+      var $direction_links = $('#direction-links');
+      $direction_links.delegate('a', 'click', function(e){
+        e.preventDefault();
+        debugger
+        window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
+      });
     },
 
     show:function(url) {

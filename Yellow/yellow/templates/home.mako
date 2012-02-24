@@ -137,11 +137,10 @@
         <h3>Conditionnement physique</h3>
         <h4>École Saint-Sacrament (Gymnase)</h4>
 
-        <ul class="howtogo">
-          <li>me rendre</li>
-          <li><a href="#">à pied</a></li>
-          <li><a href="#">transport en commun</a></li>
-          <li><a href="#">en vélo</a></li>
+				<ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?daddr={{location_url_safe}}&oq=My+lo">
+          <li><a href="#" data-dirflg="w">à pied</a></li>
+          <li><a href="#" data-dirflg="r">transport en commun</a></li>
+          <li><a href="#" data-dirflg="b">en vélo</a></li>
         </ul>
       </div>
       <div class="colRight">
