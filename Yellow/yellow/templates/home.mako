@@ -172,10 +172,10 @@
     <script id="tpl-map-view-howtogo" type="text/x-mustache-template">
         <a class="back">back</a>
 				<ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?saddr={{saddr}}&daddr={{location_url_safe}}&oq=My+lo">
-          <li><a href="#" data-dirflg="">en voiture</a></li>
-          <li><a href="#" data-dirflg="w">à pied</a></li>
-          <li><a href="#" data-dirflg="r">transport en commun</a></li>
-          <li><a href="#" data-dirflg="b">en vélo</a></li>
+          <li><a href="#" data-dirflg="" class="car">en voiture</a></li>
+          <li><a href="#" data-dirflg="w" class="foot">à pied</a></li>
+          <li><a href="#" data-dirflg="r" class="bus">transport en commun</a></li>
+          <li><a href="#" data-dirflg="b" class="bike">en vélo</a></li>
         </ul>
     </script>
   </div>
