@@ -612,3 +612,16 @@ form.filter select, form.filter input{
 @media handheld, only screen and (min-width: 767px) {
     
 }
+
+@media handheld, only screen and (max-width: 480px) {
+    header h1{
+        width: 280px;
+    }    
+    header h1 img{
+        width:145px;
+    }
+    header section strong{
+        font-size:14px;
+    }
+}
+
