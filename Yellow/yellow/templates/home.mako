@@ -91,6 +91,7 @@
   <script src="${js_mini.compiled_url()}"></script>
 % else:
   <script src="/static/js/libs/zepto.min.js"></script>
+  <script src="/static/js/libs/native.history.js"></script>
   <script src="/static/js/libs/dust-full-0.3.0.js"></script>
   <script src="/static/js/libs/spin.min.js"></script>
   <script src="/static/js/core.js"></script>
