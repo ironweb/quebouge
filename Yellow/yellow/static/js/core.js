@@ -260,7 +260,6 @@ ActivityController = {
 
     // Inner load : once data is ready
     _load: function(occurence){
-        debugger
         SearchController.$spinner.hide();
         ActivityController._cleanMap();
         ActivityController._drawPointsAndRecenter(occurence);
