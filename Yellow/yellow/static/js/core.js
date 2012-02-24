@@ -409,6 +409,12 @@ OrientationMap = {
         if(!OrientationMap.results.init){
             OrientationMap.results.map = OrientationMap.getMapOverlayObject(OrientationMap.results.$obj[0]);
         }
+
+        //set center on geo user
+        var user_latlng = new google.maps.LatLng(Geo.coords.latitude, Geo.coords.longitude)
+        OrientationMap.results.map.setCenter(user_latlng);
+
+
         OrientationMap.results.isopen = true;
         //clear cache
         for(var x=0;x<OrientationMap.results.markersList.length;x++){
@@ -419,11 +425,16 @@ OrientationMap = {
 
         //load all occurences in map
         var bounds = new google.maps.LatLngBounds();
-        
+        var total=0;
+        var added = [];
         $.each(OccurencesCache, function(index,element){
+            if(added[element.position[0].toString()]){
+                return;
+            }
+            added[element.position[0].toString()] = true;
 
             var latlng = new google.maps.LatLng(element.position[0], element.position[1])
-            bounds.extend(latlng)
+            total++;
 
             var marker = new google.maps.Marker({
                 position: latlng,
@@ -456,8 +467,9 @@ OrientationMap = {
     },
     resize:function(){
         if(OrientationMap.results.isopen){
-            google.maps.event.trigger(OrientationMap.results.map, 'resize')
+            
             OrientationMap.results.map.fitBounds(OrientationMap.results.bounds)
+            google.maps.event.trigger(OrientationMap.results.map, 'resize')
         }
         
     },
