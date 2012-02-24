@@ -275,6 +275,7 @@ ActivityController = {
         ActivityController.map.mapTypes.set('quebouge', styledMapType);
     },
     adjustMap:function() {
+        if(!ActivityController.map_canvas) return;
         ActivityController.map_canvas.width($(document).width())
         google.maps.event.trigger(ActivityController.map, 'resize')  
     },
