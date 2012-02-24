@@ -317,11 +317,14 @@ ActivityController = {
                 $outElement.removeClass('current slideleft out');
                 $inElement.removeClass('slideleft in').css( 'webkitTransform', '')
                 show_page();
-            },250);
+        },250);
+
     },
-    _urlToId:function(url){
-        return '/'    
+
+    _urlToId: function(url){
+      return url.split('/').pop();
     },
+
     _drawPointsAndRecenter: function(point){
       var bounds = new google.maps.LatLngBounds();
       var latlng = ActivityController._latLngFromPoint(point);
