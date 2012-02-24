@@ -45,6 +45,12 @@ class Category(Base):
     parent = relationship("Category")
     icon_name = Column(Unicode(255))
 
+class Arrondissement(Base):
+    __tablename__ = "arrondissements"
+    id = Column(Integer, primary_key=True)
+    phone = Column(Unicode(35))
+    name = Column(Unicode(255))
+
 class Activity(Base):
     __tablename__= "activities"
     id = Column(Integer, primary_key=True)
@@ -55,6 +61,8 @@ class Activity(Base):
     location_info = Column(Unicode(255))
     position = GeometryColumn(Point(2))
     price = Column(Float)
+    arrondissement_id = Column(Integer, ForeignKey("arrondissements.id"))
+    arrondissement = relationship(Arrondissement)
 
     # joinedload
     @staticmethod
@@ -78,16 +86,22 @@ class Activity(Base):
         latlon = lat_lon_to_point(params['latlon'])
         distance = functions.distance(Activity.position,
                                       latlon)
-        joins = Occurence.__table__.join(Activity.__table__).join(Category.__table__)
+        joins = Occurence.__table__.join(Activity.__table__) \
+                  .join(Category.__table__).join(Arrondissement.__table__)
         q = sql.select([Occurence.id, Occurence.dtstart,
                         Occurence.dtend,
                         Activity.title, Activity.location,
                         Activity.location_info, Activity.position,
                         Activity.price, distance,
-                        Category.icon_name, Category.name],
+                        Category.icon_name,
+                        "categories.name as category_name",
+                        "arrondissements.name as arrondissement_name",
+                        "arrondissements.phone as arrondissement_phone",
+                       ],
                        from_obj=joins)
         q = q.where(Occurence.activity_id == Activity.id) \
-             .where(Activity.category_id == Category.id)
+             .where(Activity.category_id == Category.id) \
+             .where(Arrondissement.id == Activity.arrondissement_id)
 
         # By bounding-box
         if 'bb' in params:
@@ -144,6 +158,8 @@ class Activity(Base):
         point = wkb.loads(str(row.st_asbinary))
         delta = abs(row.dtend - row.dtstart)
         duration = delta.seconds + delta.days * 84600
+        phone = row.arrondissement_phone
+        nice_phone = "+1-%s-%s-%s" % (phone[:3], phone[3:6], phone[6:])
         out = dict(occurence_id=row.id,
                    dtstart=row.dtstart.strftime("%Y-%m-%d %H:%M:%S"),
                    duration=duration,
@@ -153,8 +169,10 @@ class Activity(Base):
                    position=(point.x, point.y),
                    price=("%.2f $" % row.price) if row.price else 'GRATUIT',
                    distance="%0.1f" % row.distance_1,
-                   categ_name=row.name,
+                   categ_name=row.category_name,
                    categ_icon=row.icon_name,
+                   arrond_name=row.arrondissement_name,
+                   arrond_phone=nice_phone,
                    )
         out.update(Activity._format_date(row, past))
         return out
@@ -235,7 +253,8 @@ class Occurence(Base):
                     location=self.activity.location,
                     location_info=self.activity.location_info,
                     position=(point.x, point.y),
-                    price=self.price)
+                    price=self.price,
+                    )
 
 def bb_to_polyon(bb_str):
     x1, y1, x2, y2  = bb_str.split(',')

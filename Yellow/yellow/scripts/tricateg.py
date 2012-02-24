@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 class DatabaseNode(object):
-    def __init__(self, node):
+    def __init__(self, node, phone_arrondissements):
         self.raw_node = node
         self.node = self._to_dict()
 
@@ -22,6 +22,11 @@ class DatabaseNode(object):
         self.dt_end = datetime.strptime(end, full_format)
         self.dt_until = datetime.strptime(until, full_format)
         self.duration = abs(self.dt_end - self.dt_start)
+
+        # Détails de l'arrondissement
+        arrond = self.node['ARRONDISSEMENT']
+        self.arrondissement_name = arrond
+        self.arrondissement_phone = phone_arrondissements[arrond]
 
     @property
     def description(self):
@@ -108,6 +113,14 @@ def import_xml_data():
         chk = MotChecker(pattern_categ[0], None if len(pattern_categ) < 2 else pattern_categ[1])
         check_list.append(chk)
 
+    # Load les numéros des arrondissements
+    phone_arrondissements = {}
+    for arrond in open('../datasets/ARRONDISSEMENTS_TELS.txt'):
+        if not arrond or arrond.startswith('#'):
+            continue
+        match, phone = arrond.split(',')
+        phone_arrondissements[match.decode('utf-8')] = phone.strip()
+
     doc1 = etree.parse("../datasets/LOISIR_PAYANT.XML")
     doc2 = etree.parse("../datasets/LOISIR_LIBRE.XML")
     root1 = doc1.getroot()
@@ -117,7 +130,7 @@ def import_xml_data():
     res_by_mot = {}
     from itertools import chain
     for activity in chain(root1.getchildren(), root2.getchildren()):
-        node = DatabaseNode(activity)
+        node = DatabaseNode(activity, phone_arrondissements)
         # On skip les activités payantes ?
         if node.tarif > 15:
             continue
