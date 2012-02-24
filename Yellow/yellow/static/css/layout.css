@@ -28,7 +28,7 @@ body{
     position: relative;
 }
 .page{
-    min-height: 679px;
+    min-height: 500px;
     position:absolute;
     top:0;
     left:0;
