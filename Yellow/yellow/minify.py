@@ -90,6 +90,7 @@ class JsMinify(Minify):
                  ('js', 'core.js'),
                  ('js', 'libs', 'dust-full-0.3.0.js'),
                  ('js', 'libs', 'spin.min.js'),
+                 ('js', 'libs', 'native.history.js'),
                  ]
     type = 'js'
     ext = '.min.js'
