@@ -30,8 +30,12 @@ class DatabaseNode(object):
 
     @property
     def description(self):
-        return self._extract_bigger_field(self.node['DESCRIPTION'],
-                                          self.node['DESCRIPTION_ACT'])
+        desc = self.node['DESCRIPTION']
+        desc_act = self.node['DESCRIPTION_ACT']
+        lower_desc = desc
+        if all(word in desc for word in ('bain', 'libre', 'pour', 'tous')):
+            return desc
+        return self._extract_bigger_field(desc, desc_act)
 
     def _to_dict(self):
         ret = {}
@@ -61,15 +65,22 @@ class DatabaseNode(object):
     @property
     def location_info(self):
         return self._extract_bigger_field(self.node['LIEU_1'],
-                                          self.node['LIEU_2'])
+                                          self.node['LIEU_2'],
+                                          takelong=True)
 
-    def _extract_bigger_field(self, v1, v2):
+    def _extract_bigger_field(self, v1, v2, takelong=False):
         """Returns the biggest of two string if one is contained within the
-        other. Concatenate both otherwise"""
+        other. Concatenate both otherwise
+
+        If we specify ``takelong``, that means that we'll take the longest
+        instead of concatenating
+        """
         if v1 in v2:
             desc = v2
         elif v2 in v1:
             desc = v1
+        elif takelong:
+            return v1 if len(v1) > len(v2) else v2
         else:
             desc = "%s, %s" % (v1, v2)
         return desc
