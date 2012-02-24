@@ -195,21 +195,25 @@ ActivityController = {
     init:function() {
       if(ActivityController.map) return;
       var opts = {
-        zoom: ActivityController.zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: new google.maps.LatLng(0,0),
-        streetViewControl:false
+        disableDefaultUI: false,
+        streetViewControl:false,
+        zoomControl: false,
+        scrollwheel: false,
+        scaleControl: false,
+        panControl: false,
+        overviewMapControl: false,
+        mapTypeControl: false
       };
+      ActivityController.map_canvas = $("#map-canvas");
       ActivityController.map = new google.maps.Map(
-        document.getElementById("map-canvas"), opts);
+        ActivityController.map_canvas[0], opts);
     },
 
     load:function(id) {
-      // TODO Map geo coords as user.
-      // Geo.coords
-      // @todo : DRAW Activity
       var occurence = OccurencesCache[id];
-      ActivityController._drawPointAndRecenter(occurence);
+      ActivityController._drawPointsAndRecenter(occurence);
 
       var $activity_page = $('#activity-page');
       $activity_page.find('div.content').html( Template.render('map-view', occurence_tmpl) );
@@ -228,6 +232,8 @@ ActivityController = {
         e.preventDefault();
         window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
       });
+
+
     },
 
     show:function(url) {
@@ -248,15 +254,23 @@ ActivityController = {
       return url.split('/').pop();
     },
 
-    _drawPointAndRecenter: function(point){
-      latlng = ActivityController._latLngFromPoint(point);
+    _drawPointsAndRecenter: function(point){
+      var markers = new google.maps.LatLngBounds();
+      var latlng = ActivityController._latLngFromPoint(point);
+      var user_geoloc = new google.maps.LatLng(Geo.coords.latitude, Geo.coords.longitude)
+      markers.extend(latlng)
+      markers.extend(user_geoloc)
       new google.maps.Marker({
         position: latlng,
         map: ActivityController.map,
         title: point.title
       });
-      ActivityController.map.setCenter(
-        latlng, ActivityController.zoom);
+      new google.maps.Marker({
+        icon: '/static/images/pinpoint.png',
+        position: user_geoloc,
+        map: ActivityController.map
+      });
+      ActivityController.map.fitBounds(markers)
     },
 
     _latLngFromPoint: function(point){
