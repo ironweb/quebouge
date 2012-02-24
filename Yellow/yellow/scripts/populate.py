@@ -17,6 +17,7 @@ from ..models import (
     Activity,
     Occurence,
     Category,
+    Arrondissement,
     )
 from geopy import geocoders
 
@@ -42,24 +43,50 @@ class DatabasePopulator(object):
         setup_logging(config_uri)
         settings = get_appsettings(config_uri)
         self.engine = engine_from_config(settings, 'sqlalchemy.')
-        DBSession.configure(bind=self.engine)
+        self.phone_arrondissements = {}
 
     def drop_and_create(self):
+        self.drop_tables()
+        self.init_session()
         self.create_tables()
         self.populate_categories()
         self.populate_geocode()
+        
+    def init_session(self):
+        DBSession.configure(bind=self.engine)
 
     def drop_tables(self):
+        try: self.engine.execute("DROP TABLE arrondissements CASCADE")
+        except: pass
+        try: self.engine.execute("DROP TABLE activities CASCADE")
+        except: pass
+        try: self.engine.execute("DROP TABLE categories CASCADE")
+        except: pass
+        try: self.engine.execute("DROP TABLE occurences CASCADE")
+        except: pass
         # Can't drop table for some reason. Screw it
-        Base.metadata.reflect(bind=self.engine)
-        tables_to_keep = set(('spatial_ref_sys', 'geometry_columns'))
-        for table in reversed(Base.metadata.sorted_tables):
-            if not table in tables_to_keep:
-                t = table.drop(bind=self.engine, checkfirst=True)
-                if t: self.engine.execute(t)
+        #Base.metadata.reflect(bind=self.engine)
+        #tables_to_keep = set(('spatial_ref_sys', 'geometry_columns'))
+        #for table in reversed(Base.metadata.sorted_tables):
+        #    if not table in tables_to_keep:
+        #        t = table.drop(bind=self.engine, checkfirst=True)
+        #        if t: self.engine.execute(t)
 
     def create_tables(self):
         Base.metadata.create_all(self.engine)
+
+    def get_or_gen_arrondissement(self, db_node):
+        arr_name = db_node.arrondissement_name
+        arr_phone = db_node.arrondissement_phone
+        if arr_name in self.phone_arrondissements:
+            return self.phone_arrondissements[arr_name]
+        new_arr = Arrondissement()
+        new_arr.phone = arr_phone
+        new_arr.name = arr_name
+        with transaction.manager:
+            DBSession().add(new_arr)
+        self.phone_arrondissements[arr_name] = new_arr
+        return new_arr
 
     def populate_categories(self):
         categ_image = {}
@@ -89,6 +116,7 @@ class DatabasePopulator(object):
 
                 for db_node in checker.matches_nodes:
                     new_act = Activity(title=db_node.description)
+                    new_act.arrondissement = self.get_or_gen_arrondissement(db_node)
                     new_act.category = cat_obj
                     new_act.location = db_node.adresse
                     new_act.location_info = db_node.location_info
