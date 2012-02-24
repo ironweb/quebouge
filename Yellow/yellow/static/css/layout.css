@@ -604,64 +604,65 @@ form.filter select, form.filter input{
 }
 
 /* Transition/animation (inspired by jQTouch) */
-.in,.out{
-    -webkit-animation-duration:250ms;-webkit-animation-fill-mode:both;-webkit-animation-timing-function:ease-in-out}
-.in{z-index:10}
-.in:after{content:"";position:absolute;display:block;top:0;left:0;bottom:0;right:0}
-.out{z-index:0 !important}
+@media handheld, only screen and (max-width: 767px) {
+    .in,.out{
+        -webkit-animation-duration:250ms;-webkit-animation-fill-mode:both;-webkit-animation-timing-function:ease-in-out}
+    .in{z-index:10}
+    .in:after{content:"";position:absolute;display:block;top:0;left:0;bottom:0;right:0}
+    .out{z-index:0 !important}
 
-.slideleft.in {
-    -webkit-animation-name: slideLeftIn;
-}
+    .slideleft.in {
+        -webkit-animation-name: slideLeftIn;
+    }
 
-.slideleft.out {
-    -webkit-animation-name: slideLeftOut;
-}
+    .slideleft.out {
+        -webkit-animation-name: slideLeftOut;
+    }
 
-.slideright.in {
-    -webkit-animation-name: slideRightIn;
-}
+    .slideright.in {
+        -webkit-animation-name: slideRightIn;
+    }
 
-.slideright.out {
-    -webkit-animation-name: slideRightOut;
-}
+    .slideright.out {
+        -webkit-animation-name: slideRightOut;
+    }
 
-@-webkit-keyframes slideLeftIn {
-    0% {
-        -webkit-transform: translateX(100%);
-    } 
-    100% {
-        -webkit-transform: translateX(0);
+    @-webkit-keyframes slideLeftIn {
+        0% {
+            -webkit-transform: translateX(100%);
+        } 
+        100% {
+            -webkit-transform: translateX(0);
+        }
+    }
+
+    @-webkit-keyframes slideLeftOut {
+        0% {
+            -webkit-transform: translateX(0px);
+        } 
+        100% {
+            -webkit-transform: translateX(-100%);
+        }
+    }
+
+    @-webkit-keyframes slideRightIn {
+        0% {
+            -webkit-transform: translateX(-100%);
+        } 
+        100% {
+            -webkit-transform: translateX(0);
+        }
+    }
+
+    @-webkit-keyframes slideRightOut {
+        0% {
+            -webkit-transform: translateX(0);
+        } 
+        100% {
+            -webkit-transform: translateX(100%);
+        }
     }
 }
-
-@-webkit-keyframes slideLeftOut {
-    0% {
-        -webkit-transform: translateX(0px);
-    } 
-    100% {
-        -webkit-transform: translateX(-100%);
-    }
-}
-
-@-webkit-keyframes slideRightIn {
-    0% {
-        -webkit-transform: translateX(-100%);
-    } 
-    100% {
-        -webkit-transform: translateX(0);
-    }
-}
-
-@-webkit-keyframes slideRightOut {
-    0% {
-        -webkit-transform: translateX(0);
-    } 
-    100% {
-        -webkit-transform: translateX(100%);
-    }
-}
-
 
 
 /* css for ipad and desktop */

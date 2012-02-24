@@ -64,7 +64,7 @@ FrontController = {
 
         //$('form.filter').delegate('select', 'change', SearchController.load);
 
-        //$(window).bind('resize', Layout.adjustHeight);
+        $(window).bind('resize', ActivityController.adjustMap);
         //window.addEventListener( "orientationchange", Layout.adjustHeight, false );
     },
     readTemplates:function() {
@@ -249,7 +249,8 @@ ActivityController = {
         draggable: false
       };
       ActivityController.map_canvas = $("#map-canvas");
-      ActivityController.map_canvas.width($(document).width())
+      ActivityController.adjustMap();
+
       ActivityController.map = new google.maps.Map(
         ActivityController.map_canvas[0], opts);
 
@@ -267,7 +268,10 @@ ActivityController = {
         ]);
         ActivityController.map.mapTypes.set('quebouge', styledMapType);
     },
-
+    adjustMap:function() {
+        ActivityController.map_canvas.width($(document).width())
+        google.maps.event.trigger(ActivityController.map, 'resize')  
+    },
     load:function(url) {
         var id = ActivityController._urlToId(url)
         var occurence = OccurencesCache[id];
@@ -378,8 +382,9 @@ ActivityController = {
       ActivityController.markersList.push(userMarker);
       
       setTimeout(function(){
+            ActivityController.map
           ActivityController.map.fitBounds(bounds);
-      },100)
+      },700)
       
     },
 
