@@ -286,13 +286,6 @@ form.filter select, form.filter input{
 }
 
 
-#activity-page .price {
-    font-size:12px;
-    text-align:center;
-    display: block;
-    clear: both;
-}
-
 #activity-page .content h3{
     color: #ffffff;
     text-shadow:1px 1px 1px #000;
@@ -396,6 +389,7 @@ form.filter select, form.filter input{
     background: #84e0fe; /* Old browsers */
 }
 
+/*
 #activity-page .when{
     color:#84e0fe;
     font-size:13px;
@@ -409,10 +403,11 @@ form.filter select, form.filter input{
     font-size:20px;
     margin-top:4px;
 }
-
 #activity-page .when{
     margin-bottom:15px;
 }
+*/
+
 
 #activity-page .where{
     color:#d3d2d2;
@@ -473,8 +468,8 @@ form.filter select, form.filter input{
     float:left;
     color: #84e0fe;
     font-size:12px;
-    margin:0;
-    padding:0;
+    margin: 3px 0 0 0;
+    padding: 0;
     line-height:1em;
     padding-top: 4px;
 }
@@ -490,46 +485,61 @@ form.filter select, form.filter input{
 .occurence ul.meta li:first-child{
     margin-left:0;
 }
-.occurence span.price {
-  display: block;
-  font-size: 65%;
-  line-height: 2ex;
-}
-.occurence .meta span,
-.occurence .meta small {
+
+
+/*
+ * Petites pastilles là.. avec la date en gros bleu et aussi la proximité
+ * on les utilise comme: ".meta .time" ".meta .dist"
+ */
+.meta span,
+.meta small {
     color: #d3d2d2;
     font-size:12px;
     display:block;
     margin-bottom:2px;
     text-align:left;
 }
-.occurence .meta small { /* common top labels */
+.meta small { /* common top labels */
   font-size: 75%;
   padding-bottom: 0.5ex;
 }
-.occurence .meta .time {
+.meta .time {
   color: #84E0FE;
   width: 14ex;
 }
-.occurence .meta .time small { /* time description */
+.meta .time small { /* time description */
   font-weight: bold;
   color: #84E0FE;
 }
-.occurence .meta .time span { /* time delay */
+.meta .time span { /* time delay */
   color: #84E0FE;
   font-size: 200%;
   font-weight: bold;
 }
-.occurence .meta .dist {
+.meta .dist {
     color: #d3d2d2;
 }
-.occurence .meta .dist small { /* label */
+.meta .dist small { /* label */
 }
-.occurence .meta .dist span { /* value */
+.meta .dist span { /* value */
   display: inline;
   font-size: 200%;
   font-weight: bold;
 }
+
+/**
+ * Pour la pastille icône + prix
+ */
+.icon_price span.price {
+    text-align:center;
+    display: block;
+    clear: both;
+    font-size: 65%;
+    line-height: 2ex;
+}
+
+
+
 
 #map-canvas{
   height: 300px;

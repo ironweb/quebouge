@@ -173,7 +173,7 @@ SearchController = {
           OccurencesCache[item.occurence_id] = item;
         }
 
-        dust.render('tpl-list-view', data, function(err, out) {
+        dust.render('tpl_list_view', data, function(err, out) {
             $('#home-page').find('div.content').html(out);
             SearchController.$spinner.hide();
             //Layout.adjustHeight();
@@ -225,23 +225,22 @@ ActivityController = {
       var occurence = OccurencesCache[id];
       ActivityController._drawPointsAndRecenter(occurence);
 
-      dust.render('tpl-map-view', occurence, function(err, out) {
-        var $activity_page = $('#activity-page');
+      var $activity_page = $('#activity-page');
+      dust.render('tpl_map_view', occurence, function(err, out) {
         $activity_page.find('div.content').html(out);
-
-        // load template with data
-        var occurence_tmpl = $.extend({}, occurence);
-        occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
-        occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
-        $activity_page.find('section.sec').html( Template.render('tpl-map-view-howtogo', occurence_tmpl) );
-
+      });
+      // load template with data
+      var occurence_tmpl = $.extend({}, occurence);
+      occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
+      occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
+      dust.render('tpl_map_view_howtogo', occurence_tmpl, function(err, out) {
+        $activity_page.find('section.sec').html(out);
         // Bind direction clicks
         var $direction_links = $('#direction-links');
         $direction_links.delegate('a', 'click', function(e){
           e.preventDefault();
           window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
         });
-
       });
 
 
