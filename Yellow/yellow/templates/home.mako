@@ -14,6 +14,8 @@
 
   <link rel="apple-touch-icon" href="/static/images/apple-icon.png"/>
 
+  <link rel="shortcut icon" href="/static/images/favicon.png" type="image/png" />
+
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/1140.css">
   <link rel="stylesheet" href="/static/css/layout.css">
