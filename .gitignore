@@ -1,4 +1,7 @@
 Yellow/env
+env/
+prod.ini
+dev.ini
 *~
 *.pyc
 *.swp

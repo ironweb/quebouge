@@ -1,0 +1,26 @@
+#!/bin/sh -e
+
+APPDIR="/home/jaunes/quebouge-prod"
+INIFILE="prod.ini"
+PIDFILE="$APPDIR/paster.pid"
+LOGFILE="$APPDIR/paster.log"
+USER="jaunes"
+GROUP="jaunes"
+COMMAND="$APPDIR/env/bin/paster serve $APPDIR/$INIFILE --daemon --user=$USER --group=$GROUP --pid-file=$PIDFILE --log-file=$LOGFILE"
+
+case "$1" in
+  start)
+    $COMMAND start
+    ;;
+  stop)
+    $COMMAND stop
+    ;;
+  restart)
+    $COMMAND restart
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit 0
