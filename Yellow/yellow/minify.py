@@ -88,7 +88,7 @@ class Minify(object):
 class JsMinify(Minify):
     file_list = [('js', 'libs', 'zepto.min.js'),
                  ('js', 'core.js'),
-                 ('js', 'libs', 'mustache-0.4.0.min.js'),
+                 ('js', 'libs', 'dust-full-0.3.0.js'),
                  ('js', 'libs', 'spin.min.js'),
                  ]
     type = 'js'

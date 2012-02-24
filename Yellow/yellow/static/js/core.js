@@ -9,6 +9,7 @@ FrontController = {
         window.scrollTo(0, 1);
 
         FrontController.addActions();
+        FrontController.readTemplates();
 
         //prepare controller
         SearchController.init();
@@ -58,6 +59,14 @@ FrontController = {
 
         //$(window).bind('resize', Layout.adjustHeight);
         //window.addEventListener( "orientationchange", Layout.adjustHeight, false );
+    },
+    readTemplates:function() {
+        $('script').each(function() {
+            var el = $(this);
+            if (el.attr('type') == 'text/html') {
+                dust.compileFn(el.html(), el.attr('id'));
+            }
+        });
     },
     loadPage:function( pagename, url ){
         switch( pagename ){
@@ -129,7 +138,7 @@ SearchController = {
         
         var dataToSend = {
             latlon:center.latitude+','+center.longitude,
-            radius:0.5,
+            radius:2.0,
             //max_price:$this.find('select[name=price]').val(),
             cat_id:$this.find('select[name=category]').val()
         }
@@ -164,10 +173,11 @@ SearchController = {
           OccurencesCache[item.occurence_id] = item;
         }
 
-        $('#home-page').find('div.content').html( Template.render('list-view', data) );
-
-        SearchController.$spinner.hide();
-        //Layout.adjustHeight();
+        dust.render('tpl-list-view', data, function(err, out) {
+            $('#home-page').find('div.content').html(out);
+            SearchController.$spinner.hide();
+            //Layout.adjustHeight();
+        });
     },
     show:function() {
         
@@ -215,22 +225,23 @@ ActivityController = {
       var occurence = OccurencesCache[id];
       ActivityController._drawPointsAndRecenter(occurence);
 
-      var $activity_page = $('#activity-page');
-      $activity_page.find('div.content').html( Template.render('map-view', occurence_tmpl) );
+      dust.render('tpl-map-view', occurence, function(err, out) {
+        var $activity_page = $('#activity-page');
+        $activity_page.find('div.content').html(out);
 
-      $activity_page.find('div.content').html( Template.render('map-view', occurence) )
+        // load template with data
+        var occurence_tmpl = $.extend({}, occurence);
+        occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
+        occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
+        $activity_page.find('section.sec').html( Template.render('tpl-map-view-howtogo', occurence_tmpl) );
 
-      //load template with data
-      var occurence_tmpl = $.extend({}, occurence);
-      occurence_tmpl.location_url_safe = encodeURI(occurence_tmpl.location)
-      occurence_tmpl.saddr = Geo.coords.latitude + "," + Geo.coords.longitude
-      $activity_page.find('section.sec').html( Template.render('map-view-howtogo', occurence_tmpl) );
+        // Bind direction clicks
+        var $direction_links = $('#direction-links');
+        $direction_links.delegate('a', 'click', function(e){
+          e.preventDefault();
+          window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
+        });
 
-      // Bind direction clicks
-      var $direction_links = $('#direction-links');
-      $direction_links.delegate('a', 'click', function(e){
-        e.preventDefault();
-        window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
       });
 
 
@@ -279,19 +290,6 @@ ActivityController = {
 
 }
 
-Template = {
-    list:[],
-    get:function( name ){
-        if(!Template.list[name]){
-            //load the template
-            Template.list[name] = $( '#tpl-' + name ).html();
-        }
-        return Template.list[name];
-    },
-    render:function( name, data ) {
-        return Mustache.to_html( Template.get(name), data );
-    }
-}
 
 Geo = {
     coords:false,

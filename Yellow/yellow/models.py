@@ -142,11 +142,13 @@ class Activity(Base):
 
         # Get those before they start
         res2 = db.execute(q.where(Occurence.dtstart >= dt_start) \
-                           .order_by(Occurence.dtstart))
+                           .order_by(Occurence.dtstart) \
+                           .limit(50))
+                           
 
         ret1 = [Activity._row_result_to_dict(row, past=True) for row in res1]
         ret2 = [Activity._row_result_to_dict(row, past=False) for row in res2]
-        return (ret1 + ret2)[:50] # maximum renvoyés
+        return (ret1 + ret2) # maximum renvoyés
 
     @staticmethod
     def _row_result_to_dict(row, past):
