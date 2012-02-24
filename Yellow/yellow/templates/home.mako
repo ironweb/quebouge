@@ -12,6 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+  <link rel="apple-touch-icon" href="/static/images/apple-icon.png"/>
+
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/1140.css">
   <link rel="stylesheet" href="/static/css/layout.css">
