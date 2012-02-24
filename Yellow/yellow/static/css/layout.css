@@ -12,16 +12,16 @@ body{
 
 #container{
     position:relative;
-    min-height: 679px;
+    min-height: 500px;
     width: 100%;
 }
 
 #container>.wrap{
     max-width: 768px;
-margin: 0 auto;
-width: 100%;
-height: 100%;
-position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 .page{
     min-height: 679px;
@@ -573,7 +573,19 @@ form.filter select, form.filter input{
 
 
 
-
+#wrap-map-canvas{
+    position:relative;
+}
+#wrap-map-canvas:before{
+    content:'';
+    width: 100%;
+    height:100%;
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:15;
+}
 #map-canvas{
   height: 300px;
   width: 100%;

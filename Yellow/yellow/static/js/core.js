@@ -37,7 +37,7 @@ FrontController = {
             e.stopPropagation();
 
             if( Modernizr.history ){
-                History.pushState({state:2}, this.title, this.href);
+                History.pushState(null, this.title, this.href);
             }else{
                 FrontController.loadPage( this.href );
             }
@@ -48,7 +48,7 @@ FrontController = {
             e.stopPropagation();
 
             if( Modernizr.history ){
-                History.pushState({state:1}, this.title, '/');
+                History.pushState(null, this.title, '/');
             }else{
                 FrontController.loadPage( "/" );
             }
@@ -59,7 +59,6 @@ FrontController = {
             History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
                 var State = History.getState(); // Note: We are using History.getState() instead of event.state
                 History.log(State.data, State.title, State.url);
-
                 FrontController.loadPage( State.url );
             });    
         }
@@ -220,14 +219,15 @@ SearchController = {
 }
 
 ActivityController = {
-    zoom: 11,
+    zoom: 9,
     map:false,
     markersList:[],
     init:function() {
       if(ActivityController.map) return;
       var opts = {
+        zoom:13,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: new google.maps.LatLng(0,0),
+        center: new google.maps.LatLng(Geo.coords.latitude,Geo.coords.longitude),
         disableDefaultUI: false,
         streetViewControl:false,
         zoomControl: false,
@@ -240,6 +240,7 @@ ActivityController = {
         draggable: false
       };
       ActivityController.map_canvas = $("#map-canvas");
+      ActivityController.map_canvas.width($(document).width())
       ActivityController.map = new google.maps.Map(
         ActivityController.map_canvas[0], opts);
 
@@ -281,7 +282,7 @@ ActivityController = {
           window.open($direction_links.data('href') + '&dirflg=' + $(this).data('dirflg'));
         });
       });
-      google.maps.event.trigger(ActivityController.map, 'resize');
+      //google.maps.event.trigger(ActivityController.map, 'resize');
 
     },
 
@@ -312,27 +313,26 @@ ActivityController = {
     },
 
     _drawPointsAndRecenter: function(point){
-      var markers = new google.maps.LatLngBounds();
+      var bounds = new google.maps.LatLngBounds();
       var latlng = ActivityController._latLngFromPoint(point);
       var user_geoloc = new google.maps.LatLng(Geo.coords.latitude, Geo.coords.longitude)
-      
 
-      markers.extend(latlng)
-      markers.extend(user_geoloc)
+      bounds.extend(latlng)
+      bounds.extend(user_geoloc)
 
       var icon_activity = new google.maps.MarkerImage(
           '/static/images/pinpoint/pin_'+point.categ_icon,
           // This marker is 20 pixels wide by 32 pixels tall.
           new google.maps.Size(22, 30)
       );
-      
+
       var activityMarker = new google.maps.Marker({
         position: latlng,
         icon:icon_activity,
         map: ActivityController.map,
         title: point.title
       });
-      console.debug(activityMarker)
+
       ActivityController.markersList.push(activityMarker);
 
       var icon_me = new google.maps.MarkerImage(
@@ -346,8 +346,12 @@ ActivityController = {
         position: user_geoloc,
         map: ActivityController.map
       });
+
       ActivityController.markersList.push(userMarker);
-      ActivityController.map.fitBounds(markers)
+      
+      setTimeout(function(){
+          ActivityController.map.fitBounds(bounds);
+      },100)
       
     },
 
@@ -359,8 +363,10 @@ ActivityController = {
         if (ActivityController.markersList.length > 0 ) {
             for (var i = 0; i < ActivityController.markersList.length; i++ ) {
                 ActivityController.markersList[i].setMap(null);
+                ActivityController.markersList[i] = null
             }
-        }    
+        } 
+          ActivityController.markersList = new Array();
     }
 
 }

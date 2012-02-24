@@ -79,7 +79,7 @@
           <div class="view">
             <div class="content"></div>
     
-            <div id="map-canvas"></div>
+            <div id="wrap-map-canvas"><div id="map-canvas"></div></div>
           </div>
           
     
