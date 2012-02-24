@@ -34,8 +34,8 @@ FrontController = {
             e.preventDefault();
             e.stopPropagation();
 
-            if( Modernizr.history ){
-                History.pushState(null, this.title, this.href);
+            if( Modernizr.history && History.enabled ){
+                History.pushState({state:2}, this.title, this.href);
             }else{
                 FrontController.loadPage( this.href );
             }
