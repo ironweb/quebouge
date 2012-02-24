@@ -4,8 +4,8 @@ Yeah l'équipe des jaunes!!!
 
 **Activities**
 
-Send a GET request to `/activities` to get datas for activities and
-their asssociated occurences
+Send a GET request to `/activities` to get data for an occurence and
+it's associated activity
 
 Available options :
 
@@ -33,3 +33,19 @@ sort api : to be determined
     
     # Get some data
     ./env/bin/populate_Yellow `your_config_file`;
+
+
+## Technical overview of the project
+
+*HTML5 Boilerplate
+*Zepto (jQuery-like API that does not support IE)
+*One-page app, minize API
+    * Low latency
+*Pyramid
+*SQLAlchemy / GeoAlchemy
+    * Submitted issues to GeoAlchemy
+*PostgreSQL + spatial extensions PostGIS
+*Mobile first
+    * Second layout at 1024px wide
+*DustJS
+*Modernizr
