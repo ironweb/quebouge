@@ -12,6 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+  <link rel="apple-touch-icon" href="/static/images/apple-icon.png"/>
+
 % if css_mini.enabled:
   <link rel="stylesheet" href="${css_mini.compiled_url()}">
 % else:
@@ -108,7 +110,7 @@
           <li class="occurence">
             <a href="/show/{{occurence_id}}">
               <figure>
-                <img src="/static/images/category_icons/{{categ_icon}}" alt="{{category}}" style="width:50px;" /><br />
+                <img src="/static/images/category_icons/{{categ_icon}}" alt="{{category}}" /><br />
                 <span class="price">{{price}}</span>
               </figure>
               <div class="content">
@@ -138,30 +140,48 @@
       </ol>  
     </script>
     <script id="tpl-map-view" type="text/x-mustache-template">
-      <div class="colLeft">
-        <h3>Conditionnement physique</h3>
-        <h4>École Saint-Sacrament (Gymnase)</h4>
-
-				
-      </div>
-      <div class="colRight">
-        <p class="when">
-          aujourd'hui
-          <strong>20:00</strong>
-        </p>
-        <p class="where">
-          distance (km)
-          <strong>1,1</strong>
-        </p>
-      </div>
+      <table>
+        <tr>
+          <td class="first">
+            <img src="/static/images/category_icons/{{categ_icon}}" alt="{{category}}" />
+            <span class="price">{{price}}</span>
+          </td>
+          <td class="middle">
+            <h3>{{title}}</h3>
+            <h4>École Saint-Sacrament (Gymnase)</h4>
+            <p class="address">1424 Chemin des Avoines,Saint-Clinclin</p>
+            <p class="phone"><a href="#">4186482646</a></p>
+          </td>
+          <td class="last">
+            <p class="when">
+              {{#later_label}}
+                <small>{{later_label}}</small>
+                <span>{{later_time}}</span>
+              {{/later_label}}
+              {{#today_label}}
+                <small>{{today_label}}</small>
+                <span>{{today_time}}</span>
+              {{/today_label}}
+              {{#ends_label}}
+                <small>{{ends_label}}</small>
+                <span>{{ends_time}}</span>
+              {{/ends_label}}
+            </p>
+          <p class="where">
+            <small>PROXIMITÉ</small><span>{{distance}} km</span>
+          </p>
+          </td>
+        </tr>
+      </table>
     </script>
 
     <script id="tpl-map-view-howtogo" type="text/x-mustache-template">
         <a class="back">back</a>
-        <ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?daddr={{location_url_safe}}&oq=My+lo">
-          <li><a href="#" data-dirflg="w">à pied</a></li>
-          <li><a href="#" data-dirflg="r">transport en commun</a></li>
-          <li><a href="#" data-dirflg="b">en vélo</a></li>
+				<ul id="direction-links" class="howtogo" data-href="http://maps.google.com/maps?saddr={{saddr}}&daddr={{location_url_safe}}&oq=My+lo">
+          <li><a href="#" data-dirflg="" class="car">en voiture</a></li>
+          <li><a href="#" data-dirflg="w" class="foot">à pied</a></li>
+          <li><a href="#" data-dirflg="r" class="bus">transport en commun</a></li>
+          <li><a href="#" data-dirflg="b" class="bike">en vélo</a></li>
         </ul>
     </script>
   </div>

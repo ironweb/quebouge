@@ -260,13 +260,38 @@ form.filter select, form.filter input{
     float:left;
     padding:10px 0;
 }
-#activity-page .colRight{
-    width:29%;
-    border-left:1px solid #000;
-    min-height:50px;
-    float:left;
-    padding:10px 0;
+
+#activity-page table{
+    border-collapse:collapse;
+    width: 100%;
 }
+
+#activity-page td{
+    padding:10px;
+}
+#activity-page td img{
+    max-width:50px;
+}
+
+#activity-page td.first{
+    width: 50px;
+}
+#activity-page td.last{
+    width:100px;
+    border-left:1px solid #000;
+}
+#activity-page td.middle{
+    border-right:1px solid #636363;
+}
+
+
+#activity-page .price {
+    font-size:12px;
+    text-align:center;
+    display: block;
+    clear: both;
+}
+
 #activity-page .content h3{
     color: #ffffff;
     text-shadow:1px 1px 1px #000;
@@ -275,16 +300,32 @@ form.filter select, form.filter input{
     padding:0;
     margin:0;
     font-style:italic;
-    padding-left:20px;
-    font-size:15px;
+    font-size:13px;
 }
 #activity-page .content h4{
     color: #84e0fe;
     padding:0;
     margin:0;
-    font-size:14px;
-    padding:5px 0 0 20px;
+    font-size:12px;
+    padding:6px 0 0 0;
+    line-height:1em;
+    font-weight:normal;
+    padding-right:5px;
 }
+#activity-page td p{
+    float:left;
+    margin:0;
+    font-size:12px;
+    line-height:1em;
+    margin-top:6px;
+    color: #d3d2d2;
+    clear:both;
+}
+#activity-page td .phone a{
+    font-size:14px;
+    color: #fff;    
+}
+
 #activity-page .back{
     display: inline-block;
     float:left;
@@ -306,9 +347,10 @@ form.filter select, form.filter input{
 #activity-page .howtogo a{
     display: inline-block;
     border:2px solid #84e0fe;
-    width:30px;
-    height:30px;
+    width:40px;
+    height:40px;
     text-indent:-99999px;
+    position:relative;
 
     background: #ade8fb; /* Old browsers */
     background: -moz-linear-gradient(top, #ade8fb 0%, #84e0fe 100%); /* FF3.6+ */
@@ -322,30 +364,107 @@ form.filter select, form.filter input{
     -moz-border-radius:3px;
     border-radius:3px;        
 }
+#activity-page .howtogo a:before{
+    content:'';
+    position:absolute;
+    width:40px;
+    height:40px;
+    top:0;
+    left:0;
+}
+#activity-page .howtogo a.car:before{
+    background: url(/static/images/sprite_transports.png) no-repeat -116px 1px;
+}
+
+#activity-page .howtogo a.bike:before{
+    background: url(/static/images/sprite_transports.png) no-repeat -2px 0;
+}
+
+#activity-page .howtogo a.foot:before{
+    background: url(/static/images/sprite_transports.png) no-repeat -41px 0;
+    left: 3px;
+    width:37px;
+}
+
+#activity-page .howtogo a.bus:before{
+    background: url(/static/images/sprite_transports.png) no-repeat -71px 1px;
+}
+
 
 #activity-page .howtogo a:hover{
     background: #84e0fe; /* Old browsers */
 }
 
-#activity-page .when,
-#activity-page .where{
-    color:#d3d2d2;
-    font-size:15px;
+#activity-page .when{
+    color:#84e0fe;
+    font-size:13px;
     font-weight:bold;
-    text-align:center;
+    text-align:left;
     margin:0;
     line-height:1em;
 }
-#activity-page .when{
-    margin-bottom:17px;
+#activity-page .when span{
+    display:block;
+    font-size:20px;
+    margin-top:4px;
 }
 
-#activity-page .when strong,
-#activity-page .where strong{
+#activity-page .when{
+    margin-bottom:15px;
+}
+
+#activity-page .where{
+    color:#d3d2d2;
+    font-size:13px;
+    font-weight:bold;
+    text-align:left;
+    margin:0;
+    line-height:1em;
+}
+#activity-page .where span{
     display:block;
-    font-size:23px;
-    color: #84e0fe;
-    margin-top:7px;
+    font-size:18px;
+    margin-top:4px;
+}
+
+#activity-page a.back{
+    display: inline-block;
+    background:#d2d1d1 url(/static/images/home.png) no-repeat 6px center;
+    width:38px;
+    height:34px;
+    border:2px solid #b8b8b8;
+    text-indent:-99999px;
+    cursor:pointer;
+    position:relative;
+    margin-left:8%;
+    margin-top:2px;
+    -webkit-border-radius:0 4px 4px 0;
+    -moz-border-radius:0 4px 4px 0;
+    border-radius:0 4px 4px 0;
+}
+#activity-page a.back:before{
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: -2px;
+    border: 19px solid transparent;
+    border-right-color: #B8B8B8;
+    z-index:2;
+}
+#activity-page a.back:after{
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 0;
+    border: 17px solid transparent;
+    border-right-color: #D2D1D1;
+    z-index: 3;
+}
+#activity-page a.back:hover{
+    background-color:#c8c8c8;
+}
+#activity-page a.back:hover:after{
+    border-right-color: #c8c8c8;
 }
 
 
