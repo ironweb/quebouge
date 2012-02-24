@@ -27,6 +27,17 @@ body{
     display: none;
 }
 
+.page .orientationmap{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:50;
+    background:white;
+    display:none;
+}
+
 .view .wrap-spinner{
     position:absolute;
     top:0;

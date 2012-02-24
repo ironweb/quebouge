@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="/static/css/layout.css">
 % endif
   
-  <script src="/static/js/libs/modernizr.custom.79709.js"></script>
+  <script src="/static/js/libs/modernizr.custom.11354.js"></script>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDZIPb-rrtMF5CEVw-vq8zj-fL9ZbQoxS0&sensor=false&region=CA&language=fr">
 </script>
 
@@ -31,6 +31,7 @@
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <div role="main" id="container">
     <section id="home-page" class="page row current">
+      <div class="orientationmap"></div>
       <header>
         <section>
           <h1>
@@ -62,6 +63,7 @@
     </section>
 
     <section id="activity-page" class="page row">
+      <div class="orientationmap"></div>
       <header>
         <section>
           <h1>

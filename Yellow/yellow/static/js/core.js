@@ -5,11 +5,16 @@ var OccurencesCache = {};
  */
 FrontController = {
     isStarted:false,
+    hasData:false,
     init:function() {
         window.scrollTo(0, 1);
+        //@TODO change that when we can load another page than the search results
+        window.currentUrl = '/';
 
         FrontController.addActions();
         FrontController.readTemplates();
+
+        OrientationMap.init();
 
         //prepare controller
         SearchController.init();
@@ -26,6 +31,7 @@ FrontController = {
         if(FrontController.isStarted){
             return;
         }
+        FrontController.isStarted = true;
 
         //add future router here
         SearchController.load();      
@@ -81,7 +87,13 @@ FrontController = {
     loadPage:function( url ){
 
         url = FrontController.clearUrl(url);
+        
+        window.currentUrl = url;
 
+        if( FrontController.hasData ){
+            OrientationMap.test();
+        }
+        
         switch( url ){
             case '/':
                 SearchController.show();
@@ -181,11 +193,14 @@ SearchController = {
             activities: data.elements
         }
 
+        FrontController.hasData = true;
+
         // Cache the dataz
         for(var i = 0; i < data.activities.length ; i++){
           var item = data.activities[i];
           OccurencesCache[item.occurence_id] = item;
         }
+        OrientationMap.prepare();
 
         dust.render('tpl_list_view', data, function(err, out) {
             $('#home-page').find('div.content').html(out);
@@ -328,6 +343,150 @@ ActivityController = {
                 ActivityController.markersList[i].setMap(null);
             }
         }    
+    }
+
+}
+
+OrientationMap = {
+    isInit:false,
+    results:{
+        init:false,
+        $obj:false,
+        map:false,
+        markersList:[]
+    },
+    activity:{
+        init:false,
+        $obj:false,
+        map:false,
+        markersList:[]
+    },
+    $activityMap:false,
+    resultInit:false,
+    activityInit:false,
+    init:function(){
+        if( !Modernizr.touch || OrientationMap.isInit ){
+            return;
+        }
+
+        window.addEventListener( "orientationchange", OrientationMap.test, false );
+    },
+    prepare:function(){
+        if(!Modernizr.touch || OrientationMap.isInit){
+        //if(OrientationMap.isInit){
+            return;
+        }
+
+        OrientationMap.results.$obj = $('#home-page').children('.orientationmap');
+        OrientationMap.$activityMap = $('#activity-page').children('.orientationmap');
+
+        OrientationMap.test();
+    },
+    test:function() {
+        
+        //check wich orientation we are, and call the good function
+        if(Modernizr.mq("(orientation:landscape)")){
+            OrientationMap.load();
+        }else{
+            OrientationMap.hideMap();
+        }
+    },
+    load:function(){
+        //depending of the current url
+        if(window.currentUrl == '/'){
+            OrientationMap.displayResultsMap();
+        }
+    },
+
+    displayResultsMap:function() {
+        var $d = $(document);
+        OrientationMap.results.$obj.width( $d.width() )
+        OrientationMap.results.$obj.height( $d.height() )
+
+        if(!OrientationMap.results.init){
+            OrientationMap.results.map = OrientationMap.getMapOverlayObject(OrientationMap.results.$obj[0]);
+        }
+
+        //clear cache
+        for(var x=0;x<OrientationMap.results.markersList.length;x++){
+            OrientationMap.results.markersList[x].setMap(null);
+            OrientationMap.results.markersList[x] = null;
+        }
+        OrientationMap.results.markersList = new Array();
+
+        //load all occurences in map
+        var bounds = new google.maps.LatLngBounds();
+        
+        $.each(OccurencesCache, function(index,element){
+
+            var latlng = new google.maps.LatLng(element.position[0], element.position[1])
+            bounds.extend(latlng)
+
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: OrientationMap.results.map,
+                title: element.title,
+                flat:true
+            });
+
+            marker.url = '/show/'+element.occurence_id
+            marker.title = element.title;
+            google.maps.event.addListener(marker, 'click', function(e, t) {
+                OrientationMap.hideMap();
+
+                if(Modernizr.history){
+                    if( Modernizr.history ){
+                        History.pushState({state:2}, marker.title, marker.url);
+                    }else{
+                        FrontController.loadPage( marker.url );
+                    }
+                }
+
+            });
+
+            OrientationMap.results.markersList.push(marker)
+        });
+
+        OrientationMap.results.map.fitBounds(bounds)
+
+        OrientationMap.results.$obj.show();
+    },
+    displayActivityMap:function() {
+        var $d = $(document);
+        OrientationMap.activity.$obj.width( $d.width() )
+        OrientationMap.activity.$obj.height( $d.height() )
+
+        if(!OrientationMap.activity.init){
+            OrientationMap.activity.map = OrientationMap.getMapOverlayObject(OrientationMap.activity.$obj[0]);
+        }
+
+        OrientationMap.activity.$obj.show();
+    },
+    hideMap:function(){
+        if(OrientationMap.results.$obj){
+            OrientationMap.results.$obj.hide();
+        }
+        
+        if(OrientationMap.activity.$obj){
+            OrientationMap.activity.$obj.hide();
+        }
+    },
+    getMapOverlayObject:function( el ){
+        var opts = {
+            zoom:3,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: new google.maps.LatLng(0,0),
+            disableDefaultUI: false,
+            streetViewControl:false,
+            zoomControl: false,
+            scrollwheel: false,
+            scaleControl: false,
+            panControl: false,
+            overviewMapControl: false,
+            mapTypeControl: false
+          };
+      
+          return ActivityController.map = new google.maps.Map( el, opts);
     }
 
 }
