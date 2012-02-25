@@ -276,7 +276,12 @@ ActivityController = {
     },
     adjustMap:function() {
         if(!ActivityController.map_canvas) return;
-        ActivityController.map_canvas.width($(document).width())
+        var width = $(document).width();
+        if(width < 769){
+            ActivityController.map_canvas.width(width);
+        }else{
+            ActivityController.map_canvas.css('width','');
+        }
         google.maps.event.trigger(ActivityController.map, 'resize')  
     },
     load:function(url) {
@@ -389,8 +394,8 @@ ActivityController = {
       ActivityController.markersList.push(userMarker);
       
       setTimeout(function(){
-            ActivityController.map
           ActivityController.map.fitBounds(bounds);
+          //ActivityController.map.setCenter(user_geoloc);
       },FrontController.getTimeoutDuration()*3)
       
     },
@@ -414,7 +419,17 @@ ActivityController = {
 
 Geo = {
     coords:false,
+    coordsQuebec:{
+        latitude:46.80964,
+        longitude:-71.21616
+    },
     init:function(){
+
+        if (typeof(Number.prototype.toRad) === "undefined") {
+          Number.prototype.toRad = function() {
+            return this * Math.PI / 180;
+          }
+        }
 
         Modernizr.load({
             test: Modernizr.geolocation,
@@ -427,6 +442,18 @@ Geo = {
     loadPosition:function() {
         navigator.geolocation.getCurrentPosition(function(data){
             Geo.coords = data.coords;
+
+            //help user outside quebec city test the application
+            if(Geo.getDistanceFromQuebec(Geo.coords) > 40){
+                Geo.coords = Geo.coordsQuebec;
+            }
+
+            FrontController.ready = true;
+            FrontController.start( window.location.pathname );
+        },
+        function(){
+            Geo.coords = Geo.coordsQuebec;
+
             FrontController.ready = true;
             FrontController.start( window.location.pathname );
         });
@@ -437,6 +464,24 @@ Geo = {
         }else{
             return Geo.coords;
         }
+    },
+    getDistanceFromQuebec:function(point){
+        lat1 = point.latitude
+        lon1 = point.longitude
+
+        lat2  = Geo.coordsQuebec.latitude;
+        lon2 = Geo.coordsQuebec.longitude;
+
+        var R = 6371; // Radius of the earth in km
+        var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
+        var dLon = (lon2-lon1).toRad(); 
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c; // Distance in km
+
+        return d;
     }
 }
 
