@@ -188,7 +188,7 @@
               {>partial_when/}
             </p>        
             <p class="price">{price}</p>
-	    <p class="share_button" data-share="Bougez-vous! Soyez social avec moi: {title}, {#later_label}{later_label} {later_time}{/later_label}{#today_label}{today_label} {today_time}{/today_label}{#ends_label}{ends_label} {ends_time}{/ends_label}">Partager</p>
+	    <p class="share_button" data-share="Bougez-vous à Québec! Y serez-vous? {title}, {#later_label}{later_label} {later_time}{/later_label}{#today_label}{today_label} {today_time}{/today_label}{#ends_label}{ends_label} {ends_time}{/ends_label}">Partager</p>
       </div>
     </script>
 

@@ -1,7 +1,5 @@
 Zepto(function() {document.addEventListener("deviceready", function() {
 
-  console.log("ALKSADJLSAKJDLSAKJDLAKSJDLSAKJDLAKSJLDKSAJDL");
-  
   var Share = function() {};
 
   Share.prototype.show = function(content, success, fail) {
@@ -19,12 +17,11 @@ Zepto(function() {document.addEventListener("deviceready", function() {
   
   $('body').addClass('phonegap');
 
-  console.log("Stuff ici ALSKDJ LSAKJD LSAK JDLKSA JDLAKSJ DLKSAJ DLKSA JDLSAK JDLKSA JDLASKJD LSAK JDLAKSJ DLKSAJ DLAKJD LKJSAD");
   $('.phonegap').delegate('.share_button', 'click', function() {
-    var share_text = $(this).data('share'); 
-    console.log("SHARE TEXT: " + share_text);
-    window.plugins.share.show({subject: text,
-			       text: text},
+    var share_text = $(this).data('share') + ' - http://quebouge.com'; 
+    //console.log("SHARE TEXT: " + share_text);
+    window.plugins.share.show({subject: share_text,
+			       text: share_text},
 			      function() {},
 			      function() {alert('Share failed')}
 			     );
