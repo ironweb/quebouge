@@ -10,6 +10,6 @@ public class QuebougeActivity extends DroidGap {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        super.loadUrl("http://192.168.43.68:6543/?mobile_app=android");
+        super.loadUrl("http://quebouge.com/?mobile_app=android");
     }
 }
