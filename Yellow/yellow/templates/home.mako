@@ -23,7 +23,7 @@
 % endif
   
   <script src="/static/js/libs/modernizr.custom.79709.js"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDZIPb-rrtMF5CEVw-vq8zj-fL9ZbQoxS0&sensor=false&region=CA&language=fr">
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&key=AIzaSyDA_Tk9O3KMj8qvgCNPd10aovV_7sl9_nU&sensor=false&region=CA&language=fr">
 </script>
 </head>
 <body>
